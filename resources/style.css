@@ -46,27 +46,25 @@ header > nav li a {
   background-color: rgba(0, 255, 255, 0.407);
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
+  display: block;
 }
 
 /* PROFILE ANCHOR */
 
-header > nav ul li.profile-nav{
+header > nav ul li.profile-nav {
   margin-left: 0;
   margin-right: auto;
   overflow: hidden;
 }
 
-header > nav ul li.profile-nav a{
-  display: inline-block;
+header > nav ul li.profile-nav a {
   width: 3rem;
   height: 3rem;
-  margin: 0;
-  padding: 0;
   border-radius: 100%;
   overflow: hidden;
   position: relative;
 }
-header > nav ul li.profile-nav a img{
+header > nav ul li.profile-nav a img {
   width: 100%;
   margin: 0;
   padding: 0;
@@ -76,11 +74,10 @@ header > nav ul li.profile-nav a img{
   transform: translate(-50%, -50%);
 }
 
-
 header > h1 {
   grid-area: heading;
   text-align: center;
-  padding-top: 0.5rem;
+  padding-top: 0;
   font-style: italic;
 }
 
@@ -120,7 +117,7 @@ header > .mini-header form .mini-header-btn {
   color: #f5f5f5;
 }
 
-header > .mini-header form .sign{
+header > .mini-header form .sign {
   align-self: end;
 }
 
