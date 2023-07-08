@@ -17,10 +17,10 @@ body {
 header {
   display: grid;
   grid-template-areas:
-    "nav form "
-    "heading form ";
+    "nav . form "
+    "heading . form ";
   margin: 0 0 auto 0;
-  grid-template-columns: 66% 33%;
+  grid-template-columns: 60% 7% 33%;
 
   background-color: rgba(0, 0, 0, 0.4);
   padding: 1.5rem 0 1rem;
@@ -40,13 +40,42 @@ header > nav ul {
 
 header > nav li a {
   text-decoration: none;
-  margin-right: 1rem;
+  margin-left: 1rem;
   color: #f5f5f5;
   font-size: 1.5rem;
   background-color: rgba(0, 255, 255, 0.407);
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
 }
+
+/* PROFILE ANCHOR */
+
+header > nav ul li.profile-nav{
+  margin-left: 0;
+  margin-right: auto;
+  overflow: hidden;
+}
+
+header > nav ul li.profile-nav a{
+  display: inline-block;
+  width: 3rem;
+  height: 3rem;
+  margin: 0;
+  padding: 0;
+  border-radius: 100%;
+  overflow: hidden;
+  position: relative;
+}
+header > nav ul li.profile-nav a img{
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 
 header > h1 {
   grid-area: heading;
@@ -89,6 +118,10 @@ header > .mini-header form .mini-header-btn {
   border-color: rgba(0, 255, 255, 0.189);
   cursor: pointer;
   color: #f5f5f5;
+}
+
+header > .mini-header form .sign{
+  align-self: end;
 }
 
 /* Hoover Header components */
@@ -165,6 +198,12 @@ main .pag-container i:hover {
   /* position: relative; */
 }
 
+.aside-card {
+  width: 20rem;
+  height: 23rem;
+  margin-top: 1rem;
+}
+
 .destination-card h3 {
   font-style: italic;
   padding-top: 0.5rem;
@@ -230,4 +269,30 @@ footer {
   text-align: center;
   border-top-right-radius: 0.5rem;
   border-top-left-radius: 0.5rem;
+}
+
+/* HOME PAGE - CONTAINER */
+
+main .intro {
+  color: #f5f5f5ac;
+  font-size: 2.5rem;
+  font-weight: 600;
+  padding: 8rem 4rem;
+  text-indent: 4rem;
+  text-align: justify;
+}
+
+main .intro > span {
+  font-family: "Beau Rivage", cursive;
+  font-size: 3rem;
+}
+
+/* USER LIST */
+
+.content-header {
+  color: #f5f5f5;
+  text-align: center;
+  padding-bottom: 1.5rem;
+  font-weight: 500;
+  padding-top: 0;
 }

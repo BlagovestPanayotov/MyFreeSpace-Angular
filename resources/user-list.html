@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>Home</title>
 </head>
+
 <body>
     <header>
         <nav>
@@ -19,7 +21,7 @@
             </ul>
         </nav>
         <div class="mini-header">
-            <form action="#" >
+            <form action="#" style="display: none;">
                 <label for="destination">Destination</label>
                 <input name="destination" id="destination" type="text" placeholder="Destination...">
                 <label for="country">Select Country</label>
@@ -278,15 +280,15 @@
                     <option value="ZM">Zambia</option>
                     <option value="ZW">Zimbabwe</option>
                 </select>
-                <div></div>
+                <label></label>
                 <button type="submit" class="mini-header-btn"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
             </form>
-            <form action="#" style="display: none;">
+            <form action="#" >
                 <label for="username">Username</label>
                 <input name="username" id="username" type="text" placeholder="Username...">
                 <label for="password">Password</label>
                 <input name="password" id="password" type="password" placeholder="Password...">
-                <div class="sign"><p>Sign up from <a href="#">here.</a></p></div>
+                <label></label>
                 <button type="submit" class="mini-header-btn">Log In</button>
             </form>
             <form action="#" style="display: none;">
@@ -296,7 +298,7 @@
                 <input name="password" id="password" type="password" placeholder="Password...">
                 <label for="repass">Repeat Password</label>
                 <input name="repass" id="repass" type="password" placeholder="Repeat Password...">
-                <div class="sign"><p>Log in from <a href="#">here.</a></p></div>
+                <label></label>
                 <button type="submit" class="mini-header-btn">Sign Up</button>
             </form>
         </div>
@@ -304,7 +306,62 @@
     </header>
     <div class="content">
         <main>
-           <p class="intro">Welcome to <span>My Free Space.</span> Here you can find places, where you can spend you free time FOR FREE and you can share YOUR FAVORITE place, just don't forget - the vizit must be free of charge. Can be place for fun of just to go away for some me time - it's up to you.</p>
+            <h2 class="content-header">My Destinations</h2>
+            <div class="cards-container">
+                <article class="destination-card">
+                    <h3>Name</h3>
+                    <div class="img-container">
+                        <img src="profile.jpg" alt="img">
+                    </div>
+                    <p>Some more info</p>
+                    <a href="#" class="destination-details">Details</a>
+                </article>
+                <article class="destination-card">
+                    <h3>Name</h3>
+                    <div class="img-container">
+                        <img src="IMG_20230610_113158.jpg" alt="img">
+                    </div>
+                    <p>Some more info</p>
+                    <a href="#" class="destination-details">Details</a>
+                </article>
+                <article class="destination-card">
+                    <h3>Name</h3>
+                    <div class="img-container">
+                        <img src="IMG_20230610_113208.jpg" alt="img">
+                    </div>
+                    <p>Some more info</p>
+                    <a href="#" class="destination-details">Details</a>
+                </article>
+                <article class="destination-card">
+                    <h3>Name</h3>
+                    <div class="img-container">
+                        <img src="IMG_20230610_113213.jpg" alt="img">
+                    </div>
+                    <p>Some more info</p>
+                    <a href="#" class="destination-details">Details</a>
+                </article>
+                <article class="destination-card">
+                    <h3>Name</h3>
+                    <div class="img-container">
+                        <img src="IMG_20230610_113229.jpg" alt="img">
+                    </div>
+                    <p>Some more info</p>
+                    <a href="#" class="destination-details">Details</a>
+                </article>
+                <article class="destination-card">
+                    <h3>Name</h3>
+                    <div class="img-container">
+                        <img src="IMG_20230610_113239.jpg" alt="img">
+                    </div>
+                    <p>Some more info</p>
+                    <a href="#" class="destination-details">Details</a>
+                </article>
+            </div>
+            <div class="pag-container">
+                <a href="#"><i class="fa-solid fa-angles-left"></i></a>
+                <span>Page 2 from 3</span>
+                <a href="#"><i class="fa-solid fa-angles-right"></i></a>
+            </div>
         </main>
         <aside>
             <article class="destination-card aside-card">
@@ -329,4 +386,5 @@
         <p>&copy; 2023 All Right Reserved!</p>
     </footer>
 </body>
+
 </html>
