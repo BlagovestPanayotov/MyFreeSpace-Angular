@@ -1,0 +1,8 @@
+/* CONTENT */
+.content {
+  display: grid;
+  grid-template-columns: 73% 23%;
+  justify-content: space-between;
+  margin-top: 2rem;
+  color: #000000;
+}
