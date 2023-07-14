@@ -5,6 +5,7 @@ import { DestinationListComponent } from './destination-list/destination-list.co
 import { UserListComponent } from './user-list/user-list.component';
 import { AsideComponent } from './aside/aside.component';
 import { DestinationCardComponent } from './destination-card/destination-card.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -17,7 +18,8 @@ import { DestinationCardComponent } from './destination-card/destination-card.co
     DestinationCardComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    SharedModule
   ],
   exports: [
     AsideComponent,
