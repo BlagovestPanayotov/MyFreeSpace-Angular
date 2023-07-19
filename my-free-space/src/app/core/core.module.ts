@@ -6,6 +6,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ContentComponent } from './content/content.component';
 import { FeaturesModule } from '../features/features.module';
 import { SharedModule } from '../shared/shared.module';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -18,7 +19,8 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     FeaturesModule,
-    SharedModule
+    SharedModule,
+    RouterModule
   ],
   exports:[
     HeaderComponent,

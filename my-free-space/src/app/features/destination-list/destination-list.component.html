@@ -1,15 +1,17 @@
 <main>
   <div class="cards-container">
-      <app-destination-card />
-      <app-destination-card />
-      <app-destination-card />
-      <app-destination-card />
-      <app-destination-card />
-      <app-destination-card />
+    <div class="destination-card" *ngFor="let dest of list">
+      <h3>{{dest.name}}</h3>
+      <div class="img-container">
+        <img src={{dest.img}} alt={{dest.name}}>
+      </div>
+      <p>{{dest.description}}</p>
+      <a href="#" class="destination-details">Details</a>
+    </div>
   </div>
   <div class="pag-container">
-      <a href="#"><i class="fa-solid fa-angles-left"></i></a>
-      <span>Page 2 from 3</span>
-      <a href="#"><i class="fa-solid fa-angles-right"></i></a>
+    <a href="#"><i class="fa-solid fa-angles-left"></i></a>
+    <span>Page 2 from 3</span>
+    <a href="#"><i class="fa-solid fa-angles-right"></i></a>
   </div>
 </main>

@@ -3,8 +3,8 @@
 header {
   display: grid;
   grid-template-areas:
-    "nav . form "
-    "heading . form ";
+    "nav nav form "
+    "heading heading form ";
   margin: 0 0 auto 0;
   grid-template-columns: 60% 7% 33%;
 
@@ -117,4 +117,5 @@ header > nav li a:hover {
   color: grey;
   background-color: rgba(0, 51, 255, 0.856);
   border-color: rgba(0, 51, 255, 0.432);
+  transition: 300ms;
 }
