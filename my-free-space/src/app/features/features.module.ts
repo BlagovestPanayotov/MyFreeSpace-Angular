@@ -1,11 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { HomeComponent } from './home/home.component';
-import { DestinationListComponent } from './destination-list/destination-list.component';
-import { UserListComponent } from './user-list/user-list.component';
-import { AsideComponent } from './aside/aside.component';
-import { DestinationCardComponent } from './destination-card/destination-card.component';
+import { DestinationListComponent } from './destinations/destination-list/destination-list.component';
+import { UserListComponent } from './destinations/user-destination-list/user-list.component';
+import { AsideComponent } from '../shared/aside/aside.component';
 import { SharedModule } from '../shared/shared.module';
+import { DestinationCardComponent } from './destinations/destination-card/destination-card.component';
+import { DestinationModule } from './destinations/destination.module';
+import { AboutComponent } from './about/about.component';
+import { AuthModule } from './auth/auth.module';
+import { ContentComponent } from './content/content.component';
 
 
 
@@ -15,11 +20,15 @@ import { SharedModule } from '../shared/shared.module';
     DestinationListComponent,
     UserListComponent,
     AsideComponent,
-    DestinationCardComponent
+    DestinationCardComponent,
+    AboutComponent,
+    ContentComponent
   ],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    DestinationModule,
+    AuthModule
   ],
   exports: [
     AsideComponent,

@@ -98,3 +98,12 @@ main .pag-container i:hover {
   border: 1px solid #008000;
   transition: 150ms;
 }
+
+/* CONTENT */
+.content {
+  display: grid;
+  grid-template-columns: 73% 23%;
+  justify-content: space-between;
+  margin-top: 2rem;
+  color: #000000;
+}
