@@ -14,5 +14,11 @@ import { RouterModule } from '@angular/router';
     LogoutComponent,
   ],
   imports: [CommonModule, RouterModule],
+  exports:[
+    RegisterComponent,
+    LoginComponent,
+    ProfileComponent,
+    LogoutComponent,
+  ]
 })
 export class AuthModule {}

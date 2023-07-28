@@ -6,6 +6,8 @@ import { AboutComponent } from './features/about/about.component';
 import { LogoutComponent } from './features/auth/logout/logout.component';
 import { RegisterComponent } from './features/auth/register/register.component';
 import { ContentComponent } from './features/content/content.component';
+import { PageNotFoundComponent } from './features/page-not-found/page-not-found.component';
+import { DetailsComponent } from './features/destinations/details/details.component';
 
 const routes: Routes = [
   {
@@ -44,6 +46,14 @@ const routes: Routes = [
   {
     path:'register',
     component:RegisterComponent
+  },
+  {
+    path:'details',
+    component:DetailsComponent
+  },
+  {
+    path:'**',
+    component:PageNotFoundComponent
   }
 ];
 

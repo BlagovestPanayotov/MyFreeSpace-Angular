@@ -12,7 +12,8 @@ form label {
   font-size: 1.2rem;
 }
 
-form input{
+form input,
+form select {
   padding: 0 1rem;
   border-radius: 1rem;
   width: auto;
@@ -29,12 +30,7 @@ form .mini-header-btn {
   color: #f5f5f5;
 }
 
-form .sign {
-  align-self: end;
-}
-
 /* Hoover Header components */
-
 form .mini-header-btn:hover{
   color: lightgreen;
   background-color: rgba(0, 51, 255, 0.856);

@@ -11,6 +11,9 @@ import { DestinationModule } from './destinations/destination.module';
 import { AboutComponent } from './about/about.component';
 import { AuthModule } from './auth/auth.module';
 import { ContentComponent } from './content/content.component';
+import { SearchDestinationComponent } from './destinations/search-destination/search-destination.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -22,19 +25,22 @@ import { ContentComponent } from './content/content.component';
     AsideComponent,
     DestinationCardComponent,
     AboutComponent,
-    ContentComponent
+    ContentComponent,
+    PageNotFoundComponent
   ],
   imports: [
     CommonModule,
     SharedModule,
     DestinationModule,
-    AuthModule
+    AuthModule,
+    RouterModule
   ],
   exports: [
     AsideComponent,
     HomeComponent,
     DestinationListComponent,
-    UserListComponent
+    UserListComponent,
+    SearchDestinationComponent
   ]
 })
 export class FeaturesModule { }

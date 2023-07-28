@@ -1,13 +1,9 @@
-<div id="create-form-container">
-  <h2>Create</h2>
-  <form id="create-form">
-
-    <label for="name">Destination Name:</label>
-    <input type="text" name="name" id="name" placeholder="Destination name...">
-
-    <label for="country">Select Country:</label>
-    <select name="cuntry" id="country">
-      <option value="">country</option>
+<form>
+  <label for="destination">Destination</label>
+  <input name="destination" id="destination" type="text" placeholder="Destination...">
+  <label for="country">Select Country</label>
+  <select class="form-select" id="country" name="country">
+      <option value="">all</option>
       <option value="Afghanistan">Afghanistan</option>
       <option value="Aland Islands">Aland Islands</option>
       <option value="Albania">Albania</option>
@@ -260,14 +256,7 @@
       <option value="Yemen">Yemen</option>
       <option value="Zambia">Zambia</option>
       <option value="Zimbabwe">Zimbabwe</option>
-    </select>
-
-    <label for="description">Description:</label>
-    <textarea name="description" id="description" cols="30" rows="10" placeholder="Description..."></textarea>
-
-    <label for="image">Image URL:</label>
-    <input type="text" name="image" ig="image" placeholder="Image URL...">
-    
-    <button>Create</button>
-  </form>
-</div>
+  </select>
+  <div></div>
+  <button type="submit" class="mini-header-btn"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
+</form>
