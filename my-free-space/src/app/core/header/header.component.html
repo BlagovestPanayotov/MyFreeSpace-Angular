@@ -1,7 +1,8 @@
 <header>
     <nav>
         <ul>
-            <li class="profile-nav"><a routerLink="/profile"><img src="/assets/profile-images/profile-female.png" alt="Prolife"></a></li>
+            <li class="profile-nav"><a routerLink="/profile"><img src="/assets/profile-images/profile-female.png"
+                        alt="Prolife"></a></li>
             <li><a routerLink="/home">Home</a></li>
             <li><a routerLink="/user-list">User List</a></li>
             <li><a routerLink="/posts-list">Posts List</a></li>
@@ -11,7 +12,7 @@
         </ul>
     </nav>
     <div class="mini-header">
-        <form action="#">
+        <form action="#" style="display: none;">
             <label for="destination">Destination</label>
             <input name="destination" id="destination" type="text" placeholder="Destination...">
             <label for="country">Select Country</label>
@@ -121,7 +122,7 @@
                 <option value="Iceland">Iceland</option>
                 <option value="India">India</option>
                 <option value="Indonesia">Indonesia</option>
-                <option value="Iran, Islamic Republic of">Iran, Islamic Republic of</option>
+                <option value="Iran">Iran</option>
                 <option value="Iraq">Iraq</option>
                 <option value="Ireland">Ireland</option>
                 <option value="Isle of Man">Isle of Man</option>
@@ -134,8 +135,8 @@
                 <option value="Kazakhstan">Kazakhstan</option>
                 <option value="Kenya">Kenya</option>
                 <option value="Kiribati">Kiribati</option>
-                <option value="Korea, Democratic People's Republic of">Korea, Democratic People's Republic of</option>
-                <option value="Korea, Republic of">Korea, Republic of</option>
+                <option value="Democratic People's Republic of Korea">Democratic People's Republic of Korea</option>
+                <option value="Republic of Korea">Republic of Korea</option>
                 <option value="Kosovo">Kosovo</option>
                 <option value="Kuwait">Kuwait</option>
                 <option value="Kyrgyzstan">Kyrgyzstan</option>
@@ -149,8 +150,7 @@
                 <option value="Lithuania">Lithuania</option>
                 <option value="Luxembourg">Luxembourg</option>
                 <option value="Macao">Macao</option>
-                <option value="Macedonia, the Former Yugoslav Republic of">Macedonia, the Former Yugoslav Republic of
-                </option>
+                <option value="North Macedonia">North Macedonia</option>
                 <option value="Madagascar">Madagascar</option>
                 <option value="Malawi">Malawi</option>
                 <option value="Malaysia">Malaysia</option>
@@ -275,27 +275,15 @@
             <div></div>
             <button type="submit" class="mini-header-btn"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
         </form>
-        <form action="#" style="display: none;">
+        <form action="#">
             <label for="username">Username</label>
             <input name="username" id="username" type="text" placeholder="Username...">
             <label for="password">Password</label>
             <input name="password" id="password" type="password" placeholder="Password...">
             <div class="sign">
-                <p>Sign up from <a href="#">here.</a></p>
+                <p>Sign up from <a routerLink="/register">here.</a></p>
             </div>
             <button type="submit" class="mini-header-btn">Log In</button>
-        </form>
-        <form action="#" style="display: none;">
-            <label for="username">Username</label>
-            <input name="username" id="username" type="text" placeholder="Username...">
-            <label for="password">Password</label>
-            <input name="password" id="password" type="password" placeholder="Password...">
-            <label for="repass">Repeat Password</label>
-            <input name="repass" id="repass" type="password" placeholder="Repeat Password...">
-            <div class="sign">
-                <p>Log in from <a href="#">here.</a></p>
-            </div>
-            <button type="submit" class="mini-header-btn">Sign Up</button>
         </form>
     </div>
     <h1>My Free Space</h1>

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './features/home/home.component';
 import { ProfileComponent } from './features/auth/profile/profile.component';
 import { CreateDestinationComponent } from './features/destinations/create-destination/create-destination.component';
 import { AboutComponent } from './features/about/about.component';
