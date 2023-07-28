@@ -1569,7 +1569,7 @@
                 "country": "United States",
                 "description": "An enormous cave system and national park.",
                 "_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
-                "img": "/assets/destination-images/Carlsbad-Caverns-New-Mexico-United States-365x365.webp",
+                "img": "/assets/destination-images/Carlsbad-Caverns-New-Mexico-USA-365x365.webp",
                 "_createdOn": 1689698702995
             },
             "34": {
@@ -1731,7 +1731,7 @@
                 "country": "United Kingdom",
                 "description": "Unusual basalt columns formed by lava flow.",
                 "_ownerId": "847ec027-f659-4086-8032-8c42f830dffc",
-                "img": "/assets/destination-images/Fingals-Cave-United Kingdom-500x500.webp",
+                "img": "/assets/destination-images/Fingals-Cave-Scotland-500x500.webp",
                 "_createdOn": 1689698703024
             },
             "63": {
@@ -1749,7 +1749,7 @@
                 "country": "United States",
                 "description": "An enormous lake surrounded by evergreens and relaxing scenery.",
                 "_ownerId": "847ec027-f659-4086-8032-8c42f830dffc",
-                "img": "/assets/destination-images/Lake-Tahoe-California-Nevada-United States.webp",
+                "img": "/assets/destination-images/Lake-Tahoe-California-Nevada-USA.webp",
                 "_createdOn": 1689698703026
             },
             "65": {
@@ -1830,7 +1830,7 @@
                 "country": "Myanmar",
                 "description": "The mystical ThoUnited Statesnd Pagodas Plain.",
                 "_ownerId": "847ec027-f659-4086-8032-8c42f830dffc",
-                "img": "/assets/destination-images/Pagan-thoUnited Statesnd-pagodas-plains-myanmar-365x365.webp",
+                "img": "/assets/destination-images/Pagan-thousand-pagodas-plains-myanmar-365x365.webp",
                 "_createdOn": 1689698703035
             },
             "74": {
@@ -1875,7 +1875,7 @@
                 "country": "United Kingdom",
                 "description": "White cliffs and a little candy striped lighthouse.",
                 "_ownerId": "847ec027-f659-4086-8032-8c42f830dffc",
-                "img": "/assets/destination-images/Beachy-Head-United Kingdom-199x300.webp",
+                "img": "/assets/destination-images/Beachy-Head-England-199x300.webp",
                 "_createdOn": 1689698703040
             },
             "79": {

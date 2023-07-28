@@ -14,6 +14,7 @@ import { ContentComponent } from './content/content.component';
 import { SearchDestinationComponent } from './destinations/search-destination/search-destination.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { RouterModule } from '@angular/router';
+import { CoreModule } from '../core/core.module';
 
 
 
@@ -33,7 +34,7 @@ import { RouterModule } from '@angular/router';
     SharedModule,
     DestinationModule,
     AuthModule,
-    RouterModule
+    RouterModule,
   ],
   exports: [
     AsideComponent,

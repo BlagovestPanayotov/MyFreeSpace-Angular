@@ -1,19 +1,20 @@
 <header>
     <nav>
         <ul>
-            <li class="profile-nav"><a routerLink="/auth/profile"><img src="/assets/profile-images/profile-female.png"
+            <li class="profile-nav" *ngIf="isLogged"><a routerLink="/auth/profile"><img src="/assets/profile-images/profile-female.png"
                         alt="Prolife"></a></li>
             <li><a routerLink="/home">Home</a></li>
-            <li><a routerLink="/dest/user-list">User List</a></li>
+            <li *ngIf="isLogged"><a routerLink="/dest/user-list">User List</a></li>
             <li><a routerLink="/dest/posts-list">Posts List</a></li>
-            <li><a routerLink="/dest/create">Create Post</a></li>
+            <li *ngIf="isLogged"><a routerLink="/dest/create">Create Post</a></li>
             <li><a routerLink="/about">About</a></li>
-            <li><a routerLink="/auth/logout">Logout</a></li>
+            <li *ngIf="!isLogged"><a routerLink="/auth/register">Register</a></li>
+            <li *ngIf="isLogged"><a routerLink="/auth/logout">Logout</a></li>
         </ul>
     </nav>
     <div class="mini-header">
-        <app-search-destination style="display: none;"></app-search-destination>
-        <app-login></app-login>
+        <app-search-destination *ngIf="isLogged"></app-search-destination>
+        <app-login *ngIf="!isLogged"></app-login>
     </div>
     <h1>My Free Space</h1>
 </header>

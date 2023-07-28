@@ -1,16 +1,18 @@
+import { URL_ADDRESS } from "../costants";
+
 export const userEndpoints = {
-  register: '/users/register',
-  login: '/users/login',
-  logout: '/users/logout',
-  getUser: '/users/me',
+  register: URL_ADDRESS+'/users/register',
+  login: URL_ADDRESS+'/users/login',
+  logout: URL_ADDRESS+'/users/logout',
+  getUser: URL_ADDRESS+'/users/me',
 };
 
 export const destinationEndpoints = {
-  getAll: '/data/destinations',
-  getById: (id: string) => `/data/destinations/${id}`,
-  create: '/data/destinations',
-  update: (id: string) => `/data/destinations/${id}`,
-  delete: (id: string) => `/data/destinations/${id}`,
+  getAll: URL_ADDRESS+'/data/destinations',
+  getById: (id: string) => URL_ADDRESS+`/data/destinations/${id}`,
+  create: URL_ADDRESS+'/data/destinations',
+  update: (id: string) => URL_ADDRESS+`/data/destinations/${id}`,
+  delete: (id: string) => URL_ADDRESS+`/data/destinations/${id}`,
 };
 
 //for further endpoints

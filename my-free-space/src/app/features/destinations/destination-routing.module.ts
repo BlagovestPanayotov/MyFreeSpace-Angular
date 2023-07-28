@@ -4,11 +4,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { ContentComponent } from '../content/content.component';
 import { CreateDestinationComponent } from './create-destination/create-destination.component';
 import { DetailsComponent } from './details/details.component';
+import { AuthActivate } from 'src/app/core/guards/auth.activate';
 
 
 const routes: Routes = [
   {
     path:'user-list',
+    canActivate:[AuthActivate],
     component:ContentComponent
   },
   {
@@ -17,10 +19,12 @@ const routes: Routes = [
   },
   {
     path:'create',
+    canActivate:[AuthActivate],
     component:CreateDestinationComponent
   },
   {
     path:'details',
+    canActivate:[AuthActivate],
     component:DetailsComponent
   }
 ]
