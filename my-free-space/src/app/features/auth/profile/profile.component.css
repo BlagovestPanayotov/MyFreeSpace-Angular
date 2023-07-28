@@ -85,9 +85,8 @@
 .info-profile-container {
   display: grid;
   width: 50%;
-  margin: auto;
+  margin: 2rem auto;
   grid-template-columns: 1fr 1fr;
-  margin-top: 2rem;
   column-gap: 4rem black;
   row-gap: 2rem;
   background-color: rgba(255, 255, 255, 0.4);
