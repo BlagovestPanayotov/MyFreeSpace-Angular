@@ -32,28 +32,21 @@ export class UserService implements OnDestroy {
       .pipe(tap((user) => this.user$$.next(user)));
   }
 
-  register(
-    email: string,
-    username: string,
-    password: string,
-    country: string,
-    gender: string
-  ) {
-    return this.http.post<IUser>(userEndpoints.register, {
-      email,
-      username,
-      password,
-      country,
-      gender,
-    });
+  register( email: string, username: string, password: string, country: string, gender: string) {
+    return this.http.post<IUser>(userEndpoints.register, { email, username, password, country, gender })
+    .pipe(tap((user)=>this.user$$.next(user)));
   }
 
   logout() {
-    return this.http.get(userEndpoints.logout);
+    return this.http
+      .get(userEndpoints.logout)
+      .pipe(tap(() => this.user$$.next(undefined)));
   }
 
   getUser() {
-    return this.http.get(userEndpoints.getUser);
+    return this.http
+      .get<IUser>(userEndpoints.getUser)
+      .pipe(tap((user) => this.user$$.next(user)));
   }
 
   ngOnDestroy(): void {
