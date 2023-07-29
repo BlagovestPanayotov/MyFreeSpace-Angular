@@ -27,10 +27,8 @@ export class LoginComponent {
     console.log(from.form.controls);
 
     this.userService.login(email, password).subscribe({
-      next(value) {
-        console.log(value.accessToken);
-        
-        localStorage.setItem(USER_KEY,value.accessToken)
+      next(user) {
+        localStorage.setItem(USER_KEY,user.accessToken)
       },
       error: (err) => {
         this.apiError = err.error?.message || '';

@@ -16,10 +16,10 @@
       <div class="info">
         <i *ngIf="!emailInput.errors" class="fa-solid fa-circle-check fa-lg" style="color: #008000;"></i>
         <i *ngIf="emailInput.errors" class="fa-solid fa-circle-exclamation fa-lg" style="color: #800000;"></i>
-        <div class="popuptext" *ngIf="passwordInput.errors">
-          <p [ngClass]="emailInput.errors?.['required'] ? 'error' : 'correct'">The email is required!</p>
+        <div class="popuptext" *ngIf="emailInput.errors">
+          <p [ngClass]="emailInput.errors['required'] ? 'error' : 'correct'">The email is required!</p>
           <hr>
-          <p [ngClass]="(emailInput.errors?.['email'] || emailInput.value==='') ? 'error' : 'correct'">Invalid email!</p>
+          <p [ngClass]="(emailInput.errors['email'] || emailInput.value==='') ? 'error' : 'correct'">Invalid email!</p>
         </div>
       </div>
     </ng-container>
