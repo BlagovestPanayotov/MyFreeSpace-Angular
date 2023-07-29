@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { LogoutComponent } from './logout/logout.component';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -13,12 +14,12 @@ import { RouterModule } from '@angular/router';
     ProfileComponent,
     LogoutComponent,
   ],
-  imports: [CommonModule, RouterModule],
-  exports:[
+  imports: [CommonModule, RouterModule, FormsModule],
+  exports: [
     RegisterComponent,
     LoginComponent,
     ProfileComponent,
     LogoutComponent,
-  ]
+  ],
 })
 export class AuthModule {}

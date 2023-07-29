@@ -27,7 +27,9 @@ export class UserService implements OnDestroy {
   }
 
   login(email: string, password: string) {
-    return this.http.post<IUser>(userEndpoints.login, { email, password });
+    return this.http
+      .post<IUser>(userEndpoints.login, { email, password })
+      .pipe(tap((user) => this.user$$.next(user)));
   }
 
   register(

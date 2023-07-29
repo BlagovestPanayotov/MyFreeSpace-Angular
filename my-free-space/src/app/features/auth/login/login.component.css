@@ -12,7 +12,43 @@ form label {
   font-size: 1.2rem;
 }
 
-form input{
+form .flex-input {
+  display: flex;
+  align-items: center;
+}
+
+form .flex-input .info {
+  position: relative;
+}
+
+form .flex-input .info .popuptext {
+  position: absolute;
+  top: 2rem;
+  right: 125%;
+  width: 250px;
+  border: 1px #000 solid;
+  border-radius: 1rem;
+  background: #f8f8f8;
+  padding: 10px;
+  z-index: 1;
+  display: none;
+  opacity: 0;
+  transition: 750ms all;
+}
+
+form .flex-input .info:hover .popuptext {
+  display: inline;
+  outline: none;
+  text-decoration: none;
+  color: #000;
+  opacity: 1;
+}
+
+form .flex-input i {
+  margin-left: 0.5rem;
+}
+
+form .flex-input input {
   padding: 0 1rem;
   border-radius: 1rem;
   width: auto;
@@ -20,6 +56,7 @@ form input{
 
 form .mini-header-btn {
   width: 50%;
+  height: 2rem;
   margin-top: 0.5rem;
   border-radius: 1rem;
   padding: 0.1rem 0;
@@ -35,9 +72,21 @@ form .sign {
 
 /* Hoover Header components */
 
-form .mini-header-btn:hover{
+form .mini-header-btn:hover {
   color: lightgreen;
   background-color: rgba(0, 51, 255, 0.856);
   border-color: rgba(0, 51, 255, 0.432);
   transition: 300ms;
+}
+
+p.correct {
+  color: darkgreen;
+}
+
+p.error {
+  color: darkred;
+}
+
+p.serverErrors{
+  text-align: center;
 }

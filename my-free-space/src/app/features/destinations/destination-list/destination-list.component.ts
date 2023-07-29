@@ -16,8 +16,6 @@ export class DestinationListComponent implements OnInit{
   ngOnInit(): void {
     this.api.getAllDestinations().subscribe({
       next: (dest)=>{
-        console.log(dest);
-        
         this.list = dest
       }
     })

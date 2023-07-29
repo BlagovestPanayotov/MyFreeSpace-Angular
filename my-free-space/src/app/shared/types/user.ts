@@ -4,4 +4,5 @@ export interface IUser {
   hashedPassword: string;
   country: string;
   gender: string;
+  accessToken: string;
 }
