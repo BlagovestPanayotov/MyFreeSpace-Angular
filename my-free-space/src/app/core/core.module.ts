@@ -7,6 +7,7 @@ import { FeaturesModule } from '../features/features.module';
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { AuthModule } from "../features/auth/auth.module";
+import { AuthenticateComponent } from './authenticate/authenticate.component';
 
 
 
@@ -14,10 +15,12 @@ import { AuthModule } from "../features/auth/auth.module";
     declarations: [
         HeaderComponent,
         FooterComponent,
+        AuthenticateComponent,
     ],
     exports: [
         HeaderComponent,
         FooterComponent,
+        AuthenticateComponent
     ],
     imports: [
         CommonModule,

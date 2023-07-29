@@ -1,9 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ProfileComponent } from './features/auth/profile/profile.component';
 import { AboutComponent } from './features/about/about.component';
-import { LogoutComponent } from './features/auth/logout/logout.component';
-import { RegisterComponent } from './features/auth/register/register.component';
 import { ContentComponent } from './features/content/content.component';
 import { PageNotFoundComponent } from './features/page-not-found/page-not-found.component';
 

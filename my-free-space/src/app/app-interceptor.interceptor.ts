@@ -20,10 +20,8 @@ export class AppInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
     this.userToken = localStorage.getItem(USER_KEY);
-    console.log(this.userToken);
     
     if (this.userToken) {
-      debugger;
       request = request.clone({
         setHeaders: {
           'X-Authorization': this.userToken,
