@@ -1,13 +1,19 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService } from 'src/app/shared/services/user.service';
 import { NgForm } from '@angular/forms';
+
+import { UserService } from 'src/app/shared/services/user.service';
 import { USER_KEY } from 'src/app/shared/costants';
+import { HasLowerCaseDirective } from './passwordValidators/has-lower-case.directive';
+import { HasNumericDirective } from './passwordValidators/has-numeric-case.directive';
+import { HasUpperCaseDirective } from './passwordValidators/has-upper-case.directive';
+import { HasSpecCharDirective } from './passwordValidators/has-spec-char.directive';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
+  providers:[HasLowerCaseDirective,HasNumericDirective,HasUpperCaseDirective,HasSpecCharDirective]
 })
 export class RegisterComponent {
   public apiError: string = '';

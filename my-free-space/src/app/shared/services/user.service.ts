@@ -26,15 +26,32 @@ export class UserService implements OnDestroy {
     return !!this.user;
   }
 
+  get getGender(): string {
+    return this.user?.gender || '';
+  }
+
   login(email: string, password: string) {
     return this.http
       .post<IUser>(userEndpoints.login, { email, password })
       .pipe(tap((user) => this.user$$.next(user)));
   }
 
-  register( email: string, username: string, password: string, country: string, gender: string) {
-    return this.http.post<IUser>(userEndpoints.register, { email, username, password, country, gender })
-    .pipe(tap((user)=>this.user$$.next(user)));
+  register(
+    email: string,
+    username: string,
+    password: string,
+    country: string,
+    gender: string
+  ) {
+    return this.http
+      .post<IUser>(userEndpoints.register, {
+        email,
+        username,
+        password,
+        country,
+        gender,
+      })
+      .pipe(tap((user) => this.user$$.next(user)));
   }
 
   logout() {

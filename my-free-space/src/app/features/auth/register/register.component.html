@@ -41,16 +41,21 @@
 
     <label for="password">Password:</label>
     <div class="flex-input">
-      <input type="password" name="password" id="password" placeholder="Password" ngModel #passwordInput="ngModel"
-        required minlength="8">
-      <ng-container *ngIf="passwordInput.touched || failedSubmit">
+      <input type="password" name="password" id="password" placeholder="Password" ngModel #passwordReInput="ngModel"
+        required minlength="8" appHasLowerCase appHasUpperCase appHasNumeric appHasSpecCharCase >
+
+        {{passwordReInput.errors | json }}
+        <br>
+        {{passwordReInput.value | json }}
+
+      <ng-container *ngIf="passwordReInput.touched || failedSubmit">
         <div class="info">
-          <i *ngIf="!passwordInput.errors" class="fa-solid fa-circle-check fa-lg" style="color: #008000;"></i>
-          <i *ngIf="passwordInput.errors" class="fa-solid fa-circle-exclamation fa-lg" style="color: #800000;"></i>
-          <div class="popuptext" *ngIf="passwordInput.errors">
-            <p [ngClass]="passwordInput.errors['required'] ? 'error' : 'correct'">The password is required!</p>
+          <i *ngIf="!passwordReInput.errors" class="fa-solid fa-circle-check fa-lg" style="color: #008000;"></i>
+          <i *ngIf="passwordReInput.errors" class="fa-solid fa-circle-exclamation fa-lg" style="color: #800000;"></i>
+          <div class="popuptext" *ngIf="passwordReInput.errors">
+            <p [ngClass]="passwordReInput.errors['required'] ? 'error' : 'correct'">The password is required!</p>
             <hr>
-            <p [ngClass]="(passwordInput.errors['minlength'] || passwordInput.value==='') ? 'error' : 'correct'">The
+            <p [ngClass]="(passwordReInput.errors['minlength'] || passwordReInput.value==='') ? 'error' : 'correct'">The
               password must be
               at least 8 characters!</p>
           </div>
@@ -61,16 +66,16 @@
     <label for="rePassword">Repeat password:</label>
     <div class="flex-input">
       <input type="password" name="rePassword" id="rePassword" placeholder="Repeat password" ngModel
-        #rePasswordInput="ngModel">
-      <ng-container *ngIf="rePasswordInput.touched || failedSubmit">
+        #rePasswordReInput="ngModel" required minlength="8">
+      <ng-container *ngIf="rePasswordReInput.touched || failedSubmit">
         <div class="info">
-          <i *ngIf="passwordInput.value===rePasswordInput.value" class="fa-solid fa-circle-check fa-lg"
+          <i *ngIf="passwordReInput.value===rePasswordReInput.value && !rePasswordReInput.errors" class="fa-solid fa-circle-check fa-lg"
             style="color: #008000;"></i>
-          <i *ngIf="passwordInput.value!==rePasswordInput.value" class="fa-solid fa-circle-exclamation fa-lg"
+          <i *ngIf="passwordReInput.value!==rePasswordReInput.value" class="fa-solid fa-circle-exclamation fa-lg"
             style="color: #800000;"></i>
-          <div class="popuptext" *ngIf="passwordInput.value!==rePasswordInput.value">
-            <p *ngIf="passwordInput.value===rePasswordInput.value" class="correct">Passwords match!</p>
-            <p *ngIf="passwordInput.value!==rePasswordInput.value" calss="error">Passwords do not match!</p>
+          <div class="popuptext" *ngIf="passwordReInput.value!==rePasswordReInput.value">
+            <p *ngIf="passwordReInput.value===rePasswordReInput.value" class="correct">Passwords match!</p>
+            <p *ngIf="passwordReInput.value!==rePasswordReInput.value" calss="error">Passwords do not match!</p>
           </div>
         </div>
       </ng-container>
