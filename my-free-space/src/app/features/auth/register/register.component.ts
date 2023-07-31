@@ -4,16 +4,13 @@ import { NgForm } from '@angular/forms';
 
 import { UserService } from 'src/app/shared/services/user.service';
 import { USER_KEY } from 'src/app/shared/costants';
-import { HasLowerCaseDirective } from './passwordValidators/has-lower-case.directive';
-import { HasNumericDirective } from './passwordValidators/has-numeric-case.directive';
-import { HasUpperCaseDirective } from './passwordValidators/has-upper-case.directive';
-import { HasSpecCharDirective } from './passwordValidators/has-spec-char.directive';
+import { PasswordValidatorDirective } from './passwordValidators/password-validator.directive';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
-  providers:[HasLowerCaseDirective,HasNumericDirective,HasUpperCaseDirective,HasSpecCharDirective]
+  providers:[PasswordValidatorDirective]
 })
 export class RegisterComponent {
   public apiError: string = '';

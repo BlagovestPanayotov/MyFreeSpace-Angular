@@ -1,15 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { LogoutComponent } from './logout/logout.component';
-import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
-import { HasLowerCaseDirective } from './register/passwordValidators/has-lower-case.directive';
-import { HasUpperCaseDirective } from './register/passwordValidators/has-upper-case.directive';
-import { HasNumericDirective } from './register/passwordValidators/has-numeric-case.directive';
-import { HasSpecCharDirective } from './register/passwordValidators/has-spec-char.directive';
+import { PasswordValidatorDirective } from './register/passwordValidators/password-validator.directive';
 
 @NgModule({
   declarations: [
@@ -17,10 +15,7 @@ import { HasSpecCharDirective } from './register/passwordValidators/has-spec-cha
     LoginComponent,
     ProfileComponent,
     LogoutComponent,
-    HasLowerCaseDirective,
-    HasUpperCaseDirective,
-    HasNumericDirective,
-    HasSpecCharDirective,
+    PasswordValidatorDirective,
   ],
   imports: [CommonModule, RouterModule, FormsModule],
   exports: [

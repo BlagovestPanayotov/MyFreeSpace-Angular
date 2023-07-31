@@ -7,78 +7,92 @@
     <label for="Email">User email:</label>
     <div class="flex-input">
       <input type="email" name="email" id="email" placeholder="Email" ngModel #emailInput="ngModel" required email>
-      <ng-container *ngIf="emailInput.touched || failedSubmit">
-        <div class="info">
-          <i *ngIf="!emailInput.errors" class="fa-solid fa-circle-check fa-lg" style="color: #008000;"></i>
-          <i *ngIf="emailInput.errors" class="fa-solid fa-circle-exclamation fa-lg" style="color: #800000;"></i>
-          <div class="popuptext" *ngIf="emailInput.errors">
-            <p [ngClass]="emailInput.errors['required'] ? 'error' : 'correct'">The email is required!</p>
-            <hr>
-            <p [ngClass]="(emailInput.errors['email'] || emailInput.value==='') ? 'error' : 'correct'">Invalid email!
-            </p>
-          </div>
+
+      <div class="info">
+        <i *ngIf="!emailInput.errors" class="fa-solid fa-circle-check fa-lg" style="color: #008000;"></i>
+        <i *ngIf="emailInput.errors" class="fa-solid fa-circle-exclamation fa-lg" style="color: #800000;"></i>
+        <div class="popuptext" *ngIf="emailInput.errors">
+          <p [ngClass]="emailInput.errors['required'] ? 'error' : 'correct'">The email is required!</p>
+          <hr>
+          <p [ngClass]="(emailInput.errors['email'] || emailInput.value==='') ? 'error' : 'correct'">Invalid email!
+          </p>
         </div>
-      </ng-container>
+      </div>
+
     </div>
 
     <label for="username">Username:</label>
     <div class="flex-input">
       <input type="username" name="username" id="username" placeholder="Username" ngModel #usernameInput="ngModel"
         required minlength="5">
-      <ng-container *ngIf="usernameInput.touched || failedSubmit">
-        <div class="info">
-          <i *ngIf="!usernameInput.errors" class="fa-solid fa-circle-check fa-lg" style="color: #008000;"></i>
-          <i *ngIf="usernameInput.errors" class="fa-solid fa-circle-exclamation fa-lg" style="color: #800000;"></i>
-          <div class="popuptext" *ngIf="usernameInput.errors">
-            <p [ngClass]="usernameInput.errors['required'] ? 'error' : 'correct'">The username is required!</p>
-            <hr>
-            <p [ngClass]="(usernameInput.errors['minlength']) ? 'error' : 'correct'">The username must be at least 5
-              characters!</p>
-          </div>
+
+      <div class="info">
+        <i *ngIf="!usernameInput.errors" class="fa-solid fa-circle-check fa-lg" style="color: #008000;"></i>
+        <i *ngIf="usernameInput.errors" class="fa-solid fa-circle-exclamation fa-lg" style="color: #800000;"></i>
+        <div class="popuptext" *ngIf="usernameInput.errors">
+          <p [ngClass]="usernameInput.errors['required'] ? 'error' : 'correct'">The username is required!</p>
+          <hr>
+          <p [ngClass]="(usernameInput.errors['minlength']) ? 'error' : 'correct'">The username must be at least 5
+            characters!</p>
         </div>
-      </ng-container>
+      </div>
+
     </div>
 
     <label for="password">Password:</label>
     <div class="flex-input">
       <input type="password" name="password" id="password" placeholder="Password" ngModel #passwordReInput="ngModel"
-        required minlength="8" appHasLowerCase appHasUpperCase appHasNumeric appHasSpecCharCase >
+        required minlength="8" appPasswordValidator>
 
-        {{passwordReInput.errors | json }}
-        <br>
-        {{passwordReInput.value | json }}
-
-      <ng-container *ngIf="passwordReInput.touched || failedSubmit">
-        <div class="info">
-          <i *ngIf="!passwordReInput.errors" class="fa-solid fa-circle-check fa-lg" style="color: #008000;"></i>
-          <i *ngIf="passwordReInput.errors" class="fa-solid fa-circle-exclamation fa-lg" style="color: #800000;"></i>
-          <div class="popuptext" *ngIf="passwordReInput.errors">
-            <p [ngClass]="passwordReInput.errors['required'] ? 'error' : 'correct'">The password is required!</p>
-            <hr>
-            <p [ngClass]="(passwordReInput.errors['minlength'] || passwordReInput.value==='') ? 'error' : 'correct'">The
-              password must be
-              at least 8 characters!</p>
-          </div>
+      <div class="info">
+        <i *ngIf="!passwordReInput.errors" class="fa-solid fa-circle-check fa-lg" style="color: #008000;"></i>
+        <i *ngIf="passwordReInput.errors" class="fa-solid fa-circle-exclamation fa-lg" style="color: #800000;"></i>
+        <div class="popuptext" *ngIf="passwordReInput.errors">
+          <p [ngClass]="passwordReInput.errors['required'] ? 'error' : 'correct'">The password is required!</p>
+          <hr>
+          <p [ngClass]="(passwordReInput.errors['minlength'] || passwordReInput.value==='') ? 'error' : 'correct'">The
+            password must be
+            at least 8 characters!</p>
+          <hr>
+          <p
+            [ngClass]="(!passwordReInput.errors['hasLowerCaseValidator'] && passwordReInput.errors['hasLowerCaseValidator']!==undefined) ? 'error' : 'correct'">
+            The
+            password must contain a lower case!</p>
+          <hr>
+          <p
+            [ngClass]="(!passwordReInput.errors['hasUpperCaseValidator'] && passwordReInput.errors['hasUpperCaseValidator']!==undefined) ? 'error' : 'correct'">
+            The
+            password must contain an upper case!</p>
+          <hr>
+          <p
+            [ngClass]="(!passwordReInput.errors['hasNumericValidator'] && passwordReInput.errors['hasNumericValidator']!==undefined) ? 'error' : 'correct'">
+            The
+            password must contain a number!</p>
+          <hr>
+          <p
+            [ngClass]="(!passwordReInput.errors['hasLSpecCharValidator'] && passwordReInput.errors['hasLSpecCharValidator']!==undefined) ? 'error' : 'correct'">
+            The
+            password must contain a special character (*+=_!$%&)!</p>
         </div>
-      </ng-container>
+
+      </div>
     </div>
 
     <label for="rePassword">Repeat password:</label>
     <div class="flex-input">
       <input type="password" name="rePassword" id="rePassword" placeholder="Repeat password" ngModel
         #rePasswordReInput="ngModel" required minlength="8">
-      <ng-container *ngIf="rePasswordReInput.touched || failedSubmit">
-        <div class="info">
-          <i *ngIf="passwordReInput.value===rePasswordReInput.value && !rePasswordReInput.errors" class="fa-solid fa-circle-check fa-lg"
-            style="color: #008000;"></i>
-          <i *ngIf="passwordReInput.value!==rePasswordReInput.value" class="fa-solid fa-circle-exclamation fa-lg"
-            style="color: #800000;"></i>
-          <div class="popuptext" *ngIf="passwordReInput.value!==rePasswordReInput.value">
-            <p *ngIf="passwordReInput.value===rePasswordReInput.value" class="correct">Passwords match!</p>
-            <p *ngIf="passwordReInput.value!==rePasswordReInput.value" calss="error">Passwords do not match!</p>
-          </div>
+
+      <div class="info">
+        <i *ngIf="passwordReInput.value===rePasswordReInput.value && !rePasswordReInput.errors"
+          class="fa-solid fa-circle-check fa-lg" style="color: #008000;"></i>
+        <i *ngIf="passwordReInput.value!==rePasswordReInput.value || rePasswordReInput.errors"
+          class="fa-solid fa-circle-exclamation fa-lg" style="color: #800000;"></i>
+        <div class="popuptext" *ngIf="passwordReInput.value!==rePasswordReInput.value || rePasswordReInput.value===''">
+          <p *ngIf="passwordReInput.value===rePasswordReInput.value" class="correct">Passwords match!</p>
+          <p *ngIf="passwordReInput.value!==rePasswordReInput.value" calss="error">Passwords do not match!</p>
         </div>
-      </ng-container>
+      </div>
     </div>
 
     <label for="country">Which country do you live in?</label>
@@ -340,15 +354,15 @@
         <option value="Zambia">Zambia</option>
         <option value="Zimbabwe">Zimbabwe</option>
       </select>
-      <ng-container *ngIf="countryInput.touched || failedSubmit">
-        <div class="info">
-          <i *ngIf="!countryInput.errors" class="fa-solid fa-circle-check fa-lg" style="color: #008000;"></i>
-          <i *ngIf="countryInput.errors" class="fa-solid fa-circle-exclamation fa-lg" style="color: #800000;"></i>
-          <div class="popuptext" *ngIf="countryInput.errors">
-            <p [ngClass]="countryInput.errors['required'] ? 'error' : 'correct'">Your country is required!</p>
-          </div>
+
+      <div class="info">
+        <i *ngIf="!countryInput.errors" class="fa-solid fa-circle-check fa-lg" style="color: #008000;"></i>
+        <i *ngIf="countryInput.errors" class="fa-solid fa-circle-exclamation fa-lg" style="color: #800000;"></i>
+        <div class="popuptext" *ngIf="countryInput.errors">
+          <p [ngClass]="countryInput.errors['required'] ? 'error' : 'correct'">Your country is required!</p>
         </div>
-      </ng-container>
+      </div>
+
     </div>
 
     <label for="gender">Gender:</label>
@@ -361,16 +375,16 @@
         <input type="radio" id="unknown" name="gender" value="unknown" ngModel #genderInput="ngModel" required>
         <label for="unknown">Prefer not to say</label>
       </div>
-      <ng-container *ngIf="failedSubmit">
-        <div class="info radio-info">
-          <i *ngIf="!genderInput.errors" class="fa-solid fa-circle-check fa-lg" style="color: #008000;"></i>
-          <i *ngIf="genderInput.errors" class="fa-solid fa-circle-exclamation fa-lg" style="color: #800000;"></i>
-          <div class="popuptext" *ngIf="genderInput.errors">
-            <p [ngClass]="genderInput.errors['required'] ? 'error' : 'correct'">You have to select one of the
-              options!</p>
-          </div>
+
+      <div class="info radio-info">
+        <i *ngIf="!genderInput.errors" class="fa-solid fa-circle-check fa-lg" style="color: #008000;"></i>
+        <i *ngIf="genderInput.errors" class="fa-solid fa-circle-exclamation fa-lg" style="color: #800000;"></i>
+        <div class="popuptext" *ngIf="genderInput.errors">
+          <p [ngClass]="genderInput.errors['required'] ? 'error' : 'correct'">You have to select one of the
+            options!</p>
         </div>
-      </ng-container>
+      </div>
+
     </div>
     <button>Register</button>
   </form>
