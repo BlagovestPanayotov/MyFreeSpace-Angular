@@ -139,3 +139,133 @@ p.likes-sum {
   border-color: rgba(0, 51, 255, 0.432);
   transition: 300ms;
 }
+
+/* MINI HEADER */
+
+#edit-form-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+  color: #000000;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 1rem 0;
+  border-radius: 1rem;
+}
+
+#edit-form-container h2 {
+  font-family: Comic Sans MS, Comic Sans, cursive;
+  font-size: 2.5rem;
+  text-align: center;
+  color: #f5f5f5;
+}
+
+#edit-form-container form {
+  width: 50%;
+  margin: 3rem auto;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 1rem;
+}
+
+#edit-form-container form label {
+  color: #f5f5f5;
+  font-size: 1.5rem;
+}
+
+#edit-form-container form input,
+#edit-form-container form select,
+#edit-form-container form textarea {
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+  width: auto;
+}
+
+#edit-form-container form button {
+  width: 80%;
+  margin-top: 1rem;
+  border-radius: 5rem;
+  padding: 0.75rem;
+  font-size: 2rem;
+  background-color: rgba(0, 255, 255, 0.407);
+  border-color: rgba(0, 255, 255, 0.189);
+  cursor: pointer;
+  color: #f5f5f5;
+}
+
+#edit-form-container form .flex-input {
+  display: flex;
+  align-items: center;
+}
+
+#edit-form-container form .flex-input .info {
+  position: relative;
+}
+
+#edit-form-container form .flex-input .radio-info {
+  margin-left: 2rem;
+}
+
+#edit-form-container form .flex-input .info .popuptext {
+  position: absolute;
+  top: 2rem;
+  right: 125%;
+  width: 250px;
+  border: 1px #000 solid;
+  border-radius: 1rem;
+  background: #f8f8f8;
+  padding: 10px;
+  z-index: 1;
+  display: none;
+  opacity: 0;
+  transition: 750ms all;
+}
+
+#edit-form-container form .flex-input .info:hover .popuptext {
+  display: inline;
+  outline: none;
+  text-decoration: none;
+  color: #000;
+  opacity: 1;
+}
+
+#edit-form-container form .flex-input i {
+  margin-left: 0.5rem;
+}
+
+/* Hoover Header components */
+
+#edit-form-container form button.btn-create:hover {
+  color: lightgreen;
+  background-color: rgba(0, 51, 255, 0.856);
+  border-color: rgba(0, 51, 255, 0.432);
+  transition: 300ms;
+}
+
+#edit-form-container form button.btn-cancel:hover {
+  color: lightgreen;
+  background-color: rgba(139, 0, 0,0.6);
+  border-color: rgba(0, 51, 255, 0.432);
+  transition: 300ms;
+}
+
+p.correct {
+  color: darkgreen;
+}
+
+p.error {
+  color: darkred;
+}
+
+p.serverErrors {
+  text-align: center;
+}
+
+p.api-error {
+  text-align: center;
+  background-color: #f5f5f5;
+  padding: 1rem;
+  border-radius: 2rem;
+  width: 50%;
+  margin: 0 auto;
+}
+

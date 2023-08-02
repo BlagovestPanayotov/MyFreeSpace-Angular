@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { NgForm } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DestinationService } from 'src/app/shared/services/destination.service';
 import { UserService } from 'src/app/shared/services/user.service';
 import { IDestination } from 'src/app/shared/types/destination';
@@ -23,10 +24,14 @@ export class DetailsComponent {
 
   user: IUser | null = null;
 
+  editMode: boolean = false;
+  apiError: string = '';
+
   constructor(
     private destinationService: DestinationService,
     private activatedRoute: ActivatedRoute,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) {}
 
   get isLogged(): boolean {
@@ -55,5 +60,21 @@ export class DetailsComponent {
         this.user = null;
       },
     });
+  }
+
+  toggleEditMode(): void {
+    console.log(this.editMode);
+    
+    this.editMode = !this.editMode;
+  }
+
+  editDestination(form: NgForm) {
+    console.log('works');
+
+    if (form.invalid) {
+      return;
+    }
+
+    const { name, cuntry, description, img } = form.value;
   }
 }
