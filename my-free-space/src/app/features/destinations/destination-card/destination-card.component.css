@@ -1,8 +1,11 @@
 .destination-card {
-  display: inline-block;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
   border-radius: 1rem;
   width: 22rem;
-  height: 23rem;
+  height: 25rem;
   background-color: rgba(255, 255, 255, 0.4);
   text-align: center;
   /* position: relative; */
@@ -11,6 +14,8 @@
 .destination-card h3 {
   font-style: italic;
   padding-top: 0.5rem;
+  height: 3rem;
+  overflow:hidden
 }
 
 .destination-card .img-container {
@@ -38,7 +43,7 @@
 }
 
 .destination-card p {
-  font-size: 1.3rem;
+  font-size: 1rem;
 }
 
 .destination-card a {
@@ -48,7 +53,8 @@
   color: #000000;
   background-color: rgba(0, 255, 34, 0.856);
   border: 1px solid rgba(0, 255, 34, 0.856);
-  margin: 0.5rem auto;
+  margin-top: auto;
+  margin-bottom: 1rem;
   border-radius: 1rem;
   padding: 0.1rem 0;
   width: 10rem;

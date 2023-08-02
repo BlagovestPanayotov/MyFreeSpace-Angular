@@ -11,10 +11,10 @@ export class DestinationListComponent implements OnInit{
 
   list: IDestination[] = [];
 
-  constructor(private api:DestinationService) {}
+  constructor(private destinationService:DestinationService) {}
 
   ngOnInit(): void {
-    this.api.getAllDestinations().subscribe({
+    this.destinationService.getAllDestinations().subscribe({
       next: (dest)=>{
         this.list = dest
       }

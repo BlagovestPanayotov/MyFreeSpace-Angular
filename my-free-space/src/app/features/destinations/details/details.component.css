@@ -76,12 +76,18 @@
 }
 
 button {
-  border-radius: 1rem;
   cursor: pointer;
 }
 
+p.likes-sum,
+button {
+  border-radius: 1rem;
+  text-align: center;
+}
+
 .feedback-container .btn-container button,
-.leave-comment form .btn-sub {
+.leave-comment form .btn-sub,
+p.likes-sum {
   width: 50%;
   color: #f5f5f5;
   background-color: rgba(0, 255, 255, 0.407);
@@ -100,32 +106,6 @@ button {
 
 .comments::-webkit-scrollbar {
   width: 0;
-}
-
-.comments .comment {
-  display: block;
-  width: 100%;
-  background-color: rgba(255, 255, 255, 0.6);
-  margin-bottom: 0.5rem;
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-}
-
-.comments .comment p {
-  border-bottom: 1px solid black;
-  margin-bottom: 0.25rem;
-  padding-bottom: 0.5rem;
-}
-
-.comments .comment .btn-coment-container {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.comments .comment .btn-coment-container button {
-  width: 8rem;
-  background-color: rgba(0, 0, 0, 0.6);
-  color: #f5f5f5;
 }
 
 /* LEAVE COMMENT */
@@ -153,7 +133,6 @@ button {
 }
 
 .feedback-container .btn-container button:hover,
-.comments .comment .btn-coment-container button:hover,
 .leave-comment form .btn-sub:hover {
   color: lightgreen;
   background-color: rgba(0, 51, 255, 0.856);

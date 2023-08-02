@@ -55,22 +55,22 @@
             at least 8 characters!</p>
           <hr>
           <p
-            [ngClass]="(!passwordReInput.errors['hasLowerCaseValidator'] && passwordReInput.errors['hasLowerCaseValidator']!==undefined) ? 'error' : 'correct'">
+            [ngClass]="(passwordReInput.errors['hasLowerCaseValidator']) ? 'error' : 'correct'">
             The
             password must contain a lower case!</p>
           <hr>
           <p
-            [ngClass]="(!passwordReInput.errors['hasUpperCaseValidator'] && passwordReInput.errors['hasUpperCaseValidator']!==undefined) ? 'error' : 'correct'">
+            [ngClass]="(passwordReInput.errors['hasUpperCaseValidator']) ? 'error' : 'correct'">
             The
             password must contain an upper case!</p>
           <hr>
           <p
-            [ngClass]="(!passwordReInput.errors['hasNumericValidator'] && passwordReInput.errors['hasNumericValidator']!==undefined) ? 'error' : 'correct'">
+            [ngClass]="(passwordReInput.errors['hasNumericValidator']) ? 'error' : 'correct'">
             The
             password must contain a number!</p>
           <hr>
           <p
-            [ngClass]="(!passwordReInput.errors['hasLSpecCharValidator'] && passwordReInput.errors['hasLSpecCharValidator']!==undefined) ? 'error' : 'correct'">
+            [ngClass]="(passwordReInput.errors['hasLSpecCharValidator']) ? 'error' : 'correct'">
             The
             password must contain a special character (*+=_!$%&)!</p>
         </div>

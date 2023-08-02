@@ -16,10 +16,10 @@ export function passwordValidator(): ValidatorFn {
     return isValid && control?.value !== ''
       ? null
       : {
-          hasLowerCaseValidator: hasLowerCase,
-          hasUpperCaseValidator: hasUpperCase,
-          hasNumericValidator: hasNumeric,
-          hasLSpecCharValidator: hasLSpecChar,
+          hasLowerCaseValidator: !hasLowerCase,
+          hasUpperCaseValidator: !hasUpperCase,
+          hasNumericValidator: !hasNumeric,
+          hasLSpecCharValidator: !hasLSpecChar,
         };
   };
 }

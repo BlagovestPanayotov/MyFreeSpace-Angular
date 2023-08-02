@@ -25,13 +25,14 @@ export class LoginComponent {
     const { email, password } = from.value;
 
     this.userService.login(email, password).subscribe({
-      next(user) {
+      next: (user) => {
         localStorage.setItem(USER_KEY, user.accessToken);
+        this.router.navigate(['/dest/user-list']);
       },
       error: (err) => {
         console.log(err.status);
 
-        if (err.status === 403) {
+        if (err.code === 403 && err.message !== "Login or password don't match") {
           localStorage.removeItem(USER_KEY);
           this.apiError = 'Something went wrong. Try again, please.';
           return;

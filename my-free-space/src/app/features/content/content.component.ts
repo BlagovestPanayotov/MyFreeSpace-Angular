@@ -12,6 +12,7 @@ export class ContentComponent implements OnInit {
   }
   ngOnInit(): void {
     this.path = this.router.url;
+    console.log(this.path);
   }
   
 }

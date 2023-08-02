@@ -23,8 +23,7 @@ const routes: Routes = [
     component:CreateDestinationComponent
   },
   {
-    path:'details',
-    canActivate:[AuthActivate],
+    path:'details/:destId',
     component:DetailsComponent
   }
 ]

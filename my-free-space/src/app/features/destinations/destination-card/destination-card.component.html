@@ -1,8 +1,8 @@
 <article class="destination-card">
-  <h3>Name</h3>
+  <h3>{{dest.name}}</h3>
   <div class="img-container">
-    <app-mini-spinner />
+    <img src={{dest.img}} alt={{dest.name}}>
   </div>
-  <p>Some more info</p>
-  <a routerLink="/dest/details" class="destination-details">Details</a>
+  <p>{{dest.description}}</p>
+  <a routerLink="/dest/details/{{dest._id}}" class="destination-details">Details</a>
 </article>

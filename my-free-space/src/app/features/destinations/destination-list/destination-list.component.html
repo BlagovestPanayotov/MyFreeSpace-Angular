@@ -1,13 +1,8 @@
 <main>
   <div class="cards-container">
-    <div class="destination-card" *ngFor="let dest of list">
-      <h3>{{dest.name}}</h3>
-      <div class="img-container">
-        <img src={{dest.img}} alt={{dest.name}}>
-      </div>
-      <p>{{dest.description}}</p>
-      <a routerLink="/dest/details" class="destination-details">Details</a>
-    </div>
+    <ng-container *ngFor="let dest of list">
+      <app-destination-card [dest]="dest"></app-destination-card>
+    </ng-container>
   </div>
   <div class="pag-container">
     <a href="#"><i class="fa-solid fa-angles-left"></i></a>
