@@ -5,7 +5,6 @@ import { DetailsComponent } from './details/details.component';
 import { SearchDestinationComponent } from './search-destination/search-destination.component';
 import { CommentComponent } from './comment/comment.component';
 import { FormsModule } from '@angular/forms';
-import { EditDestinationComponent } from './edit-destination/edit-destination.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +12,6 @@ import { EditDestinationComponent } from './edit-destination/edit-destination.co
     DetailsComponent,
     SearchDestinationComponent,
     CommentComponent,
-    EditDestinationComponent,
   ],
   imports: [CommonModule, FormsModule],
   exports: [SearchDestinationComponent],
