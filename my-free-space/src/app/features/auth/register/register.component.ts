@@ -3,18 +3,20 @@ import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
 import { UserService } from 'src/app/shared/services/user.service';
-import { USER_KEY } from 'src/app/shared/costants';
+import { COUNTRIES_LIST, USER_KEY } from 'src/app/shared/costants';
 import { PasswordValidatorDirective } from './passwordValidators/password-validator.directive';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
-  providers:[PasswordValidatorDirective]
+  providers: [PasswordValidatorDirective],
 })
 export class RegisterComponent {
   public apiError: string = '';
   public failedSubmit: boolean = false;
+
+  countries: string[] = COUNTRIES_LIST;
 
   constructor(private userService: UserService, private router: Router) {}
 
@@ -24,8 +26,7 @@ export class RegisterComponent {
       return;
     }
 
-    const { email, username, password,country, gender } =
-      form.value;
+    const { email, username, password, country, gender } = form.value;
     console.log(form.value);
 
     this.userService

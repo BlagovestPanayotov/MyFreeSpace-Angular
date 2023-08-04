@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { COUNTRIES_LIST } from 'src/app/shared/costants';
 import { DestinationService } from 'src/app/shared/services/destination.service';
 import { UserService } from 'src/app/shared/services/user.service';
 import { IDestination } from 'src/app/shared/types/destination';
@@ -23,8 +24,9 @@ export class DetailsComponent {
   };
 
   user: IUser | null = null;
+  countries: string[] = COUNTRIES_LIST;
 
-  editMode: boolean = false;
+  editMode: boolean = true; //SET TO FALSE TO DO
   apiError: string = '';
 
   constructor(
@@ -63,18 +65,18 @@ export class DetailsComponent {
   }
 
   toggleEditMode(): void {
-    console.log(this.editMode);
-    
     this.editMode = !this.editMode;
   }
 
   editDestination(form: NgForm) {
-    console.log('works');
+    console.log(form.value);
 
     if (form.invalid) {
       return;
     }
 
-    const { name, cuntry, description, img } = form.value;
+    const { name, country, description, img } = form.value;
+    this.destination = Object.assign(this.destination, form.value);
+    this.editMode = !this.editMode;
   }
 }
