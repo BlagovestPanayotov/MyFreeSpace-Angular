@@ -35,6 +35,7 @@ export class CreateDestinationComponent {
           if ((err.status = 400)) {
             this.apiError =
               'There is a problem and we are working on it. Sorry for the inconvenience.';
+            window.scroll(0, 0);
             return;
           }
           this.apiError = err.message;

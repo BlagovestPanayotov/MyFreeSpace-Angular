@@ -1,4 +1,8 @@
-<div class="container" *ngIf="!editMode">
+<app-spinner *ngIf="loading"></app-spinner>
+
+<div class="container" *ngIf="!editMode && !loading">
+  <p *ngIf="apiError" class="error serverErrors">{{apiError}}</p>
+
   <h2 class="title">{{destination.name}}</h2>
   <div class="img-container"><img src="{{destination.img}}" alt="Salar de Uyuni"></div>
   <p class="country">Country: {{destination.country}}</p>
@@ -30,8 +34,19 @@
       <button class="btn-edit" *ngIf="this.user?._id === this.destination._ownerId" (click)="toggleEditMode()"><i
           class="fa-solid fa-pen-to-square" style="color: #ff8040;"></i> Edit</button>
 
-      <button class="btn-delete" *ngIf="this.user?._id === this.destination._ownerId"><i class="fa-regular fa-trash-can"
-          style="color: #004000;"></i> Delete</button>
+      <button class="btn-delete" *ngIf="(this.user?._id === this.destination._ownerId) && !deleteMsgDisplayed"
+        (click)="deleteMsgDisplayedToggle()"><i class="fa-regular fa-trash-can" style="color: #004000;"></i>
+        Delete</button>
+
+      <div class="delete-confirm" *ngIf="deleteMsgDisplayed">
+        <p>Do you want to delete your destination?</p>
+        <button class="btn-delete" *ngIf="this.user?._id === this.destination._ownerId"
+          (click)="deleteMsgDisplayedToggle()"><i class="fa-solid fa-xmark fa-lg" style="color: #800000;"></i>
+          Cancel</button>
+        <button class="btn-delete" *ngIf="this.user?._id === this.destination._ownerId"
+          (click)="deleteDestination()"><i class="fa-regular fa-trash-can" style="color: #004000;"></i>
+          Delete</button>
+      </div>
 
       <button class="btn-lcom"><i class="fa-solid fa-comment-dots" style="color: #004000;"></i> Leave a comment</button>
     </div>
@@ -45,9 +60,8 @@
   <p class="created-on"><time>Posted {{destination._createdOn}}</time></p>
 </div>
 
-<div id="edit-form-container" *ngIf="editMode">
+<div id="edit-form-container" *ngIf="editMode && !loading">
   <h2>Create</h2>
-  <p class="error api-error" *ngIf="apiError">{{apiError}}</p>
   <form #form="ngForm" (submit)="editDestination(form)" id="create-form">
 
     <label for="name">Destination Name:</label>

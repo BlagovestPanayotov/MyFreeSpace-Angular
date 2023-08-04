@@ -38,6 +38,7 @@ export class RegisterComponent {
         },
         error: (err) => {
           this.apiError = err.error?.message || '';
+          window.scroll(0, 0);
         },
       });
   }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { COUNTRIES_LIST } from 'src/app/shared/costants';
@@ -12,7 +12,7 @@ import { IUser } from 'src/app/shared/types/user';
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.css'],
 })
-export class DetailsComponent {
+export class DetailsComponent implements OnInit {
   destination: IDestination = {
     _id: '',
     name: '',
@@ -26,8 +26,10 @@ export class DetailsComponent {
   user: IUser | null = null;
   countries: string[] = COUNTRIES_LIST;
 
-  editMode: boolean = true; //SET TO FALSE TO DO
+  editMode: boolean = false;
+  loading: boolean = true;
   apiError: string = '';
+  deleteMsgDisplayed: boolean = false;
 
   constructor(
     private destinationService: DestinationService,
@@ -46,20 +48,25 @@ export class DetailsComponent {
   }
 
   getDestination(): void {
+    this.loading = true;
     const id = this.activatedRoute.snapshot.params['destId'];
 
     this.destinationService.getDestinationById(id).subscribe((dest) => {
       this.destination = dest;
+      this.loading = false;
     });
   }
 
   getUser(): void {
+    this.loading = true;
     this.userService.getUser().subscribe({
       next: (u: IUser) => {
         this.user = u;
+        this.loading = false;
       },
       error: (err) => {
         this.user = null;
+        this.loading = false;
       },
     });
   }
@@ -69,14 +76,58 @@ export class DetailsComponent {
   }
 
   editDestination(form: NgForm) {
-    console.log(form.value);
-
     if (form.invalid) {
       return;
     }
 
+    this.loading = true;
+
     const { name, country, description, img } = form.value;
-    this.destination = Object.assign(this.destination, form.value);
-    this.editMode = !this.editMode;
+
+    this.destinationService
+      .updateDestination(this.destination._id, name, country, description, img)
+      .subscribe({
+        next: (result) => {
+          this.destination = result;
+          this.toggleEditMode();
+          this.loading = false;
+        },
+        error: (err) => {
+          if (err.status === 403 && err.statusText === 'Forbidden') {
+            this.apiError = 'You are NOT allowed to do that!!!';
+            this.editMode = false;
+            this.loading = false;
+            window.scroll(0, 0);
+            return;
+          }
+          console.log(err);
+        },
+      });
+  }
+
+  deleteMsgDisplayedToggle(): void {
+    this.deleteMsgDisplayed = !this.deleteMsgDisplayed;
+  }
+
+  deleteDestination(): void {
+    if (this.user?._id !== this.destination._ownerId) {
+      window.scroll(0, 0);
+      this.apiError = 'You are NOT allowed to do that!!!';
+      return;
+    }
+
+    this.destinationService.deleteDestination(this.destination._id).subscribe({
+      next: () => {
+        this.loading = true;
+        setTimeout(() => {
+          this.loading = false;
+          this.router.navigate(['/dest/user-list']);
+        }, 1500);
+      },
+      error: (err) => {
+        this.loading = false;
+        this.apiError = 'You are NOT allowed to do that!!!';
+      },
+    });
   }
 }

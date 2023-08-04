@@ -5,6 +5,7 @@ import { DetailsComponent } from './details/details.component';
 import { SearchDestinationComponent } from './search-destination/search-destination.component';
 import { CommentComponent } from './comment/comment.component';
 import { FormsModule } from '@angular/forms';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,7 @@ import { FormsModule } from '@angular/forms';
     SearchDestinationComponent,
     CommentComponent,
   ],
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, SharedModule],
   exports: [SearchDestinationComponent],
 })
 export class DestinationModule {}
