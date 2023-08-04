@@ -2,7 +2,9 @@
   <h2>Register</h2>
   <p *ngIf="apiError" class="error serverErrors">{{apiError}}</p>
 
-  <form #form="ngForm" (submit)="register(form)" id="register-form">
+  <app-spinner *ngIf="loading"></app-spinner>
+
+  <form #form="ngForm" (submit)="register(form)" id="register-form" *ngIf="!loading">
 
     <label for="Email">User email:</label>
     <div class="flex-input">

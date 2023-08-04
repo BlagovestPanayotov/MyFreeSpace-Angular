@@ -9,14 +9,17 @@ import { IUser } from 'src/app/shared/types/user';
 })
 export class ProfileComponent {
   user: IUser | undefined;
+  loading: boolean = true;
 
   constructor(private userService: UserService) {
     this.userService.getUser().subscribe({
       next: (u) => {
         this.user = u;
+        this.loading = false;
       },
       error: () => {
         this.user = undefined;
+        this.loading = false;
       },
     });
   }

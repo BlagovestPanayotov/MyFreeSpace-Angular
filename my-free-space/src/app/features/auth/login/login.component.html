@@ -1,52 +1,40 @@
-<p *ngIf="apiError" class="error serverErrors">{{apiError}}</p>
-<form #form="ngForm" (ngSubmit)="login(form)">
-  <label for="email">Email</label>
-  <div class="flex-input">
-    <input
-        name="email"
-        id="email" 
-        type="text" 
-        placeholder="Email..." 
-        ngModel 
-        #emailInput="ngModel"
-        required
-        email
-    >
-    <ng-container *ngIf="emailInput.touched || failedSubmit">
-      <div class="info">
-        <i *ngIf="!emailInput.errors" class="fa-solid fa-circle-check fa-lg" style="color: #008000;"></i>
-        <i *ngIf="emailInput.errors" class="fa-solid fa-circle-exclamation fa-lg" style="color: #800000;"></i>
-        <div class="popuptext" *ngIf="emailInput.errors">
-          <p [ngClass]="emailInput.errors['required'] ? 'error' : 'correct'">The email is required!</p>
-          <hr>
-          <p [ngClass]="(emailInput.errors['email'] || emailInput.value==='') ? 'error' : 'correct'">Invalid email!</p>
+<div>
+  <p *ngIf="apiError" class="error serverErrors">{{apiError}}</p>
+  <app-spinner *ngIf="loading"></app-spinner>
+  <form #form="ngForm" (ngSubmit)="login(form)" *ngIf="!loading">
+    <label for="email">Email</label>
+    <div class="flex-input">
+      <input name="email" id="email" type="text" placeholder="Email..." ngModel #emailInput="ngModel" required email>
+      <ng-container *ngIf="emailInput.touched || failedSubmit">
+        <div class="info">
+          <i *ngIf="!emailInput.errors" class="fa-solid fa-circle-check fa-lg" style="color: #008000;"></i>
+          <i *ngIf="emailInput.errors" class="fa-solid fa-circle-exclamation fa-lg" style="color: #800000;"></i>
+          <div class="popuptext" *ngIf="emailInput.errors">
+            <p [ngClass]="emailInput.errors['required'] ? 'error' : 'correct'">The email is required!</p>
+            <hr>
+            <p [ngClass]="(emailInput.errors['email'] || emailInput.value==='') ? 'error' : 'correct'">Invalid email!
+            </p>
+          </div>
         </div>
-      </div>
-    </ng-container>
-  </div>
-  <label for="password">Password</label>
-  <div class="flex-input">
-    <input 
-        name="password" 
-        id="password" 
-        type="password" 
-        placeholder="Password..." 
-        ngModel
-        #passwordInput="ngModel"
-        required
-    >
-    <ng-container *ngIf="passwordInput.touched || failedSubmit">
-      <div class="info">
-        <i *ngIf="!passwordInput.errors" class="fa-solid fa-circle-check fa-lg" style="color: #008000;"></i>
-        <i *ngIf="passwordInput.errors" class="fa-solid fa-circle-exclamation fa-lg" style="color: #800000;"></i>
-        <div class="popuptext" *ngIf="passwordInput.errors">
-          <p [ngClass]="passwordInput.errors['required'] ? 'error' : 'correct'">Password is required!</p>
+      </ng-container>
+    </div>
+    <label for="password">Password</label>
+    <div class="flex-input">
+      <input name="password" id="password" type="password" placeholder="Password..." ngModel #passwordInput="ngModel"
+        required>
+      <ng-container *ngIf="passwordInput.touched || failedSubmit">
+        <div class="info">
+          <i *ngIf="!passwordInput.errors" class="fa-solid fa-circle-check fa-lg" style="color: #008000;"></i>
+          <i *ngIf="passwordInput.errors" class="fa-solid fa-circle-exclamation fa-lg" style="color: #800000;"></i>
+          <div class="popuptext" *ngIf="passwordInput.errors">
+            <p [ngClass]="passwordInput.errors['required'] ? 'error' : 'correct'">Password is required!</p>
+          </div>
         </div>
-      </div>
-    </ng-container>
-  </div>
-  <div class="sign">
-    <p>Sign up from <a routerLink="/auth/register">here.</a></p>
-  </div>
-  <button type="submit" class="mini-header-btn">Log In</button>
-</form>
+      </ng-container>
+    </div>
+    <div class="sign">
+      <p>Sign up from <a routerLink="/auth/register">here.</a></p>
+    </div>
+    <button type="submit" class="mini-header-btn">Log In</button>
+  </form>
+</div>

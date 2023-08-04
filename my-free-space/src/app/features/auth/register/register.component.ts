@@ -13,8 +13,9 @@ import { PasswordValidatorDirective } from './passwordValidators/password-valida
   providers: [PasswordValidatorDirective],
 })
 export class RegisterComponent {
-  public apiError: string = '';
-  public failedSubmit: boolean = false;
+  apiError: string = '';
+  failedSubmit: boolean = false;
+  loading: boolean = false;
 
   countries: string[] = COUNTRIES_LIST;
 
@@ -26,8 +27,9 @@ export class RegisterComponent {
       return;
     }
 
+    this.loading = true;
+
     const { email, username, password, country, gender } = form.value;
-    console.log(form.value);
 
     this.userService
       .register(email, username, password, country, gender)
@@ -39,6 +41,7 @@ export class RegisterComponent {
         error: (err) => {
           this.apiError = err.error?.message || '';
           window.scroll(0, 0);
+          this.loading = false;
         },
       });
   }

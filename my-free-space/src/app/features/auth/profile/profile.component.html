@@ -280,7 +280,9 @@
   </form>
 </div>
 
-<div class="profile-container"  >
+<app-spinner *ngIf="loading"></app-spinner>
+
+<div class="profile-container"  *ngIf="!loading">
   <h2 class="info-title">Profile Info</h2>
 
   <div class="info-profile-container">

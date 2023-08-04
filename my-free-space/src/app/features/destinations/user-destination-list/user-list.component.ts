@@ -10,6 +10,7 @@ import { IDestination } from 'src/app/shared/types/destination';
 })
 export class UserListComponent implements OnInit {
   list: IDestination[] = [];
+  loading: boolean = true;
 
   constructor(
     private userService: UserService,
@@ -21,6 +22,7 @@ export class UserListComponent implements OnInit {
       next: (user) => {
         this.destinationService.getUserDestinations(user._id).subscribe({
           next: (destinations) => {
+            this.loading = false;
             this.list = destinations;
           },
         });

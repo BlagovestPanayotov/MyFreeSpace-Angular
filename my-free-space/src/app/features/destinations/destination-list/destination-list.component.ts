@@ -7,17 +7,18 @@ import { IDestination } from 'src/app/shared/types/destination';
   templateUrl: './destination-list.component.html',
   styleUrls: ['./destination-list.component.css'],
 })
-export class DestinationListComponent implements OnInit{
-
+export class DestinationListComponent implements OnInit {
   list: IDestination[] = [];
+  loading: boolean = true;
 
-  constructor(private destinationService:DestinationService) {}
+  constructor(private destinationService: DestinationService) {}
 
   ngOnInit(): void {
     this.destinationService.getAllDestinations().subscribe({
-      next: (dest)=>{
-        this.list = dest
-      }
-    })
+      next: (dest) => {
+        this.list = dest;
+        this.loading = false;
+      },
+    });
   }
 }

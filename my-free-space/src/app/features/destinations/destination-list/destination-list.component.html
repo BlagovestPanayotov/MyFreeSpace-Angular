@@ -1,4 +1,6 @@
-<main>
+<app-spinner *ngIf="loading"></app-spinner>
+
+<main *ngIf="!loading">
   <div class="cards-container">
     <ng-container *ngFor="let dest of list">
       <app-destination-card [dest]="dest"></app-destination-card>

@@ -11,8 +11,9 @@ import { USER_KEY } from 'src/app/shared/costants';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  public apiError: string = '';
-  public failedSubmit: boolean = false;
+  apiError: string = '';
+  failedSubmit: boolean = false;
+  loading: boolean = false;
 
   constructor(private userService: UserService, private router: Router) {}
 
@@ -24,20 +25,26 @@ export class LoginComponent {
 
     const { email, password } = from.value;
 
+    this.loading = true;
+
     this.userService.login(email, password).subscribe({
       next: (user) => {
         localStorage.setItem(USER_KEY, user.accessToken);
         this.router.navigate(['/dest/user-list']);
+        this.loading = false;
       },
       error: (err) => {
         console.log(err.status);
 
-        if (err.code === 403 && err.message !== "Login or password don't match") {
+        if (
+          err.code === 403 &&
+          err.message !== "Login or password don't match"
+        ) {
           localStorage.removeItem(USER_KEY);
           this.apiError = 'Something went wrong. Try again, please.';
           return;
         }
-
+        this.loading = false;
         this.apiError = err.error?.message || '';
       },
     });
