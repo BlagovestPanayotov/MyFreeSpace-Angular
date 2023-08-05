@@ -91,8 +91,8 @@
         <i *ngIf="passwordReInput.value!==rePasswordReInput.value || rePasswordReInput.errors"
           class="fa-solid fa-circle-exclamation fa-lg" style="color: #800000;"></i>
         <div class="popuptext" *ngIf="passwordReInput.value!==rePasswordReInput.value || rePasswordReInput.value===''">
-          <p *ngIf="passwordReInput.value===rePasswordReInput.value" class="correct">Passwords match!</p>
-          <p *ngIf="passwordReInput.value!==rePasswordReInput.value" calss="error">Passwords do not match!</p>
+          <!-- <p *ngIf="passwordReInput.value===rePasswordReInput.value" class="correct">Passwords match!</p> -->
+          <p *ngIf="passwordReInput.value!==rePasswordReInput.value || rePasswordReInput.value===''" class="error">Passwords do not match!</p>
         </div>
       </div>
     </div>

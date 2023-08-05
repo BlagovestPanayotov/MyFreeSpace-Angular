@@ -2,11 +2,12 @@
 
 <main *ngIf="!loading">
   <h2 class="content-header">My Destinations</h2>
-  <div class="cards-container">
+  <div class="cards-container" *ngIf="list.length!==0">
     <ng-container *ngFor="let dest of list">
       <app-destination-card [dest]="dest"></app-destination-card>
     </ng-container>
   </div>
+  <p class="no-posts" *ngIf="list.length===0">You have no post yet!</p>
   <div class="pag-container">
     <a href="#"><i class="fa-solid fa-angles-left"></i></a>
     <span>Page 2 from 3</span>

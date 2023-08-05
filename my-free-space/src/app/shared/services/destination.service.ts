@@ -10,8 +10,10 @@ import { destinationEndpoints } from './endpoits';
 export class DestinationService {
   constructor(private http: HttpClient) {}
 
-  getAllDestinations() {
-    return this.http.get<IDestination[]>(destinationEndpoints.getAll);
+  getAllDestinations(name: string, country: string) {
+    return this.http.get<IDestination[]>(
+      destinationEndpoints.getAll(name, country)
+    );
   }
 
   getDestinationById(id: string) {
@@ -51,9 +53,9 @@ export class DestinationService {
     return this.http.delete(destinationEndpoints.delete(id));
   }
 
-  getUserDestinations(userId: string) {
+  getUserDestinations(userId: string, name:string, country:string) {
     return this.http.get<IDestination[]>(
-      destinationEndpoints.getUserDestinations(userId)
+      destinationEndpoints.getUserDestinations(userId, name, country)
     );
   }
 }

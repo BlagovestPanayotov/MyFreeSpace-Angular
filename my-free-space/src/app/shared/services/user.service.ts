@@ -67,6 +67,6 @@ export class UserService implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    throw new Error('Method not implemented.');
+    this.subscription.unsubscribe();
   }
 }

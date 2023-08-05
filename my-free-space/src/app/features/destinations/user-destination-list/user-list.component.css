@@ -12,7 +12,6 @@ main .cards-container {
   gap: 1rem;
 }
 
-
 .content-header {
   color: #f5f5f5;
   text-align: center;
@@ -20,7 +19,6 @@ main .cards-container {
   font-weight: 500;
   padding-top: 0;
 }
-
 
 /* Pagin */
 
@@ -37,4 +35,13 @@ main .pag-container i {
 }
 main .pag-container i:hover {
   color: rgb(28, 0, 128);
+}
+
+main .no-posts {
+  color: #f5f5f5;
+  margin-top: 3rem auto;
+  font-size: 3rem;
+  font-weight: bold;
+  font-style: italic;
+  text-align: center;
 }
