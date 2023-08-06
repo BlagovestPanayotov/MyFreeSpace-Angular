@@ -1,8 +1,15 @@
 <article class="destination-card">
-  <h3>{{dest.name}}</h3>
-  <div class="img-container">
-    <img src={{dest.img}} alt={{dest.name}}>
-  </div>
-  <p>{{dest.description}}</p>
-  <a routerLink="/dest/details/{{dest._id}}" class="destination-details">Details</a>
+  <ng-container *ngIf="!isLoading">
+    <h3>{{dest.name}}</h3>
+    <div class="img-container">
+      <img src={{dest.img}} alt={{dest.name}}>
+    </div>
+    <p>{{dest.description}}</p>
+    <a routerLink="/dest/details/{{dest._id}}" class="destination-details">Details</a>
+  </ng-container>
+  <ng-container *ngIf="isLoading">
+    <div class="loader-container">
+      <app-spinner></app-spinner>
+    </div>
+  </ng-container>
 </article>

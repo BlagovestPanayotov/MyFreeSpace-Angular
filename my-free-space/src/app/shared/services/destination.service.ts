@@ -53,9 +53,18 @@ export class DestinationService {
     return this.http.delete(destinationEndpoints.delete(id));
   }
 
-  getUserDestinations(userId: string, name:string, country:string) {
+  getUserDestinations(userId: string, name: string, country: string) {
     return this.http.get<IDestination[]>(
       destinationEndpoints.getUserDestinations(userId, name, country)
     );
+  }
+
+  getCount() {
+    return this.http.get<number>(destinationEndpoints.getCountDestiantions);
+  }
+
+  getRandomDestination(count: number) {
+    const random = Math.floor(Math.random() * count);
+    return this.http.get<IDestination[]>(destinationEndpoints.getListOfDestinations(random,1))
   }
 }

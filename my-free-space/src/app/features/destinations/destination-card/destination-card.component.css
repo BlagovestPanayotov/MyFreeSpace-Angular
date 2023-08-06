@@ -15,7 +15,7 @@
   font-style: italic;
   padding-top: 0.5rem;
   height: 3rem;
-  overflow:hidden
+  overflow: hidden;
 }
 
 .destination-card .img-container {
@@ -73,4 +73,11 @@
   justify-content: space-between;
   margin-top: 2rem;
   color: #000000;
+}
+
+.loader-container {
+  margin: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

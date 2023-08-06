@@ -7,13 +7,15 @@ import { IDestination } from 'src/app/shared/types/destination';
   styleUrls: ['./destination-card.component.css'],
 })
 export class DestinationCardComponent {
-  @Input() dest: IDestination={
+  @Input() dest: IDestination = {
     _id: '',
     name: '',
     country: '',
     description: '',
     _ownerId: '',
     img: '',
-    _createdOn: ''
+    _createdOn: '',
   };
+
+  @Input() isLoading: boolean | undefined;
 }
