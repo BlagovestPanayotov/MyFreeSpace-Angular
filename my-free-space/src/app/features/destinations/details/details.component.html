@@ -11,12 +11,14 @@
     <div class="coments-container">
       <h3>Comments</h3>
       <div class="comments">
-        <app-comment></app-comment>
-        <app-comment></app-comment>
-        <app-comment></app-comment>
-        <app-comment></app-comment>
-        <app-comment></app-comment>
-        <app-comment></app-comment>
+        <ng-container *ngIf="comments">
+          <ng-container *ngFor="let comment of comments">
+            <app-comment [comment]="comment"></app-comment>
+          </ng-container>
+        </ng-container>
+        <ng-container *ngIf="comments">
+          <p class="no-comment">There is no comments yet. Do you wanna be the first left one?</p>
+        </ng-container>
       </div>
     </div>
 
@@ -28,8 +30,8 @@
           class="fa-sharp fa-solid fa-heart" style="color: #DB005B;"></i> Like</button>
       <!-- fa-beat -->
 
-      <button class="btn-like" *ngIf="this.user?._id !== this.destination._ownerId && userLike" (click)="removeLike()"><i
-          class="fa-sharp fa-solid fa-heart-crack" style="color: #DB005B;"></i> Dislike</button>
+      <button class="btn-like" *ngIf="this.user?._id !== this.destination._ownerId && userLike"
+        (click)="removeLike()"><i class="fa-sharp fa-solid fa-heart-crack" style="color: #DB005B;"></i> Dislike</button>
 
       <button class="btn-edit" *ngIf="this.user?._id === this.destination._ownerId" (click)="toggleEditMode()"><i
           class="fa-solid fa-pen-to-square" style="color: #ff8040;"></i> Edit</button>

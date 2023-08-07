@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { IDestination } from '../types/destination';
 import { destinationEndpoints } from './endpoits';
 import { ILike } from '../types/like';
+import { IComment } from '../types/comment';
 
 @Injectable({
   providedIn: 'root',
@@ -71,6 +72,8 @@ export class DestinationService {
     );
   }
 
+  //LIKES
+
   getLikes(destinationId: string) {
     return this.http.get<ILike[]>(destinationEndpoints.getLikes(destinationId));
   }
@@ -85,5 +88,9 @@ export class DestinationService {
     return this.http.delete(destinationEndpoints.deleteLike(likeId));
   }
 
-  getComments(destinationId: string) {}
+  //COMMENTS
+
+  getComments(destinationId: string) {
+    return this.http.get<IComment[]>(destinationEndpoints.getComments(destinationId))
+  }
 }

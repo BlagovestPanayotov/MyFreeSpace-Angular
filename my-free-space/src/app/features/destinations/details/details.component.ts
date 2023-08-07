@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { COUNTRIES_LIST } from 'src/app/shared/costants';
 import { DestinationService } from 'src/app/shared/services/destination.service';
 import { UserService } from 'src/app/shared/services/user.service';
+import { IComment } from 'src/app/shared/types/comment';
 import { IDestination } from 'src/app/shared/types/destination';
 import { ILike } from 'src/app/shared/types/like';
 import { IUser } from 'src/app/shared/types/user';
@@ -27,6 +28,7 @@ export class DetailsComponent implements OnInit {
   user: IUser | null = null;
   countries: string[] = COUNTRIES_LIST;
   likes: ILike[] = [];
+  comments: IComment[] = [];
 
   userLike: ILike | undefined;
 
@@ -62,35 +64,10 @@ export class DetailsComponent implements OnInit {
         this.userLike = this.likes.find((x) => x._ownerId === this.user?._id);
         this.loading = false;
       });
-    });
-  }
-
-  giveLike(): void {
-    this.destinationService.giveLike(this.destination._id).subscribe({
-      next: (l) => {
-        this.likes.push(l);
-        this.userLike = l;
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
-  }
-
-  removeLike(): void {
-    if (this.userLike?._id) {
-      
-      this.destinationService.delteLike(this.userLike?._id).subscribe({
-        next: () => {
-          this.userLike = undefined;
-          this.likes = this.likes.filter((x) => x._ownerId !== this.user?._id);
-        },
-        error(err) {
-          console.log(err);
-        },
+      this.destinationService.getComments(id).subscribe((c) => {
+        this.comments = c;
       });
-    }
-    return;
+    });
   }
 
   getUser(): void {
@@ -165,5 +142,39 @@ export class DetailsComponent implements OnInit {
         this.apiError = 'You are NOT allowed to do that!!!';
       },
     });
+  }
+
+  //LIKES
+
+  giveLike(): void {
+    this.destinationService.giveLike(this.destination._id).subscribe({
+      next: (l) => {
+        this.likes.push(l);
+        this.userLike = l;
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
+
+  removeLike(): void {
+    if (this.userLike?._id) {
+      this.destinationService.delteLike(this.userLike._id).subscribe({
+        next: (res) => {
+          this.userLike = undefined;
+          this.likes = this.likes.filter((x) => x._ownerId !== this.user?._id);
+        },
+        error(err) {
+          console.log(err);
+        },
+      });
+    }
+    return;
+  }
+
+  //COMMENTS
+
+  getComments(): void {
   }
 }

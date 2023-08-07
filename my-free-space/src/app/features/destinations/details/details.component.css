@@ -293,3 +293,12 @@ p.error.serverErrors {
   color: rgb(139, 0, 0);
   margin-bottom: 0.5rem;
 }
+
+p.no-comment{
+  text-align: center;
+  font-size: 2rem;
+  font-style: italic;
+  font-weight: bold;
+  padding: 2rem;
+}
+

@@ -42,7 +42,9 @@ export const destinationEndpoints = {
 
   getLikes: (destinationId: string) => URL_ADDRESS + `/data/likes?where=_destinationId%3D%22${destinationId}%22&distinct=_ownerId`,
   giveLike: URL_ADDRESS + '/data/likes',
-  deleteLike: (likeId:string) => URL_ADDRESS + `/data/likes/${likeId}`
+  deleteLike: (likeId:string) => URL_ADDRESS + `/data/likes/${likeId}`,
+
+  getComments: (destinationId: string) => URL_ADDRESS + `/data/comments?where=_destinationId%3D%22${destinationId}%22`
 };
 
 //GET COUNT http://localhost:3030/data/destinations?count
