@@ -79,7 +79,7 @@ button {
   cursor: pointer;
 }
 
-p.likes-sum{
+p.likes-sum {
   border-radius: 1rem;
   text-align: center;
   width: 80%;
@@ -87,7 +87,7 @@ p.likes-sum{
   background-color: rgba(0, 255, 89, 0.407);
   padding: 0.5rem;
   margin-bottom: 2rem;
-  box-shadow: 0px 0px 20px 20px  rgba(0, 255, 89, 0.407);
+  box-shadow: 0px 0px 20px 20px rgba(0, 255, 89, 0.407);
 }
 
 button {
@@ -120,7 +120,6 @@ button {
 /* LEAVE COMMENT */
 
 .leave-comment {
-  display: none;
   margin-top: 0;
   color: #000000;
   background-color: rgba(0, 0, 0, 0.4);
@@ -131,6 +130,7 @@ button {
 .leave-comment form {
   display: flex;
   width: 100%;
+  gap: 0.5rem;
   flex-direction: column;
   align-items: center;
 }
@@ -139,6 +139,12 @@ button {
   padding: 1rem;
   border-radius: 1rem;
   margin-bottom: 1rem;
+}
+
+.leave-comment form .btn-sub {
+  width: auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
 .feedback-container .btn-container button:hover,
@@ -294,11 +300,10 @@ p.error.serverErrors {
   margin-bottom: 0.5rem;
 }
 
-p.no-comment{
+p.no-comment {
   text-align: center;
   font-size: 2rem;
   font-style: italic;
   font-weight: bold;
   padding: 2rem;
 }
-
