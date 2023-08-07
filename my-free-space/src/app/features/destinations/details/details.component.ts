@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ViewportScroller } from "@angular/common";
+
 import { COUNTRIES_LIST } from 'src/app/shared/costants';
 import { DestinationService } from 'src/app/shared/services/destination.service';
 import { UserService } from 'src/app/shared/services/user.service';
@@ -36,12 +38,14 @@ export class DetailsComponent implements OnInit {
   loading: boolean = true;
   apiError: string = '';
   deleteMsgDisplayed: boolean = false;
+  leaveCommentDisplayed: boolean = false;
 
   constructor(
     private destinationService: DestinationService,
     private activatedRoute: ActivatedRoute,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private scroller: ViewportScroller,
   ) {}
 
   get isLogged(): boolean {
@@ -176,5 +180,13 @@ export class DetailsComponent implements OnInit {
   //COMMENTS
 
   getComments(): void {
+  }
+
+  toggleCommentForm(): void {
+    this.leaveCommentDisplayed = !this.leaveCommentDisplayed;
+    
+    if(this.leaveCommentDisplayed){
+      this.router.navigate([], { fragment: "comment" });
+    }
   }
 }

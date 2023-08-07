@@ -16,7 +16,7 @@
             <app-comment [comment]="comment"></app-comment>
           </ng-container>
         </ng-container>
-        <ng-container *ngIf="comments">
+        <ng-container *ngIf="comments.length===0">
           <p class="no-comment">There is no comments yet. Do you wanna be the first left one?</p>
         </ng-container>
       </div>
@@ -50,13 +50,13 @@
           Delete</button>
       </div>
 
-      <button class="btn-lcom"><i class="fa-solid fa-comment-dots" style="color: #004000;"></i> Leave a comment</button>
+      <button class="btn-lcom" (click)="toggleCommentForm()"><i class="fa-solid fa-comment-dots" style="color: #004000;"></i> Leave a comment</button>
     </div>
   </div>
-  <div class="leave-comment">
-    <form>
-      <textarea name="comment" id="comment" cols="50" rows="5"></textarea>
-      <button class="btn-sub"><i class="fa-solid fa-xmark fa-lg" style="color: #800000;"></i> Cancel</button>
+  <div class="leave-comment" *ngIf="leaveCommentDisplayed">
+    <form #formComment="ngForm" >
+      <textarea name="comment" id="comment" cols="50" rows="5" ngModel #commentInput="ngModel"></textarea>
+      <button class="btn-sub" (click)="toggleCommentForm()"><i class="fa-solid fa-xmark fa-lg" style="color: #800000;"></i> Cancel</button>
       <button class="btn-sub"><i class="fa-solid fa-check fa-lg" style="color: #004000;"></i> Submit</button>
     </form>
   </div>
@@ -65,7 +65,7 @@
 
 <div id="edit-form-container" *ngIf="editMode && !loading">
   <h2>Create</h2>
-  <form #form="ngForm" (submit)="editDestination(form)" id="create-form">
+  <form #formEdit="ngForm" (submit)="editDestination(formEdit)" id="create-form">
 
     <label for="name">Destination Name:</label>
     <div class="flex-input">
@@ -134,7 +134,7 @@
     </div>
 
     <button (click)="toggleEditMode()" class="btn-cancel">Cancel</button>
-    <button class="btn-create">Create</button>
+    <button class="btn-create">Edit</button>
   </form>
 </div>
 

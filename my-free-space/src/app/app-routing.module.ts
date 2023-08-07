@@ -1,8 +1,16 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { ExtraOptions, RouterModule, Routes } from '@angular/router';
+
 import { AboutComponent } from './features/about/about.component';
 import { ContentComponent } from './features/content/content.component';
 import { PageNotFoundComponent } from './features/page-not-found/page-not-found.component';
+
+
+const routerOptions: ExtraOptions = {
+  scrollPositionRestoration: 'enabled',
+  anchorScrolling: 'enabled',
+  onSameUrlNavigation: 'reload',
+  };
 
 const routes: Routes = [
   {
@@ -39,7 +47,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,routerOptions)],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
