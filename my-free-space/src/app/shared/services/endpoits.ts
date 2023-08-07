@@ -38,9 +38,11 @@ export const destinationEndpoints = {
   },
 
   getCountDestiantions: URL_ADDRESS + '/data/destinations?count',
-  getListOfDestinations: (offset: number, pageSize: number) =>
-    URL_ADDRESS +
-    `/data/destinations?offset=${(offset - 1) * pageSize}&pageSize=${pageSize}`,
+  getListOfDestinations: (offset: number, pageSize: number) => URL_ADDRESS + `/data/destinations?offset=${(offset - 1) * pageSize}&pageSize=${pageSize}`,
+
+  getLikes: (destinationId: string) => URL_ADDRESS + `/data/likes?where=_destinationId%3D%22${destinationId}%22&distinct=_ownerId`,
+  giveLike: URL_ADDRESS + '/data/likes',
+  deleteLike: (likeId:string) => URL_ADDRESS + `/data/likes/${likeId}`
 };
 
 //GET COUNT http://localhost:3030/data/destinations?count

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { IDestination } from '../types/destination';
 import { destinationEndpoints } from './endpoits';
+import { ILike } from '../types/like';
 
 @Injectable({
   providedIn: 'root',
@@ -65,6 +66,24 @@ export class DestinationService {
 
   getRandomDestination(count: number) {
     const random = Math.floor(Math.random() * count);
-    return this.http.get<IDestination[]>(destinationEndpoints.getListOfDestinations(random,1))
+    return this.http.get<IDestination[]>(
+      destinationEndpoints.getListOfDestinations(random, 1)
+    );
   }
+
+  getLikes(destinationId: string) {
+    return this.http.get<ILike[]>(destinationEndpoints.getLikes(destinationId));
+  }
+
+  giveLike(destinationId: string) {
+    return this.http.post<ILike>(destinationEndpoints.giveLike, {
+      _destinationId: destinationId,
+    });
+  }
+
+  delteLike(likeId: string) {
+    return this.http.delete(destinationEndpoints.deleteLike(likeId));
+  }
+
+  getComments(destinationId: string) {}
 }

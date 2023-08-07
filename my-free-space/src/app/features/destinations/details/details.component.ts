@@ -5,6 +5,7 @@ import { COUNTRIES_LIST } from 'src/app/shared/costants';
 import { DestinationService } from 'src/app/shared/services/destination.service';
 import { UserService } from 'src/app/shared/services/user.service';
 import { IDestination } from 'src/app/shared/types/destination';
+import { ILike } from 'src/app/shared/types/like';
 import { IUser } from 'src/app/shared/types/user';
 
 @Component({
@@ -25,6 +26,9 @@ export class DetailsComponent implements OnInit {
 
   user: IUser | null = null;
   countries: string[] = COUNTRIES_LIST;
+  likes: ILike[] = [];
+
+  userLike: ILike | undefined;
 
   editMode: boolean = false;
   loading: boolean = true;
@@ -53,8 +57,40 @@ export class DetailsComponent implements OnInit {
 
     this.destinationService.getDestinationById(id).subscribe((dest) => {
       this.destination = dest;
-      this.loading = false;
+      this.destinationService.getLikes(id).subscribe((l) => {
+        this.likes = l;
+        this.userLike = this.likes.find((x) => x._ownerId === this.user?._id);
+        this.loading = false;
+      });
     });
+  }
+
+  giveLike(): void {
+    this.destinationService.giveLike(this.destination._id).subscribe({
+      next: (l) => {
+        this.likes.push(l);
+        this.userLike = l;
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
+
+  removeLike(): void {
+    if (this.userLike?._id) {
+      
+      this.destinationService.delteLike(this.userLike?._id).subscribe({
+        next: () => {
+          this.userLike = undefined;
+          this.likes = this.likes.filter((x) => x._ownerId !== this.user?._id);
+        },
+        error(err) {
+          console.log(err);
+        },
+      });
+    }
+    return;
   }
 
   getUser(): void {

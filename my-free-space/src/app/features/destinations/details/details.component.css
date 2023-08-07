@@ -79,15 +79,24 @@ button {
   cursor: pointer;
 }
 
-p.likes-sum,
+p.likes-sum{
+  border-radius: 1rem;
+  text-align: center;
+  width: 80%;
+  color: #f5f5f5;
+  background-color: rgba(0, 255, 89, 0.407);
+  padding: 0.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0px 0px 20px 20px  rgba(0, 255, 89, 0.407);
+}
+
 button {
   border-radius: 1rem;
   text-align: center;
 }
 
 .feedback-container .btn-container button,
-.leave-comment form .btn-sub,
-p.likes-sum {
+.leave-comment form .btn-sub {
   width: 50%;
   color: #f5f5f5;
   background-color: rgba(0, 255, 255, 0.407);

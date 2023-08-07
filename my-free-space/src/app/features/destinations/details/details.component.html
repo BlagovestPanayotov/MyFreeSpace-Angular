@@ -20,15 +20,15 @@
       </div>
     </div>
 
-    <div class="btn-container" *ngIf="!isLogged">
-      <p class="likes-sum"><i class="fa-sharp fa-solid fa-heart" style="color: #DB005B;"></i> Likes: 5</p>
-    </div>
     <div class="btn-container" *ngIf="isLogged">
-      <button class="btn-like" *ngIf="this.user?._id !== this.destination._ownerId"><i
+      <p class="likes-sum"><i class="fa-sharp fa-solid fa-heart" style="color: #93033f;"></i> Likes: {{likes.length}} <i
+          class="fa-sharp fa-solid fa-heart" style="color: #93033f;"></i></p>
+
+      <button class="btn-like" *ngIf="this.user?._id !== this.destination._ownerId && !userLike" (click)="giveLike()"><i
           class="fa-sharp fa-solid fa-heart" style="color: #DB005B;"></i> Like</button>
       <!-- fa-beat -->
 
-      <button class="btn-like" *ngIf="this.user?._id !== this.destination._ownerId"><i
+      <button class="btn-like" *ngIf="this.user?._id !== this.destination._ownerId && userLike" (click)="removeLike()"><i
           class="fa-sharp fa-solid fa-heart-crack" style="color: #DB005B;"></i> Dislike</button>
 
       <button class="btn-edit" *ngIf="this.user?._id === this.destination._ownerId" (click)="toggleEditMode()"><i
@@ -43,8 +43,8 @@
         <button class="btn-delete" *ngIf="this.user?._id === this.destination._ownerId"
           (click)="deleteMsgDisplayedToggle()"><i class="fa-solid fa-xmark fa-lg" style="color: #800000;"></i>
           Cancel</button>
-        <button class="btn-delete" *ngIf="this.user?._id === this.destination._ownerId"
-          (click)="deleteDestination()"><i class="fa-regular fa-trash-can" style="color: #004000;"></i>
+        <button class="btn-delete" *ngIf="this.user?._id === this.destination._ownerId" (click)="deleteDestination()"><i
+            class="fa-regular fa-trash-can" style="color: #004000;"></i>
           Delete</button>
       </div>
 
