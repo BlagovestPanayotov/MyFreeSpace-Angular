@@ -91,6 +91,15 @@ export class DestinationService {
   //COMMENTS
 
   getComments(destinationId: string) {
-    return this.http.get<IComment[]>(destinationEndpoints.getComments(destinationId))
+    return this.http.get<IComment[]>(
+      destinationEndpoints.getComments(destinationId)
+    );
+  }
+
+  createComment(_destinationId: string, content: string) {
+    return this.http.post<IComment>(destinationEndpoints.createComment, {
+      _destinationId,
+      content,
+    });
   }
 }

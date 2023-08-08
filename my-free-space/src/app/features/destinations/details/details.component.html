@@ -50,14 +50,22 @@
           Delete</button>
       </div>
 
-      <button class="btn-lcom" (click)="toggleCommentForm()"><i class="fa-solid fa-comment-dots" style="color: #004000;"></i> Leave a comment</button>
+      <button class="btn-lcom" *ngIf="!leaveCommentDisplayed" (click)="toggleCommentForm()"><i
+          class="fa-solid fa-comment-dots" style="color: #004000;"></i> Leave a comment</button>
     </div>
   </div>
   <div class="leave-comment" *ngIf="leaveCommentDisplayed">
-    <form #formComment="ngForm" >
-      <textarea name="comment" id="comment" cols="50" rows="5" ngModel #commentInput="ngModel"></textarea>
-      <button class="btn-sub" (click)="toggleCommentForm()"><i class="fa-solid fa-xmark fa-lg" style="color: #800000;"></i> Cancel</button>
-      <button class="btn-sub"><i class="fa-solid fa-check fa-lg" style="color: #004000;"></i> Submit</button>
+    <form #formComment="ngForm" (submit)="leaveComment(formComment)">
+      <textarea name="comment" id="comment" cols="35" rows="2" ngModel #commentInput="ngModel" required minlength="10"
+        maxlength="80"></textarea>
+      <div class="info comment-form-errors">
+        <p [ngClass]="commentInput.errors?.['minlength'] || commentInput.value === '' ? 'error' : 'correct'">The
+          description must be at least 10 haracters!</p>
+      </div>
+      <button class="btn-sub" (click)="toggleCommentForm()"><i class="fa-solid fa-xmark fa-lg"
+          style="color: #800000;"></i> Cancel</button>
+      <button class="btn-sub" [disabled]="commentInput.errors"><i class="fa-solid fa-check fa-lg"
+          style="color: #004000;"></i> Submit</button>
     </form>
   </div>
   <p class="created-on"><time>Posted {{destination._createdOn}}</time></p>
@@ -70,7 +78,7 @@
     <label for="name">Destination Name:</label>
     <div class="flex-input">
       <input type="text" name="name" id="name" placeholder="Destination name..." [ngModel]="destination.name"
-        #nameInput="ngModel" [required]="nameInput.value===''" minlength="5">
+        #nameInput="ngModel" minlength="5">
       <div class="info">
         <i *ngIf="!nameInput.errors" class="fa-solid fa-circle-check fa-lg" style="color: #008000;"></i>
         <i *ngIf="nameInput.errors" class="fa-solid fa-circle-exclamation fa-lg" style="color: #800000;"></i>

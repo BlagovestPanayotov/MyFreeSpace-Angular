@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ViewportScroller } from "@angular/common";
 
 import { COUNTRIES_LIST } from 'src/app/shared/costants';
 import { DestinationService } from 'src/app/shared/services/destination.service';
@@ -17,6 +16,8 @@ import { IUser } from 'src/app/shared/types/user';
   styleUrls: ['./details.component.css'],
 })
 export class DetailsComponent implements OnInit {
+  id = this.activatedRoute.snapshot.params['destId'];
+
   destination: IDestination = {
     _id: '',
     name: '',
@@ -44,8 +45,7 @@ export class DetailsComponent implements OnInit {
     private destinationService: DestinationService,
     private activatedRoute: ActivatedRoute,
     private userService: UserService,
-    private router: Router,
-    private scroller: ViewportScroller,
+    private router: Router
   ) {}
 
   get isLogged(): boolean {
@@ -59,18 +59,13 @@ export class DetailsComponent implements OnInit {
 
   getDestination(): void {
     this.loading = true;
-    const id = this.activatedRoute.snapshot.params['destId'];
 
-    this.destinationService.getDestinationById(id).subscribe((dest) => {
+    this.destinationService.getDestinationById(this.id).subscribe((dest) => {
       this.destination = dest;
-      this.destinationService.getLikes(id).subscribe((l) => {
-        this.likes = l;
-        this.userLike = this.likes.find((x) => x._ownerId === this.user?._id);
-        this.loading = false;
-      });
-      this.destinationService.getComments(id).subscribe((c) => {
-        this.comments = c;
-      });
+      //Gets Likes
+      this.getLikes();
+      //Gets comments
+      this.getComments();
     });
   }
 
@@ -150,6 +145,14 @@ export class DetailsComponent implements OnInit {
 
   //LIKES
 
+  getLikes(): void {
+    this.destinationService.getLikes(this.id).subscribe((l) => {
+      this.likes = l;
+      this.userLike = this.likes.find((x) => x._ownerId === this.user?._id);
+      this.loading = false;
+    });
+  }
+
   giveLike(): void {
     this.destinationService.giveLike(this.destination._id).subscribe({
       next: (l) => {
@@ -179,14 +182,50 @@ export class DetailsComponent implements OnInit {
 
   //COMMENTS
 
-  getComments(): void {
-  }
-
   toggleCommentForm(): void {
     this.leaveCommentDisplayed = !this.leaveCommentDisplayed;
-    
-    if(this.leaveCommentDisplayed){
-      this.router.navigate([], { fragment: "comment" });
+
+    if (this.leaveCommentDisplayed) {
+      this.router.navigate([], { fragment: 'comment' });
     }
+  }
+
+  getComments(): void {
+    const id = this.activatedRoute.snapshot.params['destId'];
+    this.destinationService.getComments(id).subscribe((c) => {
+      this.comments = c;
+      this.loading = false;
+    });
+  }
+
+  leaveComment(form: NgForm) {
+    if (form.invalid) {
+      return;
+    }
+
+    this.loading = true;
+
+    const { comment } = form.value;
+
+    this.destinationService
+      .createComment(this.destination._id, comment)
+      .subscribe({
+        next: (result) => {
+          this.getComments();
+          this.loading = false;
+          this.toggleCommentForm();
+        },
+        error: (err) => {
+          if (err.status === 403 && err.statusText === 'Forbidden') {
+            this.apiError = 'You are NOT allowed to do that!!!';
+            this.editMode = false;
+            this.loading = false;
+            window.scroll(0, 0);
+            this.toggleCommentForm();
+            return;
+          }
+          console.log(err);
+        },
+      });
   }
 }
