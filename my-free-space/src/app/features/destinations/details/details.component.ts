@@ -35,9 +35,14 @@ export class DetailsComponent implements OnInit {
 
   userLike: ILike | undefined;
 
-  editMode: boolean = false;
-  loading: boolean = true;
   apiError: string = '';
+
+  editMode: boolean = false;
+
+  loading: boolean = true;
+  commentsLoading: boolean = true;
+  likesLoading: boolean = true;
+
   deleteMsgDisplayed: boolean = false;
   leaveCommentDisplayed: boolean = false;
 
@@ -149,31 +154,41 @@ export class DetailsComponent implements OnInit {
     this.destinationService.getLikes(this.id).subscribe((l) => {
       this.likes = l;
       this.userLike = this.likes.find((x) => x._ownerId === this.user?._id);
-      this.loading = false;
+      this.likesLoading = false;
     });
   }
 
   giveLike(): void {
+    this.likesLoading = true;
     this.destinationService.giveLike(this.destination._id).subscribe({
       next: (l) => {
         this.likes.push(l);
         this.userLike = l;
+        this.likesLoading = false;
       },
       error: (err) => {
         console.log(err);
+        window.scroll(0, 0);
+        this.apiError = 'You are NOT allowed to do that!!!';
+        this.likesLoading = true;
       },
     });
   }
 
   removeLike(): void {
     if (this.userLike?._id) {
+      this.likesLoading = true;
       this.destinationService.delteLike(this.userLike._id).subscribe({
         next: (res) => {
           this.userLike = undefined;
           this.likes = this.likes.filter((x) => x._ownerId !== this.user?._id);
+          this.likesLoading = false;
         },
-        error(err) {
+        error: (err) => {
           console.log(err);
+          window.scroll(0, 0);
+          this.apiError = 'You are NOT allowed to do that!!!';
+          this.likesLoading = false;
         },
       });
     }
@@ -194,7 +209,7 @@ export class DetailsComponent implements OnInit {
     const id = this.activatedRoute.snapshot.params['destId'];
     this.destinationService.getComments(id).subscribe((c) => {
       this.comments = c;
-      this.loading = false;
+      this.commentsLoading = false;
     });
   }
 
@@ -203,7 +218,7 @@ export class DetailsComponent implements OnInit {
       return;
     }
 
-    this.loading = true;
+    this.commentsLoading = true;
 
     const { comment } = form.value;
 
@@ -212,14 +227,14 @@ export class DetailsComponent implements OnInit {
       .subscribe({
         next: (result) => {
           this.getComments();
-          this.loading = false;
+          this.commentsLoading = false;
           this.toggleCommentForm();
         },
         error: (err) => {
           if (err.status === 403 && err.statusText === 'Forbidden') {
             this.apiError = 'You are NOT allowed to do that!!!';
             this.editMode = false;
-            this.loading = false;
+            this.commentsLoading = false;
             window.scroll(0, 0);
             this.toggleCommentForm();
             return;

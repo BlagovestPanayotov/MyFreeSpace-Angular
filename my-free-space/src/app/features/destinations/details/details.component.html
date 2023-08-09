@@ -8,30 +8,44 @@
   <p class="country">Country: {{destination.country}}</p>
   <p class="description">{{destination.description}}</p>
   <div class="feedback-container">
+
     <div class="coments-container">
       <h3>Comments</h3>
-      <div class="comments">
-        <ng-container *ngIf="comments">
-          <ng-container *ngFor="let comment of comments">
-            <app-comment [comment]="comment"></app-comment>
+      <ng-container *ngIf="commentsLoading">
+        <app-spinner></app-spinner>
+      </ng-container>
+      <ng-container *ngIf="!commentsLoading">
+        <div class="comments">
+          <ng-container *ngIf="comments">
+            <ng-container *ngFor="let comment of comments">
+              <app-comment [comment]="comment"></app-comment>
+            </ng-container>
           </ng-container>
-        </ng-container>
-        <ng-container *ngIf="comments.length===0">
-          <p class="no-comment">There is no comments yet. Do you wanna be the first left one?</p>
-        </ng-container>
-      </div>
+          <ng-container *ngIf="comments.length===0">
+            <p class="no-comment">There is no comments yet. Do you wanna be the first left one?</p>
+          </ng-container>
+        </div>
+      </ng-container>
     </div>
 
     <div class="btn-container" *ngIf="isLogged">
-      <p class="likes-sum"><i class="fa-sharp fa-solid fa-heart" style="color: #93033f;"></i> Likes: {{likes.length}} <i
-          class="fa-sharp fa-solid fa-heart" style="color: #93033f;"></i></p>
+      <ng-container *ngIf="likesLoading">
+        <app-mini-spinner></app-mini-spinner>
+      </ng-container>
 
-      <button class="btn-like" *ngIf="this.user?._id !== this.destination._ownerId && !userLike" (click)="giveLike()"><i
-          class="fa-sharp fa-solid fa-heart" style="color: #DB005B;"></i> Like</button>
-      <!-- fa-beat -->
+      <ng-container *ngIf="!likesLoading">
+        <p class="likes-sum"><i class="fa-sharp fa-solid fa-heart" style="color: #93033f;"></i> Likes: {{likes.length}}
+          <i class="fa-sharp fa-solid fa-heart" style="color: #93033f;"></i>
+        </p>
 
-      <button class="btn-like" *ngIf="this.user?._id !== this.destination._ownerId && userLike"
-        (click)="removeLike()"><i class="fa-sharp fa-solid fa-heart-crack" style="color: #DB005B;"></i> Dislike</button>
+        <button class="btn-like" *ngIf="this.user?._id !== this.destination._ownerId && !userLike"
+          (click)="giveLike()"><i class="fa-sharp fa-solid fa-heart" style="color: #DB005B;"></i> Like</button>
+        <!-- fa-beat -->
+
+        <button class="btn-like" *ngIf="this.user?._id !== this.destination._ownerId && userLike"
+          (click)="removeLike()"><i class="fa-sharp fa-solid fa-heart-crack" style="color: #DB005B;"></i>
+          Dislike</button>
+      </ng-container>
 
       <button class="btn-edit" *ngIf="this.user?._id === this.destination._ownerId" (click)="toggleEditMode()"><i
           class="fa-solid fa-pen-to-square" style="color: #ff8040;"></i> Edit</button>
@@ -52,6 +66,7 @@
 
       <button class="btn-lcom" *ngIf="!leaveCommentDisplayed" (click)="toggleCommentForm()"><i
           class="fa-solid fa-comment-dots" style="color: #004000;"></i> Leave a comment</button>
+
     </div>
   </div>
   <div class="leave-comment" *ngIf="leaveCommentDisplayed">
