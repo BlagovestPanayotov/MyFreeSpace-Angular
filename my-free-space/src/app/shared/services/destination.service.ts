@@ -102,4 +102,8 @@ export class DestinationService {
       content,
     });
   }
+
+  deleteComment(commentId :string){
+    return this.http.delete(destinationEndpoints.deleteComment(commentId));
+  }
 }

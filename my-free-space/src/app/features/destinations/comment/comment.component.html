@@ -1,8 +1,25 @@
-<div class="comment">
-  <p>{{comment.content}}</p>
-  <div class="btn-coment-container" *ngIf="isLogged">
-    <button class="btn-like"><i class="fa-sharp fa-solid fa-heart" style="color: #ff0000;"></i> Like</button>
-    <button class="btn-edit"><i class="fa-solid fa-pen-to-square" style="color: #ff8040;"></i> Edit</button>
-    <button class="btn-delete"><i class="fa-regular fa-trash-can" style="color: #004000;"></i> Delete</button>
+<ng-container *ngIf="isLoading">
+  <app-mini-spinner></app-mini-spinner>
+</ng-container>
+<ng-container *ngIf="!isLoading">
+  <div class="comment">
+    <p class="comment-content">{{comment.content}}</p>
+    <div class="btn-coment-container" *ngIf="isLogged">
+      <div class="warning-msg" *ngIf="deleteMsgDisplayed">
+        <p>Do you want to delete this comment</p>
+        <button class="btn-delete" (click)="toggleDeleteMsgDisplayed()"><i class="fa-solid fa-xmark fa-lg"
+            style="color: #800000;"></i> Cancel</button>
+        <button class="btn-delete" (click)="deleteComment()"><i class="fa-regular fa-trash-can"
+            style="color: #004000;"></i> Delete</button>
+      </div>
+      <p class="warning-msg" *ngIf="apiError!==''">{{apiError}}</p>
+      <button class="btn-like" *ngIf="apiError==''"><i class="fa-sharp fa-solid fa-heart" style="color: #ff0000;"></i>
+        Like</button>
+      <button class="btn-edit" *ngIf="apiError==''"><i class="fa-solid fa-pen-to-square" style="color: #ff8040;"></i>
+        Edit</button>
+      <button class="btn-delete" *ngIf="!deleteMsgDisplayed && apiError==''" (click)="toggleDeleteMsgDisplayed()"><i
+          class="fa-regular fa-trash-can" style="color: #004000;"></i>
+        Delete</button>
+    </div>
   </div>
-</div>
+</ng-container>

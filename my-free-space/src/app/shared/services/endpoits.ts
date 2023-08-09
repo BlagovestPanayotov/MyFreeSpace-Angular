@@ -46,6 +46,7 @@ export const destinationEndpoints = {
 
   getComments: (destinationId: string) => URL_ADDRESS + `/data/comments?where=_destinationId%3D%22${destinationId}%22`,
   createComment:  URL_ADDRESS + '/data/comments',
+  deleteComment: (commentId: string)=> URL_ADDRESS + `/data/comments/${commentId}`,
 };
 
 //GET COUNT http://localhost:3030/data/destinations?count

@@ -1948,7 +1948,14 @@
                 _destinationId: "20",
                 _createdOn: 1614260681376,
                 _id: "0a272c58-b7ea-4e09-a000-7ec988248f65"
-            }
+            },
+            "0a272c58-b7ea-4e09-a000-7ec988248e66": {
+                _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
+                content: "It Rockes!",
+                _destinationId: "20",
+                _createdOn: 1614260681375,
+                _id: "0a272c58-b7ea-4e09-a000-7ec988248e66"
+            },
         },
         likes: {
             "0a272c58-b7ea-4e09-a000-7ec988248f66": {
