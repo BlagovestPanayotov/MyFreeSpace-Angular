@@ -5,6 +5,7 @@ import { IDestination } from '../types/destination';
 import { destinationEndpoints } from './endpoits';
 import { ILike } from '../types/like';
 import { IComment } from '../types/comment';
+import { ICommentLike } from '../types/commentLike';
 
 @Injectable({
   providedIn: 'root',
@@ -103,7 +104,26 @@ export class DestinationService {
     });
   }
 
-  deleteComment(commentId :string){
+  deleteComment(commentId: string) {
     return this.http.delete(destinationEndpoints.deleteComment(commentId));
+  }
+
+  updateComment(commentId: string, _destinationId: string, content: string) {
+    console.log(_destinationId);
+    console.log(content);
+
+    return this.http.put<IComment>(
+      destinationEndpoints.updateComment(commentId),
+      {
+        _destinationId,
+        content,
+      }
+    );
+  }
+
+  getCommentLikes(commentId: string) {
+    return this.http.get<ICommentLike[]>(
+      destinationEndpoints.getCommentLikes(commentId)
+    );
   }
 }

@@ -1970,9 +1970,21 @@
                 _createdOn: 1614260681376,
                 _id: "0a272c58-b7ea-4e09-a000-7ec988248f6p"
             },
-            
+
         },
         commentLikes: {
+            "0a272c58-b7ea-4e09-a000": {
+                _ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
+                _commentId: "0a272c58-b7ea-4e09-a000-7ec988248f66",
+                _createdOn: 1614260681375,
+                _id: "0a272c58-b7ea-4e09-a000"
+            },
+            "0a272c58-b7ea-4e09-a000-7e": {
+                _ownerId: "847ec027-f659-4086-8032-8c42f830dffc",
+                _commentId: "0a272c58-b7ea-4e09-a000-7ec988248f66",
+                _createdOn: 1614260681376,
+                _id: "0a272c58-b7ea-4e09-a000-7e"
+            },
         }
     };
     var rules$1 = {
