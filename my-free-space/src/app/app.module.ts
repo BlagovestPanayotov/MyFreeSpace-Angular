@@ -7,21 +7,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { AppInterceptorProvider } from './app-interceptor.interceptor';
+import { GlobalErrorHandlerProvider } from './shared/errorHandlers/globalErrorHandler';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     CoreModule,
     RouterModule,
-    HttpClientModule
+    HttpClientModule,
   ],
-  providers: [
-    AppInterceptorProvider
-  ],
-  bootstrap: [AppComponent]
+  providers: [AppInterceptorProvider, GlobalErrorHandlerProvider],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

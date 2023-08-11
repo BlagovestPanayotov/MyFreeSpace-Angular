@@ -8,6 +8,7 @@ import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { AuthModule } from "../features/auth/auth.module";
 import { AuthenticateComponent } from './authenticate/authenticate.component';
+import { ErrorComponent } from './error/error.component';
 
 
 
@@ -16,6 +17,7 @@ import { AuthenticateComponent } from './authenticate/authenticate.component';
         HeaderComponent,
         FooterComponent,
         AuthenticateComponent,
+        ErrorComponent,
     ],
     exports: [
         HeaderComponent,

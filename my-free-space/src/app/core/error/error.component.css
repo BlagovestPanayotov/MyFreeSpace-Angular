@@ -1,0 +1,128 @@
+p{
+  margin-top: 2rem;
+  font-size: 2rem;
+  color: rgb(128, 128, 128);
+  text-align: center;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  margin: 2rem 0 0 0;
+  min-height: 30rem;
+}
+
+#earth {
+  flex: none;
+  height: 50vmin;
+  width: 50vmin;
+  background: #18abf2;
+  border-radius: 100%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+#earth .shadow {
+  position: relative;
+  right: 5vmin;
+  bottom: 3vmin;
+  height: 50vmin;
+  width: 50vmin;
+  background: #30eac9;
+  border-radius: 100%;
+  opacity: 0.3;
+  z-index: 2;
+  overflow: hidden;
+}
+
+#earth #face {
+  position: relative;
+  left: 13vmin;
+  bottom: 33vmin;
+  height: 20vmin;
+  width: 25vmin;
+  z-index: 1;
+  overflow: hidden;
+}
+
+#earth #face .eyes {
+  position: relative;
+  left: 6vmin;
+  top: 5vmin;
+  height: 2.5vmin;
+  width: 2.5vmin;
+  border-radius: 100%;
+  background: black;
+}
+
+#earth #face .eyes2 {
+  position: relative;
+  left: 15vmin;
+  top: 2.5vmin;
+  height: 2.5vmin;
+  width: 2.5vmin;
+  border-radius: 100%;
+  background: black;
+}
+
+#earth #face .mouth {
+  position: relative;
+  top: 4vmin;
+  left: 10vmin;
+  width: 4vmin;
+  height: 2vmin;
+  margin-left: -1vmin;
+  border-top: 1vmin solid black;
+  border-left: 1vmin solid black;
+  border-right: 1vmin solid black;
+  border-radius: 10vmin 10vmin 0 0;
+}
+
+#earth #face .dimples {
+  position: relative;
+  left: 4vmin;
+  top: 1vmin;
+  height: 2.5vmin;
+  width: 2.5vmin;
+  border-radius: 100%;
+  background: grey;
+  opacity: 0.5;
+}
+
+#earth #face .dimples2 {
+  position: relative;
+  left: 17vmin;
+  bottom: 1.5vmin;
+  height: 2.5vmin;
+  width: 2.5vmin;
+  border-radius: 100%;
+  background: grey;
+  opacity: 0.5;
+}
+
+#earth .land {
+  position: relative;
+  right: 8vmin;
+  bottom: 52vmin;
+  height: 20vmin;
+  width: 20vmin;
+  border-radius: 23%;
+  border: 0.5vmin solid black;
+  transform: rotate(25deg);
+  background: #0fad2e;
+}
+
+#earth .land2 {
+  content: "";
+  position: relative;
+  left: 40vmin;
+  bottom: 85vmin;
+  height: 20vmin;
+  width: 20vmin;
+  border-radius: 23%;
+  border: 0.5vmin solid black;
+  transform: rotate(45deg);
+  background: #0fad2e;
+}
