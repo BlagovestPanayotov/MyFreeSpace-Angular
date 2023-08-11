@@ -1,8 +1,8 @@
 import { ErrorHandler, Injectable, Provider } from '@angular/core';
 import { Router } from '@angular/router';
-import { USER_KEY } from '../costants';
-import { UserService } from '../services/user.service';
-import { SearchService } from '../services/searchParams.service';
+import { USER_KEY } from '../../shared/costants';
+import { UserService } from '../../shared/services/user.service';
+import { SearchService } from '../../shared/services/searchParams.service';
 
 @Injectable()
 export class GlobalErrorHandler implements ErrorHandler {

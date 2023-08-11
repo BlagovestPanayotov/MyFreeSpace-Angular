@@ -11,7 +11,7 @@ import { UserService } from 'src/app/shared/services/user.service';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuard implements CanActivate {
+export class UnauthGuard implements CanActivate {
   constructor(private userService: UserService, private router: Router) {}
 
   canActivate(
@@ -20,12 +20,12 @@ export class AuthGuard implements CanActivate {
   ): boolean | UrlTree {
     debugger;
     console.log(this.userService.isLogged);
-
-    if (this.userService.isLogged) {
+    
+    if (!this.userService.isLogged) {
       return true; // Allow access to the route
     }
 
-    // Redirect unauthenticated users to the login page
-    return this.router.createUrlTree(['/auth/register']);
+    // Redirect authenticated users to a different page (e.g., home)
+    return this.router.createUrlTree(['/home']);
   }
 }
