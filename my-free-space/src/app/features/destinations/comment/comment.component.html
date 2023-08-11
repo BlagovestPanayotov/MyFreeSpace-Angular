@@ -21,8 +21,8 @@
     </ng-container>
     <ng-container *ngIf="!editFormDisplayed">
       <p class="comment-content">{{comment.content}}</p>
-      <div class="btn-coment-container" *ngIf="isLogged">
-        <div class="warning-msg" *ngIf="deleteMsgDisplayed">
+      <div class="btn-coment-container">
+        <div class="warning-msg" *ngIf="deleteMsgDisplayed && isLogged" >
           <p>Do you want to delete this comment</p>
           <button class="btn-delete" (click)="toggleDeleteMsgDisplayed()"><i class="fa-solid fa-xmark fa-lg"
               style="color: #800000;"></i> Cancel</button>
@@ -31,15 +31,26 @@
         </div>
         <p class="warning-msg" *ngIf="apiError!==''">{{apiError}}</p>
         <div class="btn-container" *ngIf="apiError==''">
-          <p class="likes-cont"><i class="fa-sharp fa-solid fa-heart" style="color: #ff0000;"></i> Likes: {{likes.length}} <i class="fa-sharp fa-solid fa-heart" style="color: #ff0000;"></i></p>
-          <button class="btn-like" *ngIf="!userLike && !isOwner"><i class="fa-sharp fa-solid fa-heart" style="color: #ff0000;"></i>
+
+          <p class="likes-cont"><i class="fa-sharp fa-solid fa-heart" style="color: #ff0000;"></i> Likes:
+            {{likes.length}} <i class="fa-sharp fa-solid fa-heart" style="color: #ff0000;"></i></p>
+
+          <button class="btn-like" *ngIf="isLogged && userLike && !isOwner" (click)="giveLike()"><i
+              class="fa-sharp fa-solid fa-heart" style="color: #ff0000;"></i>
             Like</button>
-          <button class="btn-edit" *ngIf="isOwner" (click)="toggleEditFormDisplayed()"><i class="fa-solid fa-pen-to-square"
-              style="color: #ff8040;"></i>
+
+          <button class="btn-like" *ngIf="isLogged && userLike && !isOwner" (click)="removeLike()"><i class="fa-sharp fa-solid fa-heart-crack"
+              style="color: #DB005B;"></i>
+            Dislike</button>
+
+          <button class="btn-edit" *ngIf="isLogged && isOwner" (click)="toggleEditFormDisplayed()"><i
+              class="fa-solid fa-pen-to-square" style="color: #ff8040;"></i>
             Edit</button>
-          <button class="btn-delete" *ngIf="!deleteMsgDisplayed && isOwner" (click)="toggleDeleteMsgDisplayed()"><i
+
+          <button class="btn-delete" *ngIf="isLogged && !deleteMsgDisplayed && isOwner" (click)="toggleDeleteMsgDisplayed()"><i
               class="fa-regular fa-trash-can" style="color: #004000;"></i>
             Delete</button>
+
         </div>
       </div>
     </ng-container>

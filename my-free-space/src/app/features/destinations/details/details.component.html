@@ -18,7 +18,7 @@
         <div class="comments">
           <ng-container *ngIf="comments">
             <ng-container *ngFor="let comment of comments">
-              <app-comment [comment]="comment"></app-comment>
+              <app-comment [comment]="comment" (removeCurrentComment)="removeComment($event)"></app-comment>
             </ng-container>
           </ng-container>
           <ng-container *ngIf="comments.length===0">

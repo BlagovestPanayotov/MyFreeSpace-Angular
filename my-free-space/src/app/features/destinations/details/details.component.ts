@@ -217,7 +217,6 @@ export class DetailsComponent implements OnInit {
     if (form.invalid) {
       return;
     }
-
     this.commentsLoading = true;
 
     const { comment } = form.value;
@@ -227,7 +226,6 @@ export class DetailsComponent implements OnInit {
       .subscribe({
         next: (result) => {
           this.getComments();
-          this.commentsLoading = false;
           this.toggleCommentForm();
         },
         error: (err) => {
@@ -243,4 +241,9 @@ export class DetailsComponent implements OnInit {
         },
       });
   }
+
+  removeComment(comment: string) {
+    this.comments = this.comments.filter((x) => x._id !== comment);
+  }
+  
 }

@@ -121,9 +121,21 @@ export class DestinationService {
     );
   }
 
+  //COMMENTS-LIKES
+
   getCommentLikes(commentId: string) {
     return this.http.get<ICommentLike[]>(
       destinationEndpoints.getCommentLikes(commentId)
     );
+  }
+
+  giveCommentLike(commentId: string) {
+    return this.http.post<ICommentLike>(destinationEndpoints.giveCommentLike, {
+      _commentId: commentId,
+    });
+  }
+
+  delteCommentLike(commentLikeId: string) {
+    return this.http.delete(destinationEndpoints.deleteCommentLike(commentLikeId));
   }
 }

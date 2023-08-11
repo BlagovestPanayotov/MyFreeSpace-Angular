@@ -49,7 +49,10 @@ export const destinationEndpoints = {
   deleteComment: (commentId: string)=> URL_ADDRESS + `/data/comments/${commentId}`,
   updateComment: (commentId: string)=> URL_ADDRESS + `/data/comments/${commentId}`,
 
-  getCommentLikes: (commentId: string) => URL_ADDRESS + `/data/commentLikes?where=_commentId%3D%22${commentId}%22&distinct=_ownerId`
+  getCommentLikes: (commentId: string) => URL_ADDRESS + `/data/commentLikes?where=_commentId%3D%22${commentId}%22&distinct=_ownerId`,
+  giveCommentLike: URL_ADDRESS + '/data/commentLikes',
+  deleteCommentLike: (likeId: string) => URL_ADDRESS + `/data/commentLikes/${likeId}`,
+
 };
 
 //GET COUNT http://localhost:3030/data/destinations?count
