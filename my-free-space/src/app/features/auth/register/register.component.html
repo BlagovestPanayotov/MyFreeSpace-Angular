@@ -34,7 +34,7 @@
         <div class="popuptext" *ngIf="usernameInput.errors">
           <p [ngClass]="usernameInput.errors['required'] ? 'error' : 'correct'">The username is required!</p>
           <hr>
-          <p [ngClass]="(usernameInput.errors['minlength']) ? 'error' : 'correct'">The username must be at least 5
+          <p [ngClass]="(usernameInput.errors['minlength'] || usernameInput.value === '') ? 'error' : 'correct'">The username must be at least 5
             characters!</p>
         </div>
       </div>
