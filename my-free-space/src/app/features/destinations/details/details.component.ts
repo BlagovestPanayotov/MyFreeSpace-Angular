@@ -110,7 +110,7 @@ export class DetailsComponent implements OnInit {
           this.loading = false;
         },
         error: (err) => {
-          if (err.status === 403 && err.statusText === 'Forbidden') {
+          if (err.status === 403 || err.status === 401) {
             this.apiError = 'You are NOT allowed to do that!!!';
             this.editMode = false;
             this.loading = false;

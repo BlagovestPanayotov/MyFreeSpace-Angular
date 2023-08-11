@@ -35,16 +35,16 @@ export class LoginComponent {
       },
       error: (err) => {
         console.log(err);
-        
+
         if (
           err.error.code === 403 &&
-          err.error.message !== "Login or password don't match"
+          err.error.message === "Login or password don't match"
         ) {
-          this.loading = false;
-          throw err;
-        } else {
           this.apiError = err.error?.message || '';
           this.loading = false;
+        } else {
+          this.loading = false;
+          throw err;
         }
       },
     });

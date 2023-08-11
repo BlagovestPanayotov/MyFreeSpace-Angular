@@ -42,7 +42,7 @@ export class RegisterComponent {
         },
         error: (err) => {
           this.loading = false;
-          if (err.error.code === 409) {
+          if (err.status === 409) {
             this.apiError = err.error?.message || '';
             window.scroll(0, 0);
             return;

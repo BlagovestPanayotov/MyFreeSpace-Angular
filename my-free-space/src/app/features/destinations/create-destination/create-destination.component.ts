@@ -32,14 +32,9 @@ export class CreateDestinationComponent {
           this.router.navigate(['/dest/user-list']);
         },
         error: (err) => {
-          if ((err.status = 400)) {
-            this.apiError =
-              'There is a problem and we are working on it. Sorry for the inconvenience.';
-            window.scroll(0, 0);
-            return;
-          }
-
-          throw err;
+          this.apiError =
+            'There is a problem and we are working on it. Sorry for the inconvenience.';
+          window.scroll(0, 0);
         },
       });
   }
