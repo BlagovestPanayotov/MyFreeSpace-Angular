@@ -57,13 +57,17 @@ export class UserService implements OnDestroy {
   logout() {
     return this.http
       .get(userEndpoints.logout)
-      .pipe(tap(() => this.user$$.next(undefined)));
+      .pipe(tap(() => this.clearUser()));
   }
 
   getUser() {
     return this.http
       .get<IUser>(userEndpoints.getUser)
       .pipe(tap((user) => this.user$$.next(user)));
+  }
+
+  clearUser() {
+    this.user$$.next(undefined);
   }
 
   ngOnDestroy(): void {
