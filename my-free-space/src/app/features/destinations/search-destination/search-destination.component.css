@@ -19,6 +19,11 @@ form select {
   width: auto;
 }
 
+form .btn-container {
+  display: flex;
+  gap: 1rem;
+}
+
 form .mini-header-btn {
   width: 50%;
   margin-top: 0.5rem;
@@ -31,7 +36,7 @@ form .mini-header-btn {
 }
 
 /* Hoover Header components */
-form .mini-header-btn:hover{
+form .mini-header-btn:hover {
   color: lightgreen;
   background-color: rgba(0, 51, 255, 0.856);
   border-color: rgba(0, 51, 255, 0.432);
