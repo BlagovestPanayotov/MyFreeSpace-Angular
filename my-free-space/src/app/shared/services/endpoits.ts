@@ -7,17 +7,31 @@ export const userEndpoints = {
   getUser: URL_ADDRESS + '/users/me',
 };
 
+const querries = {
+  andQuerry: encodeURIComponent(' and '),
+  nameQuerry: (name: string) => encodeURIComponent(`name LIKE "${name}"`),
+  countryQuerry: (country: string) => encodeURIComponent(`country="${country}"`),
+
+  ownerQuerry: (userId:string) => encodeURIComponent(`_ownerId="${userId}"`),
+  destinationQuerry: (destinationId: string)=> encodeURIComponent(`_destinationId="${destinationId}"`),
+  commentQuerry: (commentId: string)=>encodeURIComponent(`_commentId="${commentId}"`),
+
+  sortQuerry: encodeURIComponent(`_createdOn desc`),
+  paginQuerry: (offset: number, pageSize: number) => `offset=${(offset - 1) * pageSize}&pageSize=${pageSize}`,
+
+};
+
 export const destinationEndpoints = {
   getAll: (name: string, country: string) => {
     if (country === '') {
       return (
         URL_ADDRESS +
-        `/data/destinations?where=name%20LIKE%20%22${name}%22&sortBy=_createdOn%20desc`
+        `/data/destinations?where=${querries.nameQuerry(name)}&sortBy=${querries.sortQuerry}`
       );
     }
     return (
       URL_ADDRESS +
-      `/data/destinations?where=name%20LIKE%20%22${name}%22%20and%20country%3D%22${country}%22&sortBy=_createdOn%20desc`
+      `/data/destinations?where=${querries.nameQuerry(name)}${querries.andQuerry}${querries.countryQuerry(country)}&sortBy=${querries.sortQuerry}`
     );
   },
   getById: (id: string) => URL_ADDRESS + `/data/destinations/${id}`,
@@ -28,31 +42,33 @@ export const destinationEndpoints = {
     if (country === '') {
       return (
         URL_ADDRESS +
-        `/data/destinations?where=_ownerId%3D%22${userId}%22%20and%20name%20LIKE%20%22${name}%22&sortBy=_createdOn%20desc`
+        `/data/destinations?where=${querries.ownerQuerry(userId)}${querries.andQuerry}${querries.nameQuerry(name)}&sortBy=${querries.sortQuerry}`
       );
     }
     return (
       URL_ADDRESS +
-      `/data/destinations?where=_ownerId%3D%22${userId}%22%20and%20name%20LIKE%20%22${name}%22%20and%20country%3D%22${country}%22&sortBy=_createdOn%20desc`
+      `/data/destinations?where=${querries.ownerQuerry(userId)}${querries.andQuerry}${querries.nameQuerry(name)}${querries.andQuerry}${querries.countryQuerry(country)}&sortBy=${querries.sortQuerry}`
     );
   },
 
   getCountDestiantions: URL_ADDRESS + '/data/destinations?count',
-  getListOfDestinations: (offset: number, pageSize: number) => URL_ADDRESS + `/data/destinations?offset=${(offset - 1) * pageSize}&pageSize=${pageSize}`,
+  getListOfDestinations: (offset: number, pageSize: number) =>
+    URL_ADDRESS +
+    `/data/destinations?offset=${querries.paginQuerry(offset,pageSize)}`,
 
-  getLikes: (destinationId: string) => URL_ADDRESS + `/data/likes?where=_destinationId%3D%22${destinationId}%22&distinct=_ownerId`,
+  getLikes: (destinationId: string) =>
+    URL_ADDRESS + `/data/likes?where=${querries.destinationQuerry(destinationId)}&distinct=_ownerId`,
   giveLike: URL_ADDRESS + '/data/likes',
   deleteLike: (likeId: string) => URL_ADDRESS + `/data/likes/${likeId}`,
 
-  getComments: (destinationId: string) => URL_ADDRESS + `/data/comments?where=_destinationId%3D%22${destinationId}%22`,
-  createComment:  URL_ADDRESS + '/data/comments',
-  deleteComment: (commentId: string)=> URL_ADDRESS + `/data/comments/${commentId}`,
-  updateComment: (commentId: string)=> URL_ADDRESS + `/data/comments/${commentId}`,
+  getComments: (destinationId: string) => URL_ADDRESS + `/data/comments?where=${querries.destinationQuerry(destinationId)}`,
+  createComment: URL_ADDRESS + '/data/comments',
+  deleteComment: (commentId: string) => URL_ADDRESS + `/data/comments/${commentId}`,
+  updateComment: (commentId: string) => URL_ADDRESS + `/data/comments/${commentId}`,
 
-  getCommentLikes: (commentId: string) => URL_ADDRESS + `/data/commentLikes?where=_commentId%3D%22${commentId}%22&distinct=_ownerId`,
+  getCommentLikes: (commentId: string) => URL_ADDRESS + `/data/commentLikes?${querries.commentQuerry(commentId)}&distinct=_ownerId`,
   giveCommentLike: URL_ADDRESS + '/data/commentLikes',
   deleteCommentLike: (likeId: string) => URL_ADDRESS + `/data/commentLikes/${likeId}`,
-
 };
 
 //GET COUNT http://localhost:3030/data/destinations?count
