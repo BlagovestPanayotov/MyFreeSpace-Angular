@@ -34,18 +34,18 @@ export class LoginComponent {
         this.loading = false;
       },
       error: (err) => {
-        console.log(err.status);
-
+        console.log(err);
+        
         if (
-          err.code === 403 &&
-          err.message !== "Login or password don't match"
+          err.error.code === 403 &&
+          err.error.message !== "Login or password don't match"
         ) {
-          localStorage.removeItem(USER_KEY);
-          this.apiError = 'Something went wrong. Try again, please.';
-          return;
+          this.loading = false;
+          throw err;
+        } else {
+          this.apiError = err.error?.message || '';
+          this.loading = false;
         }
-        this.loading = false;
-        this.apiError = err.error?.message || '';
       },
     });
   }

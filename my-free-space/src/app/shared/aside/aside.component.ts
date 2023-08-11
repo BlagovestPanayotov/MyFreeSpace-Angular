@@ -41,7 +41,7 @@ export class AsideComponent implements OnInit {
             this.isLoadingTop = false;
           },
           error: (err) => {
-            console.log(err);
+            throw err;
           },
         });
         this.destinationService.getRandomDestination(value).subscribe({
@@ -50,12 +50,12 @@ export class AsideComponent implements OnInit {
             this.isLoadingBottom = false;
           },
           error: (err) => {
-            console.log(err);
+            throw err;
           },
         });
       },
       error: (err) => {
-        console.log(err);
+        throw err;
       },
     });
   }

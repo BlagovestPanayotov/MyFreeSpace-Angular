@@ -33,6 +33,7 @@ export class DestinationListComponent implements OnInit, OnDestroy {
           },
           error: (err) => {
             this.loading = false;
+            throw err
           },
         });
     });

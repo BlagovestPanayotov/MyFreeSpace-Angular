@@ -117,7 +117,7 @@ export class DetailsComponent implements OnInit {
             window.scroll(0, 0);
             return;
           }
-          console.log(err);
+          throw err;
         },
       });
   }

@@ -38,7 +38,6 @@ export class CommentComponent implements OnInit {
 
   ngOnInit() {
     this.destinationService.getCommentLikes(this.comment._id).subscribe((l) => {
-      debugger;
       this.likes = l;
       if (this.isLogged) {
         this.userService.getUser().subscribe((u) => {
@@ -112,8 +111,6 @@ export class CommentComponent implements OnInit {
         this.isLoading = false;
       },
       error: (err) => {
-        console.log(err);
-        window.scroll(0, 0);
         this.apiError = 'You are NOT allowed to do that!!!';
         this.isLoading = true;
       },
@@ -130,8 +127,6 @@ export class CommentComponent implements OnInit {
           this.isLoading = false;
         },
         error: (err) => {
-          console.log(err);
-          window.scroll(0, 0);
           this.apiError = 'You are NOT allowed to do that!!!';
           this.isLoading = false;
         },

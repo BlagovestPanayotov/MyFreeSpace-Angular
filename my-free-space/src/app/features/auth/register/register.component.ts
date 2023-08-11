@@ -27,6 +27,8 @@ export class RegisterComponent {
       return;
     }
 
+    this.apiError = '';
+
     this.loading = true;
 
     const { email, username, password, country, gender } = form.value;
@@ -39,9 +41,13 @@ export class RegisterComponent {
           this.router.navigate(['/dest/posts-list']);
         },
         error: (err) => {
-          this.apiError = err.error?.message || '';
-          window.scroll(0, 0);
           this.loading = false;
+          if (err.error.code === 409) {
+            this.apiError = err.error?.message || '';
+            window.scroll(0, 0);
+            return;
+          }
+          throw err;
         },
       });
   }

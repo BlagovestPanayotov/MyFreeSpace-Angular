@@ -35,7 +35,7 @@
           <p class="likes-cont"><i class="fa-sharp fa-solid fa-heart" style="color: #ff0000;"></i> Likes:
             {{likes.length}} <i class="fa-sharp fa-solid fa-heart" style="color: #ff0000;"></i></p>
 
-          <button class="btn-like" *ngIf="isLogged && userLike && !isOwner" (click)="giveLike()"><i
+          <button class="btn-like" *ngIf="isLogged && !userLike && !isOwner" (click)="giveLike()"><i
               class="fa-sharp fa-solid fa-heart" style="color: #ff0000;"></i>
             Like</button>
 

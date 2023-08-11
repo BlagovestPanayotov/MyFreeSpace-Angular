@@ -17,9 +17,10 @@ export class ProfileComponent {
         this.user = u;
         this.loading = false;
       },
-      error: () => {
+      error: (err) => {
         this.user = undefined;
         this.loading = false;
+        throw err;
       },
     });
   }

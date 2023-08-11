@@ -38,7 +38,8 @@ export class CreateDestinationComponent {
             window.scroll(0, 0);
             return;
           }
-          this.apiError = err.message;
+
+          throw err;
         },
       });
   }
