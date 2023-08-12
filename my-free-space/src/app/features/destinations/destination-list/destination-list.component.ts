@@ -1,7 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-
-import { Subscription, combineLatest } from 'rxjs';
-
+import { Subscription, combineLatest, switchMap } from 'rxjs';
 import { DestinationService } from 'src/app/shared/services/destination.service';
 import { SearchService } from 'src/app/shared/services/search.service';
 import { IDestination } from 'src/app/shared/types/destination';
@@ -13,7 +11,7 @@ import { IDestination } from 'src/app/shared/types/destination';
 })
 export class DestinationListComponent implements OnInit, OnDestroy {
   list: IDestination[] = [];
-  page: number = 1;
+  page: number = this.searchService.getAllListPage;
   countDest: number = 0;
   lastPage: number = 0;
   loading: boolean = true;
@@ -25,36 +23,35 @@ export class DestinationListComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.searchService.params$.subscribe(() => {
+      this.loading = true;
+    });
     this.subscribeToMultipleObservables();
   }
 
   subscribeToMultipleObservables(): void {
-    const serachObs = this.searchService.params$;
-    const userPageObs = this.searchService.allListPage$;
+    const searchObs = this.searchService.params$;
+    const allListPageObs = this.searchService.allListPage$;
     this.loading = true;
-    this.page = this.searchService.getAllListPage;
 
-    this.subscription = combineLatest([userPageObs, serachObs]).subscribe(
-      ([pN, data]) => {
-        
-        {
+    this.subscription = combineLatest([allListPageObs, searchObs])
+      .pipe(
+        switchMap(([pN, data]) => {
           this.page = pN;
-        }
+          this.loading = true;
 
-        {
-          combineLatest([
+          return combineLatest([
             this.getListCount(data.name, data.country),
             this.getListDestinations(data.name, data.country),
-          ]).subscribe(([count, destinations]) => {
-            this.list = destinations;
-            this.countDest = count;
-            this.lastPage = Math.ceil(count / 9);
-            this.loading = false;
-          });
-        }
-
-      }
-    );
+          ]);
+        })
+      )
+      .subscribe(([count, destinations]) => {
+        this.list = destinations;
+        this.countDest = count;
+        this.lastPage = Math.ceil(count / 9);
+        this.loading = false;
+      });
   }
 
   private getListCount(name: string, country: string) {
@@ -62,16 +59,16 @@ export class DestinationListComponent implements OnInit, OnDestroy {
   }
 
   private getListDestinations(name: string, country: string) {
-    console.log(this.page);
-
     return this.destinationService.getAllDestinations(name, country, this.page);
   }
 
-  increaseUserListPage() {
+  increaseAllListPage() {
+    this.loading = true;
     this.searchService.setAllListPage(this.page + 1);
   }
 
-  decreaseUserListPage() {
+  decreaseAllListPage() {
+    this.loading = true;
     this.searchService.setAllListPage(this.page - 1);
   }
 

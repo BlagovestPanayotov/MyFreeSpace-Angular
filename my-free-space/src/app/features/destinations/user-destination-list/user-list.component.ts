@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
-import { Subscription, combineLatest } from 'rxjs';
+import { Subscription, combineLatest, switchMap } from 'rxjs';
 
 import { DestinationService } from 'src/app/shared/services/destination.service';
 import { SearchService } from 'src/app/shared/services/search.service';
@@ -13,6 +13,12 @@ import { IDestination } from 'src/app/shared/types/destination';
   styleUrls: ['./user-list.component.css'],
 })
 export class UserListComponent implements OnInit, OnDestroy {
+  constructor(
+    private userService: UserService,
+    private destinationService: DestinationService,
+    private searchService: SearchService
+  ) {}
+
   list: IDestination[] = [];
   page: number = this.searchService.getUserListPage;
   countDest: number = 0;
@@ -20,45 +26,40 @@ export class UserListComponent implements OnInit, OnDestroy {
   loading: boolean = true;
   private subscription: Subscription | undefined;
 
-  constructor(
-    private userService: UserService,
-    private destinationService: DestinationService,
-    private searchService: SearchService
-  ) {}
-
   ngOnInit(): void {
+    this.searchService.params$.subscribe(() => {
+      this.loading = true;
+    });
     this.subscribeToMultipleObservables();
   }
 
   subscribeToMultipleObservables(): void {
-    const serachObs = this.searchService.params$;
+    const searchObs = this.searchService.params$;
     const userPageObs = this.searchService.userListPage$;
     this.loading = true;
-    this.page = this.searchService.getUserListPage;
 
-    this.subscription = combineLatest([userPageObs, serachObs]).subscribe(
-      ([pN, data]) => {
-
-        {
+    this.subscription = combineLatest([userPageObs, searchObs])
+      .pipe(
+        switchMap(([pN, data]) => {
           this.page = pN;
-        }
+          this.loading = true;
 
-        {
-          this.userService.getUser().subscribe((user) => {
-            combineLatest([
-              this.getListCount(user._id, data.name, data.country),
-              this.getListDestinations(user._id, data.name, data.country),
-            ]).subscribe(([count, destinations]) => {
-              this.list = destinations;
-              this.countDest = count;
-              this.lastPage = Math.ceil(count / 9);
-              this.loading = false;
-            });
-          });
-        }
-
-      }
-    );
+          return this.userService.getUser().pipe(
+            switchMap((user) => {
+              return combineLatest([
+                this.getListCount(user._id, data.name, data.country),
+                this.getListDestinations(user._id, data.name, data.country),
+              ]);
+            })
+          );
+        })
+      )
+      .subscribe(([count, destinations]) => {
+        this.list = destinations;
+        this.countDest = count;
+        this.lastPage = Math.ceil(count / 9);
+        this.loading = false;
+      });
   }
 
   private getListCount(userId: string, name: string, country: string) {
@@ -80,10 +81,12 @@ export class UserListComponent implements OnInit, OnDestroy {
   }
 
   increaseUserListPage() {
+    this.loading = true;
     this.searchService.setUserListPage(this.page + 1);
   }
 
   decreaseUserListPage() {
+    this.loading = true;
     this.searchService.setUserListPage(this.page - 1);
   }
 
