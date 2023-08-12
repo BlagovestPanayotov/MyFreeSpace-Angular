@@ -50,14 +50,16 @@ export class SearchService implements OnDestroy {
     return this.userListPage;
   }
 
+  get getAllListPage(): number {
+    return this.allListPage;
+  }
+
   setUserListPage(page: number) {
     this.userListPage$$.next(page);
-    console.log(this.userListPage);
   }
 
   setAllListPage(page: number) {
     this.allListPage$$.next(page);
-    console.log(this.userListPage);
   }
 
   setParams(nameInput: string, countryInput: string) {

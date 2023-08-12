@@ -35,7 +35,6 @@ export class AsideComponent implements OnInit {
   ngOnInit(): void {
     this.destinationService.getCount().subscribe({
       next: (count) => {
-        console.log(count);
         
         this.destinationService.getRandomDestination(count).subscribe({
           next: (value) => {
@@ -46,6 +45,7 @@ export class AsideComponent implements OnInit {
             throw err;
           },
         });
+        
         this.destinationService.getRandomDestination(count).subscribe({
           next: (value) => {
             this.cardBottom = value[0];
@@ -55,6 +55,7 @@ export class AsideComponent implements OnInit {
             throw err;
           },
         });
+
       },
       error: (err) => {
         throw err;

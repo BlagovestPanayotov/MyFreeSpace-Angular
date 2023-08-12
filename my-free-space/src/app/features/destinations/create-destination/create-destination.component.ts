@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { COUNTRIES_LIST } from 'src/app/shared/costants';
 import { DestinationService } from 'src/app/shared/services/destination.service';
+import { SearchService } from 'src/app/shared/services/search.service';
 
 @Component({
   selector: 'app-create-destination',
@@ -15,6 +16,7 @@ export class CreateDestinationComponent {
 
   constructor(
     private destinationService: DestinationService,
+    private searchService: SearchService,
     private router: Router
   ) {}
 
@@ -30,6 +32,8 @@ export class CreateDestinationComponent {
       .subscribe({
         next: () => {
           this.router.navigate(['/dest/user-list']);
+          this.searchService.setAllListPage(1);
+          this.searchService.setUserListPage(1);
         },
         error: (err) => {
           this.apiError =

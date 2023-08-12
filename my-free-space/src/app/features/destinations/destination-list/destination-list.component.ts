@@ -1,9 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
+import { Subscription, combineLatest } from 'rxjs';
+
 import { DestinationService } from 'src/app/shared/services/destination.service';
 import { SearchService } from 'src/app/shared/services/search.service';
 import { IDestination } from 'src/app/shared/types/destination';
-import { Subscription, combineLatest } from 'rxjs';
 
 @Component({
   selector: 'app-destination-list',
@@ -30,12 +31,17 @@ export class DestinationListComponent implements OnInit, OnDestroy {
   subscribeToMultipleObservables(): void {
     const serachObs = this.searchService.params$;
     const userPageObs = this.searchService.allListPage$;
+    this.loading = true;
+    this.page = this.searchService.getAllListPage;
 
-    this.subscription = combineLatest([serachObs, userPageObs]).subscribe(
-      ([data, pN]) => {
+    this.subscription = combineLatest([userPageObs, serachObs]).subscribe(
+      ([pN, data]) => {
+        
         {
-          this.loading = true;
-          window.scroll(0, 0);
+          this.page = pN;
+        }
+
+        {
           combineLatest([
             this.getListCount(data.name, data.country),
             this.getListDestinations(data.name, data.country),
@@ -45,17 +51,8 @@ export class DestinationListComponent implements OnInit, OnDestroy {
             this.lastPage = Math.ceil(count / 9);
             this.loading = false;
           });
+        }
 
-          // this.destinationService
-          //   .getUserDestinations(user._id, data.name, data.country)
-          //   .subscribe((destinations) => {
-          //     this.list = destinations;
-          //     this.loading = false;
-          //   });
-        }
-        {
-          this.page = pN;
-        }
       }
     );
   }
@@ -65,17 +62,17 @@ export class DestinationListComponent implements OnInit, OnDestroy {
   }
 
   private getListDestinations(name: string, country: string) {
+    console.log(this.page);
+
     return this.destinationService.getAllDestinations(name, country, this.page);
   }
 
   increaseUserListPage() {
     this.searchService.setAllListPage(this.page + 1);
-    this.subscribeToMultipleObservables();
   }
 
   decreaseUserListPage() {
     this.searchService.setAllListPage(this.page - 1);
-    this.subscribeToMultipleObservables();
   }
 
   ngOnDestroy() {

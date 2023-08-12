@@ -14,7 +14,7 @@ import { IDestination } from 'src/app/shared/types/destination';
 })
 export class UserListComponent implements OnInit, OnDestroy {
   list: IDestination[] = [];
-  page: number = 1;
+  page: number = this.searchService.getUserListPage;
   countDest: number = 0;
   lastPage: number = 0;
   loading: boolean = true;
@@ -26,7 +26,6 @@ export class UserListComponent implements OnInit, OnDestroy {
     private searchService: SearchService
   ) {}
 
- 
   ngOnInit(): void {
     this.subscribeToMultipleObservables();
   }
@@ -34,13 +33,17 @@ export class UserListComponent implements OnInit, OnDestroy {
   subscribeToMultipleObservables(): void {
     const serachObs = this.searchService.params$;
     const userPageObs = this.searchService.userListPage$;
-  
-    this.subscription = combineLatest([serachObs, userPageObs]).subscribe(
-      ([data, pN]) => {
+    this.loading = true;
+    this.page = this.searchService.getUserListPage;
+
+    this.subscription = combineLatest([userPageObs, serachObs]).subscribe(
+      ([pN, data]) => {
 
         {
-          this.loading = true;
-          window.scroll(0, 0);
+          this.page = pN;
+        }
+
+        {
           this.userService.getUser().subscribe((user) => {
             combineLatest([
               this.getListCount(user._id, data.name, data.country),
@@ -54,10 +57,6 @@ export class UserListComponent implements OnInit, OnDestroy {
           });
         }
 
-        {
-          this.page = pN;
-        }
-        
       }
     );
   }
@@ -82,12 +81,10 @@ export class UserListComponent implements OnInit, OnDestroy {
 
   increaseUserListPage() {
     this.searchService.setUserListPage(this.page + 1);
-    this.subscribeToMultipleObservables();
   }
 
   decreaseUserListPage() {
     this.searchService.setUserListPage(this.page - 1);
-    this.subscribeToMultipleObservables();
   }
 
   ngOnDestroy() {
