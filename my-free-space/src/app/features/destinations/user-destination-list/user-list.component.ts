@@ -26,16 +26,16 @@ export class UserListComponent implements OnInit, OnDestroy {
     private searchService: SearchService
   ) {}
 
-  serachObs = this.searchService.params$;
-  userPageObs = this.searchService.userListPage$;
-
+ 
   ngOnInit(): void {
     this.subscribeToMultipleObservables();
   }
 
   subscribeToMultipleObservables(): void {
-
-    this.subscription = combineLatest([this.serachObs, this.userPageObs]).subscribe(
+    const serachObs = this.searchService.params$;
+    const userPageObs = this.searchService.userListPage$;
+  
+    this.subscription = combineLatest([serachObs, userPageObs]).subscribe(
       ([data, pN]) => {
         {
           this.loading = true;

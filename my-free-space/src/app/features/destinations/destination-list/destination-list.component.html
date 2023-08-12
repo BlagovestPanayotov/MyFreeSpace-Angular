@@ -1,14 +1,14 @@
 <app-spinner *ngIf="loading"></app-spinner>
 
 <main *ngIf="!loading">
+  <div class="pag-container">
+    <a (click)="decreaseUserListPage()" *ngIf="page>1"><i class="fa-solid fa-angles-left"></i></a>
+    <span>Page {{page}} from {{lastPage}}</span>
+    <a (click)="increaseUserListPage()" *ngIf="page<lastPage"><i class="fa-solid fa-angles-right"></i></a>
+  </div>
   <div class="cards-container">
     <ng-container *ngFor="let dest of list">
       <app-destination-card [dest]="dest"></app-destination-card>
     </ng-container>
-  </div>
-  <div class="pag-container">
-    <a href="#"><i class="fa-solid fa-angles-left"></i></a>
-    <span>Page 2 from 3</span>
-    <a href="#"><i class="fa-solid fa-angles-right"></i></a>
   </div>
 </main>

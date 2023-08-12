@@ -13,9 +13,15 @@ import { ICommentLike } from '../types/commentLike';
 export class DestinationService {
   constructor(private http: HttpClient) {}
 
-  getAllDestinations(name: string, country: string) {
+  getAllDestinationCount(name: string, country: string) {
+    return this.http.get<number>(
+      destinationEndpoints.getDestinationsCount(name, country)
+    );
+  }
+
+  getAllDestinations(name: string, country: string, offset: number) {
     return this.http.get<IDestination[]>(
-      destinationEndpoints.getAll(name, country)
+      destinationEndpoints.getAll(name, country, offset)
     );
   }
 
@@ -62,7 +68,12 @@ export class DestinationService {
     );
   }
 
-  getUserDestinations(userId: string, name: string, country: string, offset: number) {
+  getUserDestinations(
+    userId: string,
+    name: string,
+    country: string,
+    offset: number
+  ) {
     return this.http.get<IDestination[]>(
       destinationEndpoints.getUserDestinations(userId, name, country, offset)
     );
