@@ -23,11 +23,11 @@ export class LoginComponent {
       return;
     }
 
-    const { email, password } = from.value;
+    const { emailLogin, passwordLogin } = from.value;
 
     this.loading = true;
 
-    this.userService.login(email, password).subscribe({
+    this.userService.login(emailLogin, passwordLogin).subscribe({
       next: (user) => {
         localStorage.setItem(USER_KEY, user.accessToken);
         this.router.navigate(['/dest/user-list']);

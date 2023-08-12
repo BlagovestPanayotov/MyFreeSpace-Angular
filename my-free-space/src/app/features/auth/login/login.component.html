@@ -4,7 +4,7 @@
   <form #form="ngForm" (ngSubmit)="login(form)" *ngIf="!loading">
     <label for="email">Email</label>
     <div class="flex-input">
-      <input name="email" id="email" type="text" placeholder="Email..." ngModel #emailInput="ngModel" required email>
+      <input name="emailLogin" id="emailLogin" type="text" placeholder="Email..." ngModel #emailInput="ngModel" required email>
       <ng-container *ngIf="emailInput.touched || failedSubmit">
         <div class="info">
           <i *ngIf="!emailInput.errors" class="fa-solid fa-circle-check fa-lg" style="color: #008000;"></i>
@@ -20,7 +20,7 @@
     </div>
     <label for="password">Password</label>
     <div class="flex-input">
-      <input name="password" id="password" type="password" placeholder="Password..." ngModel #passwordInput="ngModel"
+      <input name="passwordLogin" id="passwordLogin" type="password" placeholder="Password..." ngModel #passwordInput="ngModel"
         required>
       <ng-container *ngIf="passwordInput.touched || failedSubmit">
         <div class="info">
