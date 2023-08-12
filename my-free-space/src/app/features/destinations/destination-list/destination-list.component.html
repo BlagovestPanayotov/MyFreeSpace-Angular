@@ -1,7 +1,7 @@
 <app-spinner *ngIf="loading"></app-spinner>
 
 <main *ngIf="!loading">
-  <div class="pag-container">
+  <div class="pag-container" *ngIf="lastPage>1">
     <a (click)="decreaseUserListPage()" *ngIf="page>1"><i class="fa-solid fa-angles-left"></i></a>
     <span>Page {{page}} from {{lastPage}}</span>
     <a (click)="increaseUserListPage()" *ngIf="page<lastPage"><i class="fa-solid fa-angles-right"></i></a>
@@ -11,4 +11,5 @@
       <app-destination-card [dest]="dest"></app-destination-card>
     </ng-container>
   </div>
+  <p class="no-posts" *ngIf="list.length===0">There is no destinations matching those criteria!</p>
 </main>

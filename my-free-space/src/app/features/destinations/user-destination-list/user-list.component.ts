@@ -37,6 +37,7 @@ export class UserListComponent implements OnInit, OnDestroy {
   
     this.subscription = combineLatest([serachObs, userPageObs]).subscribe(
       ([data, pN]) => {
+
         {
           this.loading = true;
           window.scroll(0, 0);
@@ -50,19 +51,13 @@ export class UserListComponent implements OnInit, OnDestroy {
               this.lastPage = Math.ceil(count / 9);
               this.loading = false;
             });
-
-            // this.destinationService
-            //   .getUserDestinations(user._id, data.name, data.country)
-            //   .subscribe((destinations) => {
-            //     this.list = destinations;
-            //     this.loading = false;
-            //   });
           });
         }
+
         {
           this.page = pN;
         }
-        console.log('BOOM');
+        
       }
     );
   }
