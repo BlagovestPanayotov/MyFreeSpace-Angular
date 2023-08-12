@@ -17,6 +17,9 @@ export class RegisterComponent {
   failedSubmit: boolean = false;
   loading: boolean = false;
 
+  passwordVisibility: boolean = false;
+  rePasswordVisibility: boolean = false;
+
   countries: string[] = COUNTRIES_LIST;
 
   constructor(private userService: UserService, private router: Router) {}
@@ -50,5 +53,17 @@ export class RegisterComponent {
           throw err;
         },
       });
+  }
+
+  togglePasswordVisibility() {
+    console.log(this.passwordVisibility);
+    
+    this.passwordVisibility = !this.passwordVisibility;
+  }
+
+  toggleRePasswordVisibility() {
+    console.log(this.rePasswordVisibility);
+
+    this.rePasswordVisibility = !this.rePasswordVisibility;
   }
 }

@@ -10,7 +10,7 @@
   border-radius: 1rem;
 }
 
-#register-form-container h2{
+#register-form-container h2 {
   font-family: Comic Sans MS, Comic Sans, cursive;
   font-size: 2.5rem;
   text-align: center;
@@ -37,7 +37,7 @@
   width: 100%;
 }
 
-#register-form-container form select{
+#register-form-container form select {
   margin: 0.75rem 0;
 }
 
@@ -62,7 +62,7 @@
   position: relative;
 }
 
-#register-form-container form .flex-input .radio-info{
+#register-form-container form .flex-input .radio-info {
   margin-left: 2rem;
 }
 
@@ -113,6 +113,21 @@
   transition: 300ms;
 }
 
+#register-form-container form .password-label-container{
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+}
+
+#register-form-container form .password-label-container i {
+  display: inline-block;
+  font-size: 1.5rem;
+  line-height: 1.8;
+}
+
+#register-form-container form .password-label-container i:hover{
+  cursor: pointer;
+} 
 
 p.correct {
   color: darkgreen;
@@ -122,6 +137,6 @@ p.error {
   color: darkred;
 }
 
-p.serverErrors{
+p.serverErrors {
   text-align: center;
 }

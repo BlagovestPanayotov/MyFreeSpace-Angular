@@ -34,17 +34,23 @@
         <div class="popuptext" *ngIf="usernameInput.errors">
           <p [ngClass]="usernameInput.errors['required'] ? 'error' : 'correct'">The username is required!</p>
           <hr>
-          <p [ngClass]="(usernameInput.errors['minlength'] || usernameInput.value === '') ? 'error' : 'correct'">The username must be at least 5
+          <p [ngClass]="(usernameInput.errors['minlength'] || usernameInput.value === '') ? 'error' : 'correct'">The
+            username must be at least 5
             characters!</p>
         </div>
       </div>
 
     </div>
+    
+    <div class="password-label-container">
 
-    <label for="password">Password:</label>
+      <label for="password">Password:</label>
+      <i class="fa-regular fa-eye" style="color: #c0c0c0;" (click)="togglePasswordVisibility()"></i>
+
+    </div>
     <div class="flex-input">
-      <input type="password" name="password" id="password" placeholder="Password" ngModel #passwordReInput="ngModel"
-        required minlength="8" appPasswordValidator>
+      <input [type]="passwordVisibility ? 'text' : 'password'" name="password" id="password" placeholder="Password"
+        ngModel #passwordReInput="ngModel" required minlength="8" appPasswordValidator>
 
       <div class="info">
         <i *ngIf="!passwordReInput.errors" class="fa-solid fa-circle-check fa-lg" style="color: #008000;"></i>
@@ -56,23 +62,19 @@
             password must be
             at least 8 characters!</p>
           <hr>
-          <p
-            [ngClass]="(passwordReInput.errors['hasLowerCaseValidator']) ? 'error' : 'correct'">
+          <p [ngClass]="(passwordReInput.errors['hasLowerCaseValidator']) ? 'error' : 'correct'">
             The
             password must contain a lower case!</p>
           <hr>
-          <p
-            [ngClass]="(passwordReInput.errors['hasUpperCaseValidator']) ? 'error' : 'correct'">
+          <p [ngClass]="(passwordReInput.errors['hasUpperCaseValidator']) ? 'error' : 'correct'">
             The
             password must contain an upper case!</p>
           <hr>
-          <p
-            [ngClass]="(passwordReInput.errors['hasNumericValidator']) ? 'error' : 'correct'">
+          <p [ngClass]="(passwordReInput.errors['hasNumericValidator']) ? 'error' : 'correct'">
             The
             password must contain a number!</p>
           <hr>
-          <p
-            [ngClass]="(passwordReInput.errors['hasLSpecCharValidator']) ? 'error' : 'correct'">
+          <p [ngClass]="(passwordReInput.errors['hasLSpecCharValidator']) ? 'error' : 'correct'">
             The
             password must contain a special character (*+=_!$%&)!</p>
         </div>
@@ -80,10 +82,15 @@
       </div>
     </div>
 
-    <label for="rePassword">Repeat password:</label>
+    <div class="password-label-container">
+
+      <label for="rePassword">Repeat password:</label>
+      <i class="fa-regular fa-eye" style="color: #c0c0c0;" (click)="toggleRePasswordVisibility()"></i>
+
+    </div>
     <div class="flex-input">
-      <input type="password" name="rePassword" id="rePassword" placeholder="Repeat password" ngModel
-        #rePasswordReInput="ngModel" required minlength="8">
+      <input type="{{rePasswordVisibility ? 'text' : 'password'}}" name="rePassword" id="rePassword"
+        placeholder="Repeat password" ngModel #rePasswordReInput="ngModel" required minlength="8">
 
       <div class="info">
         <i *ngIf="passwordReInput.value===rePasswordReInput.value && !rePasswordReInput.errors"
@@ -92,7 +99,8 @@
           class="fa-solid fa-circle-exclamation fa-lg" style="color: #800000;"></i>
         <div class="popuptext" *ngIf="passwordReInput.value!==rePasswordReInput.value || rePasswordReInput.value===''">
           <!-- <p *ngIf="passwordReInput.value===rePasswordReInput.value" class="correct">Passwords match!</p> -->
-          <p *ngIf="passwordReInput.value!==rePasswordReInput.value || rePasswordReInput.value===''" class="error">Passwords do not match!</p>
+          <p *ngIf="passwordReInput.value!==rePasswordReInput.value || rePasswordReInput.value===''" class="error">
+            Passwords do not match!</p>
         </div>
       </div>
     </div>
@@ -105,7 +113,7 @@
           {{country}}
         </option>
       </select>
-      
+
 
       <div class="info">
         <i *ngIf="!countryInput.errors" class="fa-solid fa-circle-check fa-lg" style="color: #008000;"></i>
