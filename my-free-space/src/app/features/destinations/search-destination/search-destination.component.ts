@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { COUNTRIES_LIST } from 'src/app/shared/costants';
-import { SearchService } from 'src/app/shared/services/searchParams.service';
+import { SearchService } from 'src/app/shared/services/search.service';
 
 @Component({
   selector: 'app-search-destination',
@@ -19,7 +19,7 @@ export class SearchDestinationComponent {
   getParams(form: NgForm): void {
     const { name, country } = form.value;
 
-    this.serachService.changeParams(name, country);
+    this.serachService.setParams(name, country);
 
     if (this.clearPressed) {
       this.clearPressed = false;

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { USER_KEY } from 'src/app/shared/costants';
-import { SearchService } from 'src/app/shared/services/searchParams.service';
+import { SearchService } from 'src/app/shared/services/search.service';
 import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({

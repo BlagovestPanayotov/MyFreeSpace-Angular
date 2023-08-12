@@ -17,7 +17,7 @@ const querries = {
   commentQuerry: (commentId: string)=>encodeURIComponent(`_commentId="${commentId}"`),
 
   sortQuerry: encodeURIComponent(`_createdOn desc`),
-  paginQuerry: (offset: number, pageSize: number) => `offset=${(offset - 1) * pageSize}&pageSize=${pageSize}`,
+  paginQuerry: (offset: number, pageSize: number) => `offset=${(offset - 1) * pageSize}&pageSize=${pageSize}`, //offset === pageNumber-1
 
 };
 
@@ -38,11 +38,23 @@ export const destinationEndpoints = {
   create: URL_ADDRESS + '/data/destinations',
   update: (id: string) => URL_ADDRESS + `/data/destinations/${id}`,
   delete: (id: string) => URL_ADDRESS + `/data/destinations/${id}`,
-  getUserDestinations: (userId: string, name: string, country: string) => {
+  getUserDestinationsCount:(userId: string, name: string, country: string) => {
     if (country === '') {
       return (
         URL_ADDRESS +
-        `/data/destinations?where=${querries.ownerQuerry(userId)}${querries.andQuerry}${querries.nameQuerry(name)}&sortBy=${querries.sortQuerry}`
+        `/data/destinations?where=${querries.ownerQuerry(userId)}${querries.andQuerry}${querries.nameQuerry(name)}&sortBy=${querries.sortQuerry}&count`
+      );
+    }
+    return (
+      URL_ADDRESS +
+      `/data/destinations?where=${querries.ownerQuerry(userId)}${querries.andQuerry}${querries.nameQuerry(name)}${querries.andQuerry}${querries.countryQuerry(country)}&sortBy=${querries.sortQuerry}&count`
+    );
+  },
+  getUserDestinations: (userId: string, name: string, country: string, offset: number) => {
+    if (country === '') {
+      return (
+        URL_ADDRESS +
+        `/data/destinations?where=${querries.ownerQuerry(userId)}${querries.andQuerry}${querries.nameQuerry(name)}&sortBy=${querries.sortQuerry}&${querries.paginQuerry(offset,9)}`
       );
     }
     return (

@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { DestinationService } from 'src/app/shared/services/destination.service';
-import { SearchService } from 'src/app/shared/services/searchParams.service';
+import { SearchService } from 'src/app/shared/services/search.service';
 import { IDestination } from 'src/app/shared/types/destination';
 import { Subscription } from 'rxjs';
 
@@ -13,7 +13,9 @@ import { Subscription } from 'rxjs';
 export class DestinationListComponent implements OnInit, OnDestroy {
   list: IDestination[] = [];
   loading: boolean = true;
-  private subscription: Subscription | undefined;
+  private paramsSubscription: Subscription | undefined;
+  private userListPageSubscription: Subscription | undefined;
+  private allListPageSubscription: Subscription | undefined;
 
   constructor(
     private destinationService: DestinationService,
@@ -21,7 +23,7 @@ export class DestinationListComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.subscription = this.searchService.params$.subscribe((data) => {
+    this.paramsSubscription = this.searchService.params$.subscribe((data) => {
       this.loading = true;
 
       this.destinationService
@@ -40,6 +42,8 @@ export class DestinationListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription?.unsubscribe();
+    this.paramsSubscription?.unsubscribe();
+    this.userListPageSubscription?.unsubscribe();
+    this.allListPageSubscription?.unsubscribe();
   }
 }

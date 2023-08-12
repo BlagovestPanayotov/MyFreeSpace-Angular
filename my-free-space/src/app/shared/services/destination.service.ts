@@ -56,9 +56,15 @@ export class DestinationService {
     return this.http.delete(destinationEndpoints.delete(id));
   }
 
-  getUserDestinations(userId: string, name: string, country: string) {
+  getUserDestinationCount(userId: string, name: string, country: string) {
+    return this.http.get<number>(
+      destinationEndpoints.getUserDestinationsCount(userId, name, country)
+    );
+  }
+
+  getUserDestinations(userId: string, name: string, country: string, offset: number) {
     return this.http.get<IDestination[]>(
-      destinationEndpoints.getUserDestinations(userId, name, country)
+      destinationEndpoints.getUserDestinations(userId, name, country, offset)
     );
   }
 
@@ -136,6 +142,8 @@ export class DestinationService {
   }
 
   delteCommentLike(commentLikeId: string) {
-    return this.http.delete(destinationEndpoints.deleteCommentLike(commentLikeId));
+    return this.http.delete(
+      destinationEndpoints.deleteCommentLike(commentLikeId)
+    );
   }
 }
