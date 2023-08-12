@@ -22,16 +22,28 @@ const querries = {
 };
 
 export const destinationEndpoints = {
-  getAll: (name: string, country: string) => {
+  getAll: (name: string, country: string, offset: number) => {
     if (country === '') {
       return (
         URL_ADDRESS +
-        `/data/destinations?where=${querries.nameQuerry(name)}&sortBy=${querries.sortQuerry}`
+        `/data/destinations?where=${querries.nameQuerry(name)}&sortBy=${querries.sortQuerry}&${querries.paginQuerry(offset,9)}`
       );
     }
     return (
       URL_ADDRESS +
-      `/data/destinations?where=${querries.nameQuerry(name)}${querries.andQuerry}${querries.countryQuerry(country)}&sortBy=${querries.sortQuerry}`
+      `/data/destinations?where=${querries.nameQuerry(name)}${querries.andQuerry}${querries.countryQuerry(country)}&sortBy=${querries.sortQuerry}&${querries.paginQuerry(offset,9)}`
+    );
+  },
+  getDestinationsCount:(name: string, country: string)=>{
+    if (country === '') {
+      return (
+        URL_ADDRESS +
+        `/data/destinations?where=${querries.nameQuerry(name)}&sortBy=${querries.sortQuerry}&count`
+      );
+    }
+    return (
+      URL_ADDRESS +
+      `/data/destinations?where=${querries.nameQuerry(name)}${querries.andQuerry}${querries.countryQuerry(country)}&sortBy=${querries.sortQuerry}&count`
     );
   },
   getById: (id: string) => URL_ADDRESS + `/data/destinations/${id}`,
@@ -66,7 +78,7 @@ export const destinationEndpoints = {
   getCountDestiantions: URL_ADDRESS + '/data/destinations?count',
   getListOfDestinations: (offset: number, pageSize: number) =>
     URL_ADDRESS +
-    `/data/destinations?offset=${querries.paginQuerry(offset,pageSize)}`,
+    `/data/destinations?${querries.paginQuerry(offset,pageSize)}`,
 
   getLikes: (destinationId: string) =>
     URL_ADDRESS + `/data/likes?where=${querries.destinationQuerry(destinationId)}&distinct=_ownerId`,
