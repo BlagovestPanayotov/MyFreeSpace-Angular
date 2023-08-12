@@ -12,8 +12,6 @@ import { SearchService } from 'src/app/shared/services/search.service';
 export class SearchDestinationComponent {
   countries: string[] = COUNTRIES_LIST;
 
-  clearPressed: boolean = false;
-
   constructor(private serachService: SearchService, private router: Router) {}
 
   getParams(form: NgForm): void {
@@ -21,8 +19,7 @@ export class SearchDestinationComponent {
 
     this.serachService.setParams(name, country);
 
-    if (this.clearPressed) {
-      this.clearPressed = false;
+    if (this.router.url === '/dest/user-list') {
       return;
     }
 
@@ -32,6 +29,5 @@ export class SearchDestinationComponent {
   clearSearch(form: NgForm): void {
     form.resetForm({ name: '', country: '' });
     this.serachService.clearSearch();
-    this.clearPressed = true;
   }
 }

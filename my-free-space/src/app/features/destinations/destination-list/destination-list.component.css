@@ -6,8 +6,8 @@ main {
 }
 
 main .cards-container {
-  display: inline-flex;
-  justify-content: space-around;
+  display: flex;
+  justify-content: space-evenly;
   flex-wrap: wrap;
   gap: 1rem;
 }

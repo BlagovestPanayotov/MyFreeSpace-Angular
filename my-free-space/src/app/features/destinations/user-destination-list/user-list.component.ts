@@ -1,12 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
-import { Observable, Subscription, zip } from 'rxjs';
+import { Subscription, combineLatest } from 'rxjs';
 
 import { DestinationService } from 'src/app/shared/services/destination.service';
 import { SearchService } from 'src/app/shared/services/search.service';
 import { UserService } from 'src/app/shared/services/user.service';
 import { IDestination } from 'src/app/shared/types/destination';
-import { ISearch } from 'src/app/shared/types/search';
 
 @Component({
   selector: 'app-user-list',
@@ -27,21 +26,22 @@ export class UserListComponent implements OnInit, OnDestroy {
     private searchService: SearchService
   ) {}
 
+  serachObs = this.searchService.params$;
+  userPageObs = this.searchService.userListPage$;
+
   ngOnInit(): void {
     this.subscribeToMultipleObservables();
   }
 
   subscribeToMultipleObservables(): void {
-    const serachObs = this.searchService.params$;
-    const userPageObs = this.searchService.userListPage$;
 
-    this.subscription = zip([serachObs, userPageObs]).subscribe(
+    this.subscription = combineLatest([this.serachObs, this.userPageObs]).subscribe(
       ([data, pN]) => {
         {
           this.loading = true;
           window.scroll(0, 0);
           this.userService.getUser().subscribe((user) => {
-            zip([
+            combineLatest([
               this.getListCount(user._id, data.name, data.country),
               this.getListDestinations(user._id, data.name, data.country),
             ]).subscribe(([count, destinations]) => {
