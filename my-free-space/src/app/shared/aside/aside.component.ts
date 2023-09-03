@@ -33,33 +33,41 @@ export class AsideComponent implements OnInit {
   constructor(private destinationService: DestinationService) {}
 
   ngOnInit(): void {
-    this.destinationService.getCount().subscribe({
-      next: (count) => {
-        
-        this.destinationService.getRandomDestination(count).subscribe({
-          next: (value) => {
-            this.cardTop = value[0];
-            this.isLoadingTop = false;
-          },
-          error: (err) => {
-            throw err;
-          },
-        });
-        
-        this.destinationService.getRandomDestination(count).subscribe({
-          next: (value) => {
-            this.cardBottom = value[0];
-            this.isLoadingBottom = false;
-          },
-          error: (err) => {
-            throw err;
-          },
-        });
+    this.destinationService.getRandom().subscribe({
+      next: (result) => {
+        this.cardTop = result[0];
+        this.isLoadingTop = false;
 
+        this.cardBottom = result[1];
+        this.isLoadingBottom = false;
+        console.log(result);
       },
       error: (err) => {
         throw err;
       },
     });
+    // this.destinationService.getCount().subscribe({
+    //   next: (count) => {
+    //     this.destinationService.getRandomDestination(count).subscribe({
+    //       next: (value) => {
+    //         this.cardTop = value[0];
+    //         this.isLoadingTop = false;
+    //       },
+    //       error: (err) => {
+    //         throw err;
+    //       },
+    //     });
+
+    //     this.destinationService.getRandomDestination(count).subscribe({
+    //       next: (value) => {
+    //         this.cardBottom = value[0];
+    //         this.isLoadingBottom = false;
+    //       },
+    //       error: (err) => {
+    //         throw err;
+    //       },
+    //     });
+    //   },
+    // });
   }
 }

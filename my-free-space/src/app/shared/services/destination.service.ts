@@ -79,6 +79,10 @@ export class DestinationService {
     );
   }
 
+  getRandom() {
+    return this.http.get<any>(destinationEndpoints.getRandom);
+  }
+
   getCount() {
     return this.http.get<number>(destinationEndpoints.getCountDestiantions);
   }
