@@ -46,28 +46,5 @@ export class AsideComponent implements OnInit {
         throw err;
       },
     });
-    // this.destinationService.getCount().subscribe({
-    //   next: (count) => {
-    //     this.destinationService.getRandomDestination(count).subscribe({
-    //       next: (value) => {
-    //         this.cardTop = value[0];
-    //         this.isLoadingTop = false;
-    //       },
-    //       error: (err) => {
-    //         throw err;
-    //       },
-    //     });
-
-    //     this.destinationService.getRandomDestination(count).subscribe({
-    //       next: (value) => {
-    //         this.cardBottom = value[0];
-    //         this.isLoadingBottom = false;
-    //       },
-    //       error: (err) => {
-    //         throw err;
-    //       },
-    //     });
-    //   },
-    // });
   }
 }
