@@ -4,7 +4,7 @@ export const userEndpoints = {
   register: URL_ADDRESS + '/users/register',
   login: URL_ADDRESS + '/users/login',
   logout: URL_ADDRESS + '/users/logout',
-  getUser: URL_ADDRESS + '/users/me',
+  getUser: URL_ADDRESS + '/users/user',
 };
 
 const querries = {
