@@ -24,7 +24,7 @@ export class AppInterceptor implements HttpInterceptor {
     if (this.userToken) {
       request = request.clone({
         setHeaders: {
-          'X-Authorization': this.userToken,
+          'Authorization': this.userToken,
           'Content-Type': 'application/json',
         },
       });
