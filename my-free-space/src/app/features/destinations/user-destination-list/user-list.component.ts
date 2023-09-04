@@ -1,5 +1,4 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-
 import { Subscription, combineLatest, switchMap } from 'rxjs';
 
 import { DestinationService } from 'src/app/shared/services/destination.service';
@@ -13,18 +12,18 @@ import { IDestination } from 'src/app/shared/types/destination';
   styleUrls: ['./user-list.component.css'],
 })
 export class UserListComponent implements OnInit, OnDestroy {
-  constructor(
-    private userService: UserService,
-    private destinationService: DestinationService,
-    private searchService: SearchService
-  ) {}
-
   list: IDestination[] = [];
   page: number = this.searchService.getUserListPage;
   countDest: number = 0;
   lastPage: number = 0;
   loading: boolean = true;
   private subscription: Subscription | undefined;
+
+  constructor(
+    private userService: UserService,
+    private destinationService: DestinationService,
+    private searchService: SearchService
+  ) {}
 
   ngOnInit(): void {
     this.searchService.params$.subscribe(() => {
@@ -47,33 +46,20 @@ export class UserListComponent implements OnInit, OnDestroy {
           return this.userService.getUser().pipe(
             switchMap((user) => {
               return combineLatest([
-                this.getListCount(user._id, data.name, data.country),
-                this.getListDestinations(user._id, data.name, data.country),
+                this.getListDestinations(data.name, data.country),
               ]);
             })
           );
         })
       )
-      .subscribe(([count, destinations]) => {
+      .subscribe(([destinations]) => {
         this.list = destinations;
-        this.countDest = count;
-        this.lastPage = Math.ceil(count / 9);
         this.loading = false;
       });
   }
 
-  private getListCount(userId: string, name: string, country: string) {
-    return this.destinationService.getUserDestinationCount(
-      userId,
-      name,
-      country
-    );
-  }
-  private getListDestinations(userId: string, name: string, country: string) {
-    console.log(this.page);
-
+  private getListDestinations(name: string, country: string) {
     return this.destinationService.getUserDestinations(
-      userId,
       name,
       country,
       this.page

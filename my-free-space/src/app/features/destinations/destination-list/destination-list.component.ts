@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription, combineLatest, switchMap } from 'rxjs';
+
 import { DestinationService } from 'src/app/shared/services/destination.service';
 import { SearchService } from 'src/app/shared/services/search.service';
 import { IDestination } from 'src/app/shared/types/destination';
@@ -41,21 +42,14 @@ export class DestinationListComponent implements OnInit, OnDestroy {
           this.loading = true;
 
           return combineLatest([
-            this.getListCount(data.name, data.country),
             this.getListDestinations(data.name, data.country),
           ]);
         })
       )
-      .subscribe(([count, destinations]) => {
+      .subscribe(([destinations]) => {
         this.list = destinations;
-        this.countDest = count;
-        this.lastPage = Math.ceil(count / 9);
         this.loading = false;
       });
-  }
-
-  private getListCount(name: string, country: string) {
-    return this.destinationService.getAllDestinationCount(name, country);
   }
 
   private getListDestinations(name: string, country: string) {

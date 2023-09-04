@@ -26,22 +26,6 @@ const querries = {
 
 export const destinationEndpoints = {
   getAll: (name: string, country: string, offset: number) => {
-    // if (country === '') {
-    //   return (
-    //     URL_ADDRESS +
-    //     `/dest/destinations?where=${querries.nameQuerry(name)}&sortBy=${
-    //       querries.sortQuerry
-    //     }&${querries.paginQuerry(offset, 9)}`
-    //   );
-    // }
-    // return (
-    //   URL_ADDRESS +
-    //   `/dest/destinations?where=${querries.nameQuerry(name)}${
-    //     querries.andQuerry
-    //   }${querries.countryQuerry(country)}&sortBy=${
-    //     querries.sortQuerry
-    //   }&${querries.paginQuerry(offset, 9)}`
-    // );
 
     return (
       URL_ADDRESS +
@@ -68,6 +52,7 @@ export const destinationEndpoints = {
   create: URL_ADDRESS + '/data/destinations',
   update: (id: string) => URL_ADDRESS + `/data/destinations/${id}`,
   delete: (id: string) => URL_ADDRESS + `/data/destinations/${id}`,
+
   getUserDestinationsCount: (userId: string, name: string, country: string) => {
     if (country === '') {
       return (
@@ -85,30 +70,16 @@ export const destinationEndpoints = {
         querries.andQuerry
       }${querries.countryQuerry(country)}&sortBy=${querries.sortQuerry}&count`
     );
+    
   },
   getUserDestinations: (
-    userId: string,
     name: string,
     country: string,
     offset: number
   ) => {
-    if (country === '') {
-      return (
-        URL_ADDRESS +
-        `/data/destinations?where=${querries.ownerQuerry(userId)}${
-          querries.andQuerry
-        }${querries.nameQuerry(name)}&sortBy=${
-          querries.sortQuerry
-        }&${querries.paginQuerry(offset, 9)}`
-      );
-    }
     return (
       URL_ADDRESS +
-      `/data/destinations?where=${querries.ownerQuerry(userId)}${
-        querries.andQuerry
-      }${querries.nameQuerry(name)}${
-        querries.andQuerry
-      }${querries.countryQuerry(country)}&sortBy=${querries.sortQuerry}`
+      `/dest/my-destination?name=${name}&country=${country}&${querries.paginQuerry(offset, 9)}`
     );
   },
 

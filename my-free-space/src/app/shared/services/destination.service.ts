@@ -68,14 +68,9 @@ export class DestinationService {
     );
   }
 
-  getUserDestinations(
-    userId: string,
-    name: string,
-    country: string,
-    offset: number
-  ) {
+  getUserDestinations(name: string, country: string, offset: number) {
     return this.http.get<IDestination[]>(
-      destinationEndpoints.getUserDestinations(userId, name, country, offset)
+      destinationEndpoints.getUserDestinations(name, country, offset)
     );
   }
 
