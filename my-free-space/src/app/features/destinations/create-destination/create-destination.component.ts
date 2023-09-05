@@ -25,10 +25,10 @@ export class CreateDestinationComponent {
       return;
     }
 
-    const { name, cuntry, description, img } = form.value;
+    const { name, country, description, img } = form.value;
 
     this.destinationService
-      .createDestination(name, cuntry, description, img)
+      .createDestination(name, country, description, img)
       .subscribe({
         next: () => {
           this.router.navigate(['/dest/user-list']);

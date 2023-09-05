@@ -49,7 +49,7 @@ export const destinationEndpoints = {
     );
   },
   getById: (id: string) => URL_ADDRESS + `/data/destinations/${id}`,
-  create: URL_ADDRESS + '/data/destinations',
+  create: URL_ADDRESS + '/dest/destinations',
   update: (id: string) => URL_ADDRESS + `/data/destinations/${id}`,
   delete: (id: string) => URL_ADDRESS + `/data/destinations/${id}`,
 
