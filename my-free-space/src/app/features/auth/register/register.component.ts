@@ -46,7 +46,9 @@ export class RegisterComponent {
         error: (err) => {
           this.loading = false;
           if (err.status === 409) {
-            this.apiError = err.error?.message || '';
+            console.log(err);
+
+            this.apiError = err.error?.errors.join('\n') || '';
             window.scroll(0, 0);
             return;
           }
@@ -57,7 +59,7 @@ export class RegisterComponent {
 
   togglePasswordVisibility() {
     console.log(this.passwordVisibility);
-    
+
     this.passwordVisibility = !this.passwordVisibility;
   }
 
