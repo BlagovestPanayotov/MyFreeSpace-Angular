@@ -68,9 +68,9 @@ export class DetailsComponent implements OnInit {
     this.destinationService.getDestinationById(this.id).subscribe((dest) => {
       this.destination = dest;
       //Gets Likes
-      this.getLikes();
+      // this.getLikes();
       //Gets comments
-      this.getComments();
+      // this.getComments();
     });
   }
 
