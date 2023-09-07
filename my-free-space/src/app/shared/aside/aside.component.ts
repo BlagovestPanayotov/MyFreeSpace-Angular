@@ -16,6 +16,8 @@ export class AsideComponent implements OnInit {
     _ownerId: '',
     img: '',
     _createdOn: '',
+    likes: 0,
+    comments: 0,
   };
   cardBottom: IDestination = {
     _id: '',
@@ -25,6 +27,8 @@ export class AsideComponent implements OnInit {
     _ownerId: '',
     img: '',
     _createdOn: '',
+    likes: 0,
+    comments: 0,
   };
 
   isLoadingTop: boolean = true;
@@ -40,7 +44,6 @@ export class AsideComponent implements OnInit {
 
         this.cardBottom = result[1];
         this.isLoadingBottom = false;
-        console.log(result);
       },
       error: (err) => {
         throw err;

@@ -6,4 +6,6 @@ export interface IDestination {
   _ownerId: string;
   img: string;
   _createdOn: string;
+  likes: number;
+  comments: number;
 }

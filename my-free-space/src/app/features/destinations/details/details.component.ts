@@ -6,7 +6,7 @@ import { COUNTRIES_LIST } from 'src/app/shared/costants';
 import { DestinationService } from 'src/app/shared/services/destination.service';
 import { UserService } from 'src/app/shared/services/user.service';
 import { IComment } from 'src/app/shared/types/comment';
-import { IDestination } from 'src/app/shared/types/destination';
+import { IDestinationDetails } from 'src/app/shared/types/destinationDetails';
 import { ILike } from 'src/app/shared/types/like';
 import { IUser } from 'src/app/shared/types/user';
 
@@ -18,7 +18,7 @@ import { IUser } from 'src/app/shared/types/user';
 export class DetailsComponent implements OnInit {
   id = this.activatedRoute.snapshot.params['destId'];
 
-  destination: IDestination = {
+  destination: IDestinationDetails = {
     _id: '',
     name: '',
     country: '',
@@ -26,6 +26,8 @@ export class DetailsComponent implements OnInit {
     _ownerId: '',
     img: '',
     _createdOn: '',
+    likes: <any>[],
+    comments: <any>[],
   };
 
   user: IUser | null = null;
@@ -245,5 +247,4 @@ export class DetailsComponent implements OnInit {
   removeComment(comment: string) {
     this.comments = this.comments.filter((x) => x._id !== comment);
   }
-  
 }

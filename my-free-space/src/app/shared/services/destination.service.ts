@@ -6,6 +6,7 @@ import { destinationEndpoints } from './endpoits';
 import { ILike } from '../types/like';
 import { IComment } from '../types/comment';
 import { ICommentLike } from '../types/commentLike';
+import { IDestinationDetails } from '../types/destinationDetails';
 
 @Injectable({
   providedIn: 'root',
@@ -26,7 +27,7 @@ export class DestinationService {
   }
 
   getDestinationById(id: string) {
-    return this.http.get<IDestination>(destinationEndpoints.getById(id));
+    return this.http.get<IDestinationDetails>(destinationEndpoints.getById(id));
   }
 
   createDestination(
@@ -50,7 +51,7 @@ export class DestinationService {
     description: string,
     img: string
   ) {
-    return this.http.put<IDestination>(destinationEndpoints.update(id), {
+    return this.http.put<IDestinationDetails>(destinationEndpoints.update(id), {
       name,
       country,
       description,

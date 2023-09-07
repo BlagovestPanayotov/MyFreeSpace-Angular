@@ -15,6 +15,8 @@ export class DestinationCardComponent {
     _ownerId: '',
     img: '',
     _createdOn: '',
+    likes: 0,
+    comments: 0,
   };
 
   @Input() isLoading: boolean | undefined;
