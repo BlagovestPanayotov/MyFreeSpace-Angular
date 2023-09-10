@@ -10,7 +10,7 @@ import { AuthGuard } from 'src/app/core/guards/auth.activate';
 const routes: Routes = [
   {
     path:'user-list',
-    // canActivate:[AuthGuard],
+    canActivate:[AuthGuard],
     component:ContentComponent
   },
   {

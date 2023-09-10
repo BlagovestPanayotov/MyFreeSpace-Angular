@@ -79,14 +79,16 @@ export class DetailsComponent implements OnInit {
   getUser(): void {
     this.loading = true;
     this.userService.getUser().subscribe({
-      next: (u: IUser) => {
-        this.user = u;
-        this.loading = false;
+      next: (u: IUser|undefined) => {
+        if (u) {
+          this.user = u;
+          this.loading = false;
+        } else {
+          this.user = null;
+          this.loading = false;
+        }
       },
-      error: (err) => {
-        this.user = null;
-        this.loading = false;
-      },
+      error: (err) => {},
     });
   }
 

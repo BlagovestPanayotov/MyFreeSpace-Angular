@@ -8,6 +8,9 @@ import {
 } from '@angular/router';
 import { UserService } from 'src/app/shared/services/user.service';
 
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -17,14 +20,15 @@ export class UnauthGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): boolean | UrlTree {
-    console.log(this.userService.isLogged);
-    
-    if (!this.userService.isLogged) {
-      return true; // Allow access to the route
-    }
-
-    // Redirect authenticated users to a different page (e.g., home)
-    return this.router.createUrlTree(['/home']);
+  ): Observable<boolean | UrlTree> {
+    return this.userService.getUser().pipe(
+      map((user) => {
+        if (user) {
+          return this.router.createUrlTree(['/home']);
+        } else {
+          return true;
+        }
+      })
+    );
   }
 }

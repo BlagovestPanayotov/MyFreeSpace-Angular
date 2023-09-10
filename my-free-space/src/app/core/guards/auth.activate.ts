@@ -7,6 +7,8 @@ import {
   Router,
 } from '@angular/router';
 import { UserService } from 'src/app/shared/services/user.service';
+import { Observable, of } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -17,14 +19,15 @@ export class AuthGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): boolean | UrlTree {
-    console.log(this.userService.isLogged);
-
-    if (this.userService.isLogged) {
-      return true; // Allow access to the route
-    }
-
-    // Redirect unauthenticated users to the login page
-    return this.router.createUrlTree(['/auth/register']);
+  ): Observable<boolean | UrlTree> {
+    return this.userService.getUser().pipe(
+      map((user) => {
+        if (!user) {
+          return this.router.createUrlTree(['/auth/register']);
+        } else {
+          return true;
+        }
+      })
+    );
   }
 }

@@ -41,8 +41,8 @@ export class CommentComponent implements OnInit {
       this.likes = l;
       if (this.isLogged) {
         this.userService.getUser().subscribe((u) => {
-          this.userLike = this.likes.find((x) => x._ownerId === u._id);
-          this.isOwner = u._id === this.comment._ownerId;
+          this.userLike = this.likes.find((x) => x._ownerId === u?._id);
+          this.isOwner = u?._id === this.comment._ownerId;
           this.isLoading = false;
         });
       } else {
