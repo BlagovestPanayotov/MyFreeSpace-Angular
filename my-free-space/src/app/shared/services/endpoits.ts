@@ -26,7 +26,6 @@ const querries = {
 
 export const destinationEndpoints = {
   getAll: (name: string, country: string, offset: number) => {
-
     return (
       URL_ADDRESS +
       `/dest/destinations?name=${name}&country=${country}&${querries.paginQuerry(offset, 9)}`
@@ -48,10 +47,10 @@ export const destinationEndpoints = {
       }${querries.countryQuerry(country)}&sortBy=${querries.sortQuerry}&count`
     );
   },
-  getById: (id: string) => URL_ADDRESS + `/dest/${id}`,
   create: URL_ADDRESS + '/dest/destinations',
-  update: (id: string) => URL_ADDRESS + `/data/destinations/${id}`,
-  delete: (id: string) => URL_ADDRESS + `/data/destinations/${id}`,
+  getById: (id: string) => URL_ADDRESS + `/dest/${id}`,
+  update: (id: string) => URL_ADDRESS + `/dest/${id}`,
+  delete: (id: string) => URL_ADDRESS + `/dest/${id}`,
 
   getUserDestinationsCount: (userId: string, name: string, country: string) => {
     if (country === '') {
