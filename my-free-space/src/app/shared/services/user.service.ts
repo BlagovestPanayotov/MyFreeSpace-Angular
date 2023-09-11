@@ -1,12 +1,6 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {
-  BehaviorSubject,
-  Subscription,
-  catchError,
-  of,
-  tap,
-} from 'rxjs';
+import { BehaviorSubject, Subscription, tap } from 'rxjs';
 
 import { IUser } from '../types/user';
 import { userEndpoints } from './endpoits';
@@ -67,13 +61,9 @@ export class UserService implements OnDestroy {
   }
 
   getUser() {
-    return this.http.get<IUser | undefined>(userEndpoints.getUser).pipe(
-      tap((user) => this.user$$.next(user)),
-      catchError((err) => {
-        this.user$$.next(undefined);
-        return of(undefined);
-      })
-    );
+    return this.http
+      .get<IUser | undefined>(userEndpoints.getUser)
+      .pipe(tap((user) => this.user$$.next(user)));
   }
 
   clearUser() {
