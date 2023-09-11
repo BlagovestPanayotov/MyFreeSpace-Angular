@@ -5,7 +5,13 @@
       <img src={{dest.img}} alt={{dest.name}}>
     </div>
     <p>{{dest.description}}</p>
-    <a routerLink="/dest/details/{{dest._id}}" class="destination-details">Details</a>
+    <div class="button-container">
+      <a routerLink="/dest/details/{{dest._id}}" class="destination-details">Details</a>
+      <div clsaa="info-holder">
+        <i class="fa-solid fa-comment" style="color: #008000;"></i><span>{{dest.commentCount}}</span>
+        <i class="fa-brands fa-gratipay" style="color: #800000;"></i><span>{{dest.likeCount}}</span>
+      </div>
+    </div>
   </ng-container>
   <ng-container *ngIf="isLoading">
     <div class="loader-container">
