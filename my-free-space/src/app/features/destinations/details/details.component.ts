@@ -26,8 +26,6 @@ export class DetailsComponent implements OnInit {
     _ownerId: '',
     img: '',
     _createdOn: '',
-    likes: <any>[],
-    comments: <any>[],
   };
 
   user: IUser | null = null;
@@ -42,8 +40,10 @@ export class DetailsComponent implements OnInit {
   editMode: boolean = false;
 
   loading: boolean = true;
-  commentsLoading: boolean = true;
-  likesLoading: boolean = true;
+  commentsLoading: boolean = false;
+  //TODO
+  likesLoading: boolean = false;
+  //TODO
 
   deleteMsgDisplayed: boolean = false;
   leaveCommentDisplayed: boolean = false;
@@ -57,6 +57,10 @@ export class DetailsComponent implements OnInit {
 
   get isLogged(): boolean {
     return this.userService.isLogged;
+  }
+
+  get isOwner(): boolean {
+    return this.user?._id === this.destination._ownerId;
   }
 
   ngOnInit(): void {
@@ -79,7 +83,7 @@ export class DetailsComponent implements OnInit {
   getUser(): void {
     this.loading = true;
     this.userService.getUser().subscribe({
-      next: (u: IUser|undefined) => {
+      next: (u: IUser | undefined) => {
         if (u) {
           this.user = u;
           this.loading = false;
@@ -115,10 +119,10 @@ export class DetailsComponent implements OnInit {
         },
         error: (err) => {
           if (err.status === 403 || err.status === 401) {
+            window.scroll(0, 0);
             this.apiError = 'You are NOT allowed to do that!!!';
             this.editMode = false;
             this.loading = false;
-            window.scroll(0, 0);
             return;
           }
           throw err;
@@ -147,6 +151,7 @@ export class DetailsComponent implements OnInit {
       },
       error: (err) => {
         this.loading = false;
+        window.scroll(0, 0);
         this.apiError = 'You are NOT allowed to do that!!!';
       },
     });
@@ -234,10 +239,10 @@ export class DetailsComponent implements OnInit {
         },
         error: (err) => {
           if (err.status === 403 && err.statusText === 'Forbidden') {
+            window.scroll(0, 0);
             this.apiError = 'You are NOT allowed to do that!!!';
             this.editMode = false;
             this.commentsLoading = false;
-            window.scroll(0, 0);
             this.toggleCommentForm();
             return;
           }

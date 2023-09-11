@@ -38,28 +38,28 @@
           <i class="fa-sharp fa-solid fa-heart" style="color: #93033f;"></i>
         </p>
 
-        <button class="btn-like" *ngIf="this.user?._id !== this.destination._ownerId && !userLike"
+        <button class="btn-like" *ngIf="!isOwner && !userLike"
           (click)="giveLike()"><i class="fa-sharp fa-solid fa-heart" style="color: #DB005B;"></i> Like</button>
         <!-- fa-beat -->
 
-        <button class="btn-like" *ngIf="this.user?._id !== this.destination._ownerId && userLike"
+        <button class="btn-like" *ngIf="!isOwner && userLike"
           (click)="removeLike()"><i class="fa-sharp fa-solid fa-heart-crack" style="color: #DB005B;"></i>
           Dislike</button>
       </ng-container>
 
-      <button class="btn-edit" *ngIf="this.user?._id === this.destination._ownerId" (click)="toggleEditMode()"><i
+      <button class="btn-edit" *ngIf="isOwner" (click)="toggleEditMode()"><i
           class="fa-solid fa-pen-to-square" style="color: #ff8040;"></i> Edit</button>
 
-      <button class="btn-delete" *ngIf="(this.user?._id === this.destination._ownerId) && !deleteMsgDisplayed"
+      <button class="btn-delete" *ngIf="isOwner && !deleteMsgDisplayed"
         (click)="deleteMsgDisplayedToggle()"><i class="fa-regular fa-trash-can" style="color: #004000;"></i>
         Delete</button>
 
       <div class="delete-confirm" *ngIf="deleteMsgDisplayed">
         <p>Do you want to delete your destination?</p>
-        <button class="btn-delete" *ngIf="this.user?._id === this.destination._ownerId"
+        <button class="btn-delete" *ngIf="isOwner"
           (click)="deleteMsgDisplayedToggle()"><i class="fa-solid fa-xmark fa-lg" style="color: #800000;"></i>
           Cancel</button>
-        <button class="btn-delete" *ngIf="this.user?._id === this.destination._ownerId" (click)="deleteDestination()"><i
+        <button class="btn-delete" *ngIf="isOwner" (click)="deleteDestination()"><i
             class="fa-regular fa-trash-can" style="color: #004000;"></i>
           Delete</button>
       </div>
