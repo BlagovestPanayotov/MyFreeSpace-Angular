@@ -1,6 +1,3 @@
-import { IComment } from "./comment";
-import { ILike } from "./like";
-
 export interface IDestinationDetails {
   _id: string;
   name: string;
@@ -9,6 +6,4 @@ export interface IDestinationDetails {
   _ownerId: string;
   img: string;
   _createdOn: string;
-  likes: [ILike];
-  comments: [IComment];
 }
