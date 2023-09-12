@@ -93,7 +93,7 @@ export class DestinationService {
   //LIKES
 
   getLikes(destinationId: string) {
-    return this.http.get<ILike[]>(destinationEndpoints.getLikes(destinationId));
+    return this.http.get<[number,boolean]>(destinationEndpoints.getLikes(destinationId));
   }
 
   giveLike(destinationId: string) {

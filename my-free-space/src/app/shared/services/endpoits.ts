@@ -28,7 +28,10 @@ export const destinationEndpoints = {
   getAll: (name: string, country: string, offset: number) => {
     return (
       URL_ADDRESS +
-      `/dest/destinations?name=${name}&country=${country}&${querries.paginQuerry(offset, 9)}`
+      `/dest/destinations?name=${name}&country=${country}&${querries.paginQuerry(
+        offset,
+        9
+      )}`
     );
   },
   getDestinationsCount: (name: string, country: string) => {
@@ -69,16 +72,14 @@ export const destinationEndpoints = {
         querries.andQuerry
       }${querries.countryQuerry(country)}&sortBy=${querries.sortQuerry}&count`
     );
-    
   },
-  getUserDestinations: (
-    name: string,
-    country: string,
-    offset: number
-  ) => {
+  getUserDestinations: (name: string, country: string, offset: number) => {
     return (
       URL_ADDRESS +
-      `/dest/my-destination?name=${name}&country=${country}&${querries.paginQuerry(offset, 9)}`
+      `/dest/my-destination?name=${name}&country=${country}&${querries.paginQuerry(
+        offset,
+        9
+      )}`
     );
   },
 
@@ -89,11 +90,8 @@ export const destinationEndpoints = {
     `/data/destinations?${querries.paginQuerry(offset, pageSize)}`,
 
   getLikes: (destinationId: string) =>
-    URL_ADDRESS +
-    `/data/likes?where=${querries.destinationQuerry(
-      destinationId
-    )}&distinct=_ownerId`,
-  giveLike: URL_ADDRESS + '/data/likes',
+    URL_ADDRESS + `/accessory/likes?dest=${destinationId}`,
+  giveLike: URL_ADDRESS + '/accessory/likes',
   deleteLike: (likeId: string) => URL_ADDRESS + `/data/likes/${likeId}`,
 
   getComments: (destinationId: string) =>

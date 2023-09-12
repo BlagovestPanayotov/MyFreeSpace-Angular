@@ -30,10 +30,10 @@ export class DetailsComponent implements OnInit {
 
   user: IUser | null = null;
   countries: string[] = COUNTRIES_LIST;
-  likes: ILike[] = [];
+  likes: number = 0;
   comments: IComment[] = [];
 
-  userLike: ILike | undefined;
+  hasLiked: boolean = false;
 
   apiError: string = '';
 
@@ -73,8 +73,7 @@ export class DetailsComponent implements OnInit {
 
     this.destinationService.getDestinationById(this.id).subscribe((dest) => {
       this.destination = dest;
-      //Gets Likes
-      // this.getLikes();
+      this.getLikes();
       //Gets comments
       // this.getComments();
     });
@@ -160,9 +159,9 @@ export class DetailsComponent implements OnInit {
   //LIKES
 
   getLikes(): void {
-    this.destinationService.getLikes(this.id).subscribe((l) => {
-      this.likes = l;
-      this.userLike = this.likes.find((x) => x._ownerId === this.user?._id);
+    this.destinationService.getLikes(this.id).subscribe(([likes, hasLiked]) => {
+      this.likes = likes;
+      this.hasLiked = hasLiked;
       this.likesLoading = false;
     });
   }
@@ -171,8 +170,8 @@ export class DetailsComponent implements OnInit {
     this.likesLoading = true;
     this.destinationService.giveLike(this.destination._id).subscribe({
       next: (l) => {
-        this.likes.push(l);
-        this.userLike = l;
+        this.likes++;
+        this.hasLiked = true;
         this.likesLoading = false;
       },
       error: (err) => {
@@ -185,23 +184,23 @@ export class DetailsComponent implements OnInit {
   }
 
   removeLike(): void {
-    if (this.userLike?._id) {
-      this.likesLoading = true;
-      this.destinationService.delteLike(this.userLike._id).subscribe({
-        next: (res) => {
-          this.userLike = undefined;
-          this.likes = this.likes.filter((x) => x._ownerId !== this.user?._id);
-          this.likesLoading = false;
-        },
-        error: (err) => {
-          console.log(err);
-          window.scroll(0, 0);
-          this.apiError = 'You are NOT allowed to do that!!!';
-          this.likesLoading = false;
-        },
-      });
-    }
-    return;
+    // if (this.userLike?._id) {
+    //   this.likesLoading = true;
+    //   this.destinationService.delteLike(this.userLike._id).subscribe({
+    //     next: (res) => {
+    //       this.userLike = undefined;
+    //       this.likes = this.likes.filter((x) => x._ownerId !== this.user?._id);
+    //       this.likesLoading = false;
+    //     },
+    //     error: (err) => {
+    //       console.log(err);
+    //       window.scroll(0, 0);
+    //       this.apiError = 'You are NOT allowed to do that!!!';
+    //       this.likesLoading = false;
+    //     },
+    //   });
+    // }
+    // return;
   }
 
   //COMMENTS

@@ -34,15 +34,15 @@
       </ng-container>
 
       <ng-container *ngIf="!likesLoading">
-        <p class="likes-sum"><i class="fa-sharp fa-solid fa-heart" style="color: #93033f;"></i> Likes: {{likes.length}}
+        <p class="likes-sum"><i class="fa-sharp fa-solid fa-heart" style="color: #93033f;"></i> Likes: {{likes}}
           <i class="fa-sharp fa-solid fa-heart" style="color: #93033f;"></i>
         </p>
 
-        <button class="btn-like" *ngIf="!isOwner && !userLike"
+        <button class="btn-like" *ngIf="!isOwner && !hasLiked"
           (click)="giveLike()"><i class="fa-sharp fa-solid fa-heart" style="color: #DB005B;"></i> Like</button>
         <!-- fa-beat -->
 
-        <button class="btn-like" *ngIf="!isOwner && userLike"
+        <button class="btn-like" *ngIf="!isOwner && hasLiked"
           (click)="removeLike()"><i class="fa-sharp fa-solid fa-heart-crack" style="color: #DB005B;"></i>
           Dislike</button>
       </ng-container>
