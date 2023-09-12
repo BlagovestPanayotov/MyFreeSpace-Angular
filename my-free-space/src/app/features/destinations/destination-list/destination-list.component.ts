@@ -47,8 +47,6 @@ export class DestinationListComponent implements OnInit, OnDestroy {
         })
       )
       .subscribe(([destinations]) => {
-        console.log(destinations);
-        
         this.list = destinations;
         this.loading = false;
       });

@@ -170,15 +170,13 @@ export class DetailsComponent implements OnInit {
     this.likesLoading = true;
     this.destinationService.giveLike(this.destination._id).subscribe({
       next: (l) => {
-        this.likes++;
-        this.hasLiked = true;
-        this.likesLoading = false;
+        this.getLikes();
       },
       error: (err) => {
         console.log(err);
         window.scroll(0, 0);
         this.apiError = 'You are NOT allowed to do that!!!';
-        this.likesLoading = true;
+        this.likesLoading = false;
       },
     });
   }
