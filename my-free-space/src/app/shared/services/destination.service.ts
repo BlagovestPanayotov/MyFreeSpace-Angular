@@ -14,11 +14,11 @@ import { IDestinationDetails } from '../types/destinationDetails';
 export class DestinationService {
   constructor(private http: HttpClient) {}
 
-  getAllDestinationCount(name: string, country: string) {
-    return this.http.get<number>(
-      destinationEndpoints.getDestinationsCount(name, country)
-    );
-  }
+  // getAllDestinationCount(name: string, country: string) {
+  //   return this.http.get<number>(
+  //     destinationEndpoints.getDestinationsCount(name, country)
+  //   );
+  // }
 
   getAllDestinations(name: string, country: string, offset: number) {
     return this.http.get<IDestination[]>(
@@ -63,11 +63,11 @@ export class DestinationService {
     return this.http.delete(destinationEndpoints.delete(id));
   }
 
-  getUserDestinationCount(userId: string, name: string, country: string) {
-    return this.http.get<number>(
-      destinationEndpoints.getUserDestinationsCount(userId, name, country)
-    );
-  }
+  // getUserDestinationCount(userId: string, name: string, country: string) {
+  //   return this.http.get<number>(
+  //     destinationEndpoints.getUserDestinationsCount(userId, name, country)
+  //   );
+  // }
 
   getUserDestinations(name: string, country: string, offset: number) {
     return this.http.get<IDestination[]>(
