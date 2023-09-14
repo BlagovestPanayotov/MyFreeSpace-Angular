@@ -174,6 +174,7 @@ export class DetailsComponent implements OnInit {
       },
       error: (err) => {
         console.log(err);
+        this.getLikes();
         window.scroll(0, 0);
         this.apiError = 'You are NOT allowed to do that!!!';
         this.likesLoading = false;
@@ -193,6 +194,7 @@ export class DetailsComponent implements OnInit {
           },
           error: (err) => {
             console.log(err);
+            this.getLikes();
             window.scroll(0, 0);
             this.apiError = 'You are NOT allowed to do that!!!';
             this.likesLoading = false;

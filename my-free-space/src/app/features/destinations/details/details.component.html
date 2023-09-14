@@ -73,8 +73,8 @@
     <form #formComment="ngForm" (submit)="leaveComment(formComment)">
       <textarea name="comment" id="comment" cols="35" rows="2" ngModel #commentInput="ngModel" required minlength="10"
         maxlength="80"></textarea>
-      <div class="info comment-form-errors">
-        <p [ngClass]="commentInput.errors?.['minlength'] || commentInput.value === '' ? 'error' : 'correct'">The
+      <div class="info comment-form-errors" *ngIf="commentInput.errors">
+        <p ngClass="error">The
           description must be at least 10 haracters!</p>
       </div>
       <button class="btn-sub" (click)="toggleCommentForm()"><i class="fa-solid fa-xmark fa-lg"
