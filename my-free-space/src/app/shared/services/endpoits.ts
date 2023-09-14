@@ -92,7 +92,7 @@ export const destinationEndpoints = {
   getLikes: (destinationId: string) =>
     URL_ADDRESS + `/accessory/likes?dest=${destinationId}`,
   giveLike: URL_ADDRESS + '/accessory/likes',
-  deleteLike: (likeId: string) => URL_ADDRESS + `/data/likes/${likeId}`,
+  deleteLike: URL_ADDRESS + `/accessory/likes/remove`,
 
   getComments: (destinationId: string) =>
     URL_ADDRESS +

@@ -102,8 +102,10 @@ export class DestinationService {
     });
   }
 
-  delteLike(likeId: string) {
-    return this.http.delete(destinationEndpoints.deleteLike(likeId));
+  delteLike(destinationId: string) {
+    return this.http.post(destinationEndpoints.deleteLike,{
+      _destinationId: destinationId,
+    });
   }
 
   //COMMENTS

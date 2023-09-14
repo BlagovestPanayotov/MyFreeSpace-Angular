@@ -182,23 +182,24 @@ export class DetailsComponent implements OnInit {
   }
 
   removeLike(): void {
-    // if (this.userLike?._id) {
-    //   this.likesLoading = true;
-    //   this.destinationService.delteLike(this.userLike._id).subscribe({
-    //     next: (res) => {
-    //       this.userLike = undefined;
-    //       this.likes = this.likes.filter((x) => x._ownerId !== this.user?._id);
-    //       this.likesLoading = false;
-    //     },
-    //     error: (err) => {
-    //       console.log(err);
-    //       window.scroll(0, 0);
-    //       this.apiError = 'You are NOT allowed to do that!!!';
-    //       this.likesLoading = false;
-    //     },
-    //   });
-    // }
-    // return;
+    if (this.hasLiked) {
+      this.likesLoading = true;
+      this.destinationService
+        .delteLike(this.destination._id)
+        .subscribe({
+          next: (res) => {
+            this.hasLiked = false;
+            this.getLikes();
+          },
+          error: (err) => {
+            console.log(err);
+            window.scroll(0, 0);
+            this.apiError = 'You are NOT allowed to do that!!!';
+            this.likesLoading = false;
+          },
+        });
+    }
+    return;
   }
 
   //COMMENTS
