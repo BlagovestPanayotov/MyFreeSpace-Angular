@@ -25,7 +25,7 @@ export class CommentComponent implements OnInit {
   deleteMsgDisplayed: boolean = false;
   editFormDisplayed: boolean = false;
 
-  isLoading: boolean = true;
+  isLoading: boolean = false;
 
   likes: ICommentLike[] = [];
   userLike: ICommentLike | undefined;
@@ -37,18 +37,18 @@ export class CommentComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.destinationService.getCommentLikes(this.comment._id).subscribe((l) => {
-      this.likes = l;
-      if (this.isLogged) {
-        this.userService.getUser().subscribe((u) => {
-          this.userLike = this.likes.find((x) => x._ownerId === u?._id);
-          this.isOwner = u?._id === this.comment._ownerId;
-          this.isLoading = false;
-        });
-      } else {
-        this.isLoading = false;
-      }
-    });
+    // this.destinationService.getCommentLikes(this.comment._id).subscribe((l) => {
+    //   this.likes = l;
+    //   if (this.isLogged) {
+    //     this.userService.getUser().subscribe((u) => {
+    //       this.userLike = this.likes.find((x) => x._ownerId === u?._id);
+    //       this.isOwner = u?._id === this.comment._ownerId;
+    //       this.isLoading = false;
+    //     });
+    //   } else {
+    //     this.isLoading = false;
+    //   }
+    // });
   }
 
   get isLogged(): boolean {

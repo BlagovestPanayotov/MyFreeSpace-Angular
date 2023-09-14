@@ -7,6 +7,7 @@
   <div class="img-container"><img src="{{destination.img}}" alt="Salar de Uyuni"></div>
   <p class="country">Country: {{destination.country}}</p>
   <p class="description">{{destination.description}}</p>
+
   <div class="feedback-container">
 
     <div class="coments-container">
@@ -28,7 +29,7 @@
       </ng-container>
     </div>
 
-    <div class="btn-container" *ngIf="isLogged">
+    <div class="btn-container">
       <ng-container *ngIf="likesLoading">
         <app-mini-spinner></app-mini-spinner>
       </ng-container>
@@ -37,35 +38,38 @@
         <p class="likes-sum"><i class="fa-sharp fa-solid fa-heart" style="color: #93033f;"></i> Likes: {{likes}}
           <i class="fa-sharp fa-solid fa-heart" style="color: #93033f;"></i>
         </p>
+        <ng-container *ngIf="isLogged">
+          <button class="btn-like" *ngIf="!isOwner && !hasLiked" (click)="giveLike()"><i
+              class="fa-sharp fa-solid fa-heart" style="color: #DB005B;"></i> Like</button>
+          <!-- fa-beat -->
 
-        <button class="btn-like" *ngIf="!isOwner && !hasLiked"
-          (click)="giveLike()"><i class="fa-sharp fa-solid fa-heart" style="color: #DB005B;"></i> Like</button>
-        <!-- fa-beat -->
-
-        <button class="btn-like" *ngIf="!isOwner && hasLiked"
-          (click)="removeLike()"><i class="fa-sharp fa-solid fa-heart-crack" style="color: #DB005B;"></i>
-          Dislike</button>
+          <button class="btn-like" *ngIf="!isOwner && hasLiked" (click)="removeLike()"><i
+              class="fa-sharp fa-solid fa-heart-crack" style="color: #DB005B;"></i>
+            Dislike</button>
+        </ng-container>
       </ng-container>
 
-      <button class="btn-edit" *ngIf="isOwner" (click)="toggleEditMode()"><i
-          class="fa-solid fa-pen-to-square" style="color: #ff8040;"></i> Edit</button>
+      <ng-container *ngIf="isLogged">
+        <button class="btn-edit" *ngIf="isOwner" (click)="toggleEditMode()"><i class="fa-solid fa-pen-to-square"
+            style="color: #ff8040;"></i> Edit</button>
 
-      <button class="btn-delete" *ngIf="isOwner && !deleteMsgDisplayed"
-        (click)="deleteMsgDisplayedToggle()"><i class="fa-regular fa-trash-can" style="color: #004000;"></i>
-        Delete</button>
-
-      <div class="delete-confirm" *ngIf="deleteMsgDisplayed">
-        <p>Do you want to delete your destination?</p>
-        <button class="btn-delete" *ngIf="isOwner"
-          (click)="deleteMsgDisplayedToggle()"><i class="fa-solid fa-xmark fa-lg" style="color: #800000;"></i>
-          Cancel</button>
-        <button class="btn-delete" *ngIf="isOwner" (click)="deleteDestination()"><i
+        <button class="btn-delete" *ngIf="isOwner && !deleteMsgDisplayed" (click)="deleteMsgDisplayedToggle()"><i
             class="fa-regular fa-trash-can" style="color: #004000;"></i>
           Delete</button>
-      </div>
 
-      <button class="btn-lcom" *ngIf="!leaveCommentDisplayed" (click)="toggleCommentForm()"><i
-          class="fa-solid fa-comment-dots" style="color: #004000;"></i> Leave a comment</button>
+        <div class="delete-confirm" *ngIf="deleteMsgDisplayed">
+          <p>Do you want to delete your destination?</p>
+          <button class="btn-delete" *ngIf="isOwner" (click)="deleteMsgDisplayedToggle()"><i
+              class="fa-solid fa-xmark fa-lg" style="color: #800000;"></i>
+            Cancel</button>
+          <button class="btn-delete" *ngIf="isOwner" (click)="deleteDestination()"><i class="fa-regular fa-trash-can"
+              style="color: #004000;"></i>
+            Delete</button>
+        </div>
+
+        <button class="btn-lcom" *ngIf="!leaveCommentDisplayed" (click)="toggleCommentForm()"><i
+            class="fa-solid fa-comment-dots" style="color: #004000;"></i> Leave a comment</button>
+      </ng-container>
 
     </div>
   </div>

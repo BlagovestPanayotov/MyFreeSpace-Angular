@@ -74,8 +74,7 @@ export class DetailsComponent implements OnInit {
     this.destinationService.getDestinationById(this.id).subscribe((dest) => {
       this.destination = dest;
       this.getLikes();
-      //Gets comments
-      // this.getComments();
+      this.getComments();
     });
   }
 
@@ -160,8 +159,12 @@ export class DetailsComponent implements OnInit {
 
   getLikes(): void {
     this.destinationService.getLikes(this.id).subscribe(([likes, hasLiked]) => {
+      console.log(likes);
+      
       this.likes = likes;
-      this.hasLiked = hasLiked;
+      if (hasLiked) {
+        this.hasLiked = hasLiked;
+      }
       this.likesLoading = false;
     });
   }
@@ -185,21 +188,19 @@ export class DetailsComponent implements OnInit {
   removeLike(): void {
     if (this.hasLiked) {
       this.likesLoading = true;
-      this.destinationService
-        .delteLike(this.destination._id)
-        .subscribe({
-          next: (res) => {
-            this.hasLiked = false;
-            this.getLikes();
-          },
-          error: (err) => {
-            console.log(err);
-            this.getLikes();
-            window.scroll(0, 0);
-            this.apiError = 'You are NOT allowed to do that!!!';
-            this.likesLoading = false;
-          },
-        });
+      this.destinationService.delteLike(this.destination._id).subscribe({
+        next: (res) => {
+          this.hasLiked = false;
+          this.getLikes();
+        },
+        error: (err) => {
+          console.log(err);
+          this.getLikes();
+          window.scroll(0, 0);
+          this.apiError = 'You are NOT allowed to do that!!!';
+          this.likesLoading = false;
+        },
+      });
     }
     return;
   }
@@ -215,8 +216,8 @@ export class DetailsComponent implements OnInit {
   }
 
   getComments(): void {
-    const id = this.activatedRoute.snapshot.params['destId'];
-    this.destinationService.getComments(id).subscribe((c) => {
+    const destId = this.destination._id;
+    this.destinationService.getComments(destId).subscribe((c) => {
       this.comments = c;
       this.commentsLoading = false;
     });

@@ -96,7 +96,7 @@ export const destinationEndpoints = {
 
   getComments: (destinationId: string) =>
     URL_ADDRESS +
-    `/accessory/comments?where=${querries.destinationQuerry(destinationId)}`,
+    `/accessory/comments?dest=${querries.destinationQuerry(destinationId)}`,
   createComment: URL_ADDRESS + '/data/comments',
   deleteComment: (commentId: string) =>
     URL_ADDRESS + `/data/comments/${commentId}`,
@@ -112,6 +112,3 @@ export const destinationEndpoints = {
 };
 
 //GET COUNT http://localhost:3030/data/destinations?count
-
-//for further endpoints
-//https://github.com/softuni-practice-server/softuni-practice-server/blob/master/COLLECTIONS.md
