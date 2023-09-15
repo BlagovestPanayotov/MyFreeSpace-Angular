@@ -97,7 +97,7 @@ export const destinationEndpoints = {
   getComments: (destinationId: string) =>
     URL_ADDRESS +
     `/accessory/comments?dest=${querries.destinationQuerry(destinationId)}`,
-  createComment: URL_ADDRESS + '/data/comments',
+  createComment: URL_ADDRESS + '/accessory/comments',
   deleteComment: (commentId: string) =>
     URL_ADDRESS + `/data/comments/${commentId}`,
   updateComment: (commentId: string) =>

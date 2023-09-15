@@ -160,7 +160,7 @@ export class DetailsComponent implements OnInit {
   getLikes(): void {
     this.destinationService.getLikes(this.id).subscribe(([likes, hasLiked]) => {
       console.log(likes);
-      
+
       this.likes = likes;
       if (hasLiked) {
         this.hasLiked = hasLiked;
@@ -239,10 +239,11 @@ export class DetailsComponent implements OnInit {
           this.toggleCommentForm();
         },
         error: (err) => {
-          if (err.status === 403 && err.statusText === 'Forbidden') {
+          if (err.status === 403) {
             window.scroll(0, 0);
             this.apiError = 'You are NOT allowed to do that!!!';
-            this.editMode = false;
+            this.getComments();
+            // this.editMode = false;
             this.commentsLoading = false;
             this.toggleCommentForm();
             return;
