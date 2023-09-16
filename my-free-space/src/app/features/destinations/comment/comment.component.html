@@ -35,13 +35,13 @@
         <div class="btn-container" *ngIf="apiError==''">
 
           <p class="likes-cont"><i class="fa-sharp fa-solid fa-heart" style="color: #ff0000;"></i> Likes:
-            {{likes.length}} <i class="fa-sharp fa-solid fa-heart" style="color: #ff0000;"></i></p>
+            {{likes}} <i class="fa-sharp fa-solid fa-heart" style="color: #ff0000;"></i></p>
 
-          <button class="btn-like" *ngIf="isLogged && !userLike && !isOwner" (click)="giveLike()"><i
+          <button class="btn-like" *ngIf="isLogged && !hasLiked && !isOwner" (click)="giveLike()"><i
               class="fa-sharp fa-solid fa-heart" style="color: #ff0000;"></i>
             Like</button>
 
-          <button class="btn-like" *ngIf="isLogged && userLike && !isOwner" (click)="removeLike()"><i
+          <button class="btn-like" *ngIf="isLogged && hasLiked && !isOwner" (click)="removeLike()"><i
               class="fa-sharp fa-solid fa-heart-crack" style="color: #DB005B;"></i>
             Dislike</button>
 

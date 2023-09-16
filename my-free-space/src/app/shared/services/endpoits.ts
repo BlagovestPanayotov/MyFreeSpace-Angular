@@ -17,7 +17,7 @@ const querries = {
   destinationQuerry: (destinationId: string) =>
     encodeURIComponent(`${destinationId}`),
   commentQuerry: (commentId: string) =>
-    encodeURIComponent(`_commentId="${commentId}"`),
+    encodeURIComponent(`${commentId}`),
 
   // sortQuerry: encodeURIComponent(`_createdOn desc`),
   paginQuerry: (offset: number, pageSize: number) =>
@@ -105,7 +105,7 @@ export const destinationEndpoints = {
 
   getCommentLikes: (commentId: string) =>
     URL_ADDRESS +
-    `/data/commentLikes?${querries.commentQuerry(commentId)}&distinct=_ownerId`,
+    `/accessory/comments/commentLikes?comment=${querries.commentQuerry(commentId)}`,
   giveCommentLike: URL_ADDRESS + '/data/commentLikes',
   deleteCommentLike: (likeId: string) =>
     URL_ADDRESS + `/data/commentLikes/${likeId}`,

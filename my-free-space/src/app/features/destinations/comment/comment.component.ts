@@ -27,8 +27,8 @@ export class CommentComponent implements OnInit {
 
   isLoading: boolean = false;
 
-  likes: ICommentLike[] = [];
-  userLike: ICommentLike | undefined;
+  likes: number = 0;
+  hasLiked: boolean = false;
   isOwner: boolean = false;
 
   constructor(
@@ -37,18 +37,15 @@ export class CommentComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // this.destinationService.getCommentLikes(this.comment._id).subscribe((l) => {
-    //   this.likes = l;
-    //   if (this.isLogged) {
-    //     this.userService.getUser().subscribe((u) => {
-    //       this.userLike = this.likes.find((x) => x._ownerId === u?._id);
-    //       this.isOwner = u?._id === this.comment._ownerId;
-    //       this.isLoading = false;
-    //     });
-    //   } else {
-    //     this.isLoading = false;
-    //   }
-    // });
+    this.destinationService
+      .getCommentLikes(this.comment._id)
+      .subscribe(([count, liked]) => {
+        this.likes = Number(count);
+
+        this.hasLiked = liked;
+
+        this.isLoading = false;
+      });
   }
 
   get isLogged(): boolean {
@@ -103,35 +100,35 @@ export class CommentComponent implements OnInit {
   //LIKES
 
   giveLike(): void {
-    this.isLoading = true;
-    this.destinationService.giveCommentLike(this.comment._id).subscribe({
-      next: (l) => {
-        this.likes.push(l);
-        this.userLike = l;
-        this.isLoading = false;
-      },
-      error: (err) => {
-        this.apiError = 'You are NOT allowed to do that!!!';
-        this.isLoading = true;
-      },
-    });
+    // this.isLoading = true;
+    // this.destinationService.giveCommentLike(this.comment._id).subscribe({
+    //   next: (l) => {
+    //     this.likes.push(l);
+    //     this.userLike = l;
+    //     this.isLoading = false;
+    //   },
+    //   error: (err) => {
+    //     this.apiError = 'You are NOT allowed to do that!!!';
+    //     this.isLoading = true;
+    //   },
+    // });
   }
 
   removeLike(): void {
-    if (this.userLike?._id) {
-      this.isLoading = true;
-      this.destinationService.delteCommentLike(this.userLike._id).subscribe({
-        next: (res) => {
-          this.likes = this.likes.filter((x) => x._id !== this.userLike?._id);
-          this.userLike = undefined;
-          this.isLoading = false;
-        },
-        error: (err) => {
-          this.apiError = 'You are NOT allowed to do that!!!';
-          this.isLoading = false;
-        },
-      });
-    }
-    return;
+    // if (this.userLike?._id) {
+    //   this.isLoading = true;
+    //   this.destinationService.delteCommentLike(this.userLike._id).subscribe({
+    //     next: (res) => {
+    //       this.likes = this.likes.filter((x) => x._id !== this.userLike?._id);
+    //       this.userLike = undefined;
+    //       this.isLoading = false;
+    //     },
+    //     error: (err) => {
+    //       this.apiError = 'You are NOT allowed to do that!!!';
+    //       this.isLoading = false;
+    //     },
+    //   });
+    // }
+    // return;
   }
 }

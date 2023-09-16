@@ -159,8 +159,6 @@ export class DetailsComponent implements OnInit {
 
   getLikes(): void {
     this.destinationService.getLikes(this.id).subscribe(([likes, hasLiked]) => {
-      console.log(likes);
-
       this.likes = likes;
       if (hasLiked) {
         this.hasLiked = hasLiked;

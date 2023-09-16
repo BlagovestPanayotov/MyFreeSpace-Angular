@@ -143,7 +143,7 @@ export class DestinationService {
   //COMMENTS-LIKES
 
   getCommentLikes(commentId: string) {
-    return this.http.get<ICommentLike[]>(
+    return this.http.get<any[]>(
       destinationEndpoints.getCommentLikes(commentId)
     );
   }
