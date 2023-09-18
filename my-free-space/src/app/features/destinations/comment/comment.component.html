@@ -7,11 +7,13 @@
   <div class="comment">
     <ng-container *ngIf="editFormDisplayed">
       <form #formComment="ngForm" (submit)="editComment(formComment)">
-        <textarea name="content" id="comment" [ngModel]="comment.content" #contentInput="ngModel" required
-          minlength="10" maxlength="80"></textarea>
+        <textarea name="content" id="comment" [ngModel]="comment.content" #contentInput="ngModel" required minlength="5"
+          maxlength="80"></textarea>
         <div class="info comment-form-errors">
-          <p [ngClass]="contentInput.errors?.['minlength'] || contentInput.value === '' ? 'error' : 'correct'">The
-            description must be at least 10 haracters!</p>
+          <p *ngIf="contentInput.errors?.['minlength'] || contentInput.value === ''" class='error'>The
+            comment must be at least 5 haracters!</p>
+          <p *ngIf="contentInput.errors?.['maxlength']" class='error'>The
+            comment must less than 80 haracters!</p>
         </div>
         <div class="btn-container">
           <button class="btn-sub" (click)="toggleEditFormDisplayed()"><i class="fa-solid fa-xmark fa-lg"
