@@ -74,7 +74,7 @@ export class CommentComponent implements OnInit {
     this.isLoading = true;
 
     this.destinationService
-      .updateComment(this.comment._id, this.comment._destinationId, content)
+      .updateComment(this.comment._id, content)
       .subscribe({
         next: (value) => {
           this.comment = value;

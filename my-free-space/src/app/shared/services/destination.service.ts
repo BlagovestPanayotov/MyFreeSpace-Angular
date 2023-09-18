@@ -127,14 +127,11 @@ export class DestinationService {
     return this.http.delete(destinationEndpoints.deleteComment(commentId));
   }
 
-  updateComment(commentId: string, _destinationId: string, content: string) {
-    console.log(_destinationId);
-    console.log(content);
+  updateComment(commentId: string, content: string) {
 
     return this.http.put<IComment>(
       destinationEndpoints.updateComment(commentId),
       {
-        _destinationId,
         content,
       }
     );

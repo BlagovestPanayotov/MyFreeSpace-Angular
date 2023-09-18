@@ -214,6 +214,8 @@ export class DetailsComponent implements OnInit {
   }
 
   getComments(): void {
+    this.commentsLoading = true;
+
     const destId = this.destination._id;
     this.destinationService.getComments(destId).subscribe((c) => {
       this.comments = c;
@@ -251,7 +253,7 @@ export class DetailsComponent implements OnInit {
       });
   }
 
-  removeComment(comment: string) {
-    this.comments = this.comments.filter((x) => x._id !== comment);
+  removeComment() {
+    this.getComments();
   }
 }
