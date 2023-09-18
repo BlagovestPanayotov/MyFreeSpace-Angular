@@ -73,20 +73,18 @@ export class CommentComponent implements OnInit {
     const { content } = form.value;
     this.isLoading = true;
 
-    this.destinationService
-      .updateComment(this.comment._id, content)
-      .subscribe({
-        next: (value) => {
-          this.comment = value;
-          this.editFormDisplayed = false;
-          this.isLoading = false;
-        },
-        error: (err) => {
-          this.apiError = 'You are NOT allowed to do that!';
-          this.isLoading = false;
-          this.editFormDisplayed = false;
-        },
-      });
+    this.destinationService.updateComment(this.comment._id, content).subscribe({
+      next: (value) => {
+        this.comment = value;
+        this.editFormDisplayed = false;
+        this.isLoading = false;
+      },
+      error: (err) => {
+        this.apiError = 'You are NOT allowed to do that!';
+        this.isLoading = false;
+        this.editFormDisplayed = false;
+      },
+    });
   }
 
   deleteComment() {
@@ -106,18 +104,18 @@ export class CommentComponent implements OnInit {
   //LIKES
 
   giveLike(): void {
-    // this.isLoading = true;
-    // this.destinationService.giveCommentLike(this.comment._id).subscribe({
-    //   next: (l) => {
-    //     this.likes.push(l);
-    //     this.userLike = l;
-    //     this.isLoading = false;
-    //   },
-    //   error: (err) => {
-    //     this.apiError = 'You are NOT allowed to do that!!!';
-    //     this.isLoading = true;
-    //   },
-    // });
+    this.isLoading = true;
+    this.destinationService.giveCommentLike(this.comment._id).subscribe({
+      next: (l) => {
+        this.likes++;
+        this.hasLiked = true;
+        this.isLoading = false;
+      },
+      error: (err) => {
+        this.apiError = 'You are NOT allowed to do that!!!';
+        this.isLoading = true;
+      },
+    });
   }
 
   removeLike(): void {

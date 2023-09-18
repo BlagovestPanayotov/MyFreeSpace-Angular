@@ -106,7 +106,7 @@ export const destinationEndpoints = {
   getCommentLikes: (commentId: string) =>
     URL_ADDRESS +
     `/accessory/comments/commentLikes?comment=${querries.commentQuerry(commentId)}`,
-  giveCommentLike: URL_ADDRESS + '/data/commentLikes',
+  giveCommentLike: URL_ADDRESS + '/accessory/comments/commentLikes',
   deleteCommentLike: (likeId: string) =>
     URL_ADDRESS + `/data/commentLikes/${likeId}`,
 };
