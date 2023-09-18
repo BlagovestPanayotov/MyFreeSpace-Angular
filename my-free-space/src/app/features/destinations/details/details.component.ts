@@ -118,7 +118,7 @@ export class DetailsComponent implements OnInit {
         error: (err) => {
           if (err.status === 403 || err.status === 401) {
             window.scroll(0, 0);
-            this.apiError = 'You are NOT allowed to do that!!!';
+            this.apiError = err.error.error[0];
             this.editMode = false;
             this.loading = false;
             return;
@@ -150,7 +150,7 @@ export class DetailsComponent implements OnInit {
       error: (err) => {
         this.loading = false;
         window.scroll(0, 0);
-        this.apiError = 'You are NOT allowed to do that!!!';
+        this.apiError = err.error.error[0];
       },
     });
   }
@@ -177,7 +177,7 @@ export class DetailsComponent implements OnInit {
         console.log(err);
         this.getLikes();
         window.scroll(0, 0);
-        this.apiError = 'You are NOT allowed to do that!!!';
+        this.apiError = err.error.error[0];
         this.likesLoading = false;
       },
     });
@@ -195,7 +195,7 @@ export class DetailsComponent implements OnInit {
           console.log(err);
           this.getLikes();
           window.scroll(0, 0);
-          this.apiError = 'You are NOT allowed to do that!!!';
+          this.apiError = err.error.error[0];
           this.likesLoading = false;
         },
       });
@@ -239,16 +239,8 @@ export class DetailsComponent implements OnInit {
           this.toggleCommentForm();
         },
         error: (err) => {
-          if (err.status === 403) {
-            window.scroll(0, 0);
-            this.apiError = 'You are NOT allowed to do that!!!';
-            this.getComments();
-            // this.editMode = false;
-            this.commentsLoading = false;
-            this.toggleCommentForm();
-            return;
-          }
-          console.log(err);
+          err.error.error[0];
+          this.getComments();
         },
       });
   }

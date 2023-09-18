@@ -10,14 +10,12 @@ export const userEndpoints = {
 const querries = {
   // andQuerry: encodeURIComponent(' and '),
   nameQuerry: (name: string) => encodeURIComponent(`${name}`),
-  countryQuerry: (country: string) =>
-    encodeURIComponent(`${country}`),
+  countryQuerry: (country: string) => encodeURIComponent(`${country}`),
 
   // ownerQuerry: (userId: string) => encodeURIComponent(`_ownerId="${userId}"`),
   destinationQuerry: (destinationId: string) =>
     encodeURIComponent(`${destinationId}`),
-  commentQuerry: (commentId: string) =>
-    encodeURIComponent(`${commentId}`),
+  commentQuerry: (commentId: string) => encodeURIComponent(`${commentId}`),
 
   // sortQuerry: encodeURIComponent(`_createdOn desc`),
   paginQuerry: (offset: number, pageSize: number) =>
@@ -28,7 +26,9 @@ export const destinationEndpoints = {
   getAll: (name: string, country: string, offset: number) => {
     return (
       URL_ADDRESS +
-      `/dest/destinations?name=${querries.nameQuerry(name)}&country=${querries.countryQuerry(country)}&${querries.paginQuerry(
+      `/dest/destinations?name=${querries.nameQuerry(
+        name
+      )}&country=${querries.countryQuerry(country)}&${querries.paginQuerry(
         offset,
         9
       )}`
@@ -51,9 +51,12 @@ export const destinationEndpoints = {
   //   );
   // },
   create: URL_ADDRESS + '/dest/destinations',
-  getById: (id: string) => URL_ADDRESS + `/dest/${querries.destinationQuerry(id)}`,
-  update: (id: string) => URL_ADDRESS + `/dest/${querries.destinationQuerry(id)}`,
-  delete: (id: string) => URL_ADDRESS + `/dest/${querries.destinationQuerry(id)}`,
+  getById: (id: string) =>
+    URL_ADDRESS + `/dest/${querries.destinationQuerry(id)}`,
+  update: (id: string) =>
+    URL_ADDRESS + `/dest/${querries.destinationQuerry(id)}`,
+  delete: (id: string) =>
+    URL_ADDRESS + `/dest/${querries.destinationQuerry(id)}`,
 
   // getUserDestinationsCount: (userId: string, name: string, country: string) => {
   //   if (country === '') {
@@ -105,10 +108,11 @@ export const destinationEndpoints = {
 
   getCommentLikes: (commentId: string) =>
     URL_ADDRESS +
-    `/accessory/comments/commentLikes?comment=${querries.commentQuerry(commentId)}`,
+    `/accessory/comments/commentLikes?comment=${querries.commentQuerry(
+      commentId
+    )}`,
   giveCommentLike: URL_ADDRESS + '/accessory/comments/commentLikes',
-  deleteCommentLike: (likeId: string) =>
-    URL_ADDRESS + `/data/commentLikes/${likeId}`,
+  deleteCommentLike: URL_ADDRESS + '/accessory/comments/commentLikes/remove',
 };
 
 //GET COUNT http://localhost:3030/data/destinations?count

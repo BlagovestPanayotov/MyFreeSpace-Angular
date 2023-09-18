@@ -80,7 +80,7 @@ export class CommentComponent implements OnInit {
         this.isLoading = false;
       },
       error: (err) => {
-        this.apiError = 'You are NOT allowed to do that!';
+        this.apiError = err.error.error[0];
         this.isLoading = false;
         this.editFormDisplayed = false;
       },
@@ -94,7 +94,7 @@ export class CommentComponent implements OnInit {
         this.removeCurrentComment.emit(this.comment._id);
       },
       error: (err) => {
-        this.apiError = 'You are NOT allowed to do that!';
+        this.apiError = err.error.error[0];
         this.isLoading = false;
         this.deleteMsgDisplayed = false;
       },
@@ -112,27 +112,31 @@ export class CommentComponent implements OnInit {
         this.isLoading = false;
       },
       error: (err) => {
-        this.apiError = 'You are NOT allowed to do that!!!';
-        this.isLoading = true;
+        console.log(err);
+        
+        this.apiError = err.error.error[0];
+        this.isLoading = false;
       },
     });
   }
 
   removeLike(): void {
-    // if (this.userLike?._id) {
-    //   this.isLoading = true;
-    //   this.destinationService.delteCommentLike(this.userLike._id).subscribe({
-    //     next: (res) => {
-    //       this.likes = this.likes.filter((x) => x._id !== this.userLike?._id);
-    //       this.userLike = undefined;
-    //       this.isLoading = false;
-    //     },
-    //     error: (err) => {
-    //       this.apiError = 'You are NOT allowed to do that!!!';
-    //       this.isLoading = false;
-    //     },
-    //   });
-    // }
-    // return;
+    if (this.user?._id) {
+      this.isLoading = true;
+      this.destinationService
+        .delteCommentLike(this.comment._id, this.user?._id)
+        .subscribe({
+          next: (res) => {
+            this.likes--;
+            this.hasLiked = false;
+            this.isLoading = false;
+          },
+          error: (err) => {
+            this.apiError = err.error.error[0];
+            this.isLoading = false;
+          },
+        });
+    }
+    return;
   }
 }

@@ -93,7 +93,9 @@ export class DestinationService {
   //LIKES
 
   getLikes(destinationId: string) {
-    return this.http.get<[number,boolean]>(destinationEndpoints.getLikes(destinationId));
+    return this.http.get<[number, boolean]>(
+      destinationEndpoints.getLikes(destinationId)
+    );
   }
 
   giveLike(destinationId: string) {
@@ -103,7 +105,7 @@ export class DestinationService {
   }
 
   delteLike(destinationId: string) {
-    return this.http.post(destinationEndpoints.deleteLike,{
+    return this.http.post(destinationEndpoints.deleteLike, {
       _destinationId: destinationId,
     });
   }
@@ -128,7 +130,6 @@ export class DestinationService {
   }
 
   updateComment(commentId: string, content: string) {
-
     return this.http.put<IComment>(
       destinationEndpoints.updateComment(commentId),
       {
@@ -151,9 +152,10 @@ export class DestinationService {
     });
   }
 
-  delteCommentLike(commentLikeId: string) {
-    return this.http.delete(
-      destinationEndpoints.deleteCommentLike(commentLikeId)
-    );
+  delteCommentLike(_commentId: string, userId: string) {
+    return this.http.post(destinationEndpoints.deleteCommentLike, {
+      _commentId,
+      userId,
+    });
   }
 }

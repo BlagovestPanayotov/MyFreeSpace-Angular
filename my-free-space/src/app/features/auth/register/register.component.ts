@@ -48,7 +48,7 @@ export class RegisterComponent {
           if (err.status === 409) {
             console.log(err);
 
-            this.apiError = err.error?.errors.join('\n') || '';
+            this.apiError = err.error?.errors[0];
             window.scroll(0, 0);
             return;
           }
