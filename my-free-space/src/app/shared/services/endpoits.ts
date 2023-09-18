@@ -101,7 +101,7 @@ export const destinationEndpoints = {
   deleteComment: (commentId: string) =>
     URL_ADDRESS + `/data/comments/${commentId}`,
   updateComment: (commentId: string) =>
-    URL_ADDRESS + `/data/comments/${commentId}`,
+    URL_ADDRESS + `/accessory/comments/edit/${commentId}`,
 
   getCommentLikes: (commentId: string) =>
     URL_ADDRESS +

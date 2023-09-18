@@ -4,6 +4,7 @@ import { DestinationService } from 'src/app/shared/services/destination.service'
 import { UserService } from 'src/app/shared/services/user.service';
 import { IComment } from 'src/app/shared/types/comment';
 import { ICommentLike } from 'src/app/shared/types/commentLike';
+import { IUser } from 'src/app/shared/types/user';
 
 @Component({
   selector: 'app-comment',
@@ -21,6 +22,10 @@ export class CommentComponent implements OnInit {
     _id: '',
   };
 
+  @Input() user: IUser | null = null;
+
+  isOwner: boolean = false;
+
   apiError: string = '';
   deleteMsgDisplayed: boolean = false;
   editFormDisplayed: boolean = false;
@@ -29,7 +34,6 @@ export class CommentComponent implements OnInit {
 
   likes: number = 0;
   hasLiked: boolean = false;
-  isOwner: boolean = false;
 
   constructor(
     private userService: UserService,
@@ -37,6 +41,8 @@ export class CommentComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.isOwner = this.comment._ownerId == this.user?._id;
+
     this.destinationService
       .getCommentLikes(this.comment._id)
       .subscribe(([count, liked]) => {
@@ -61,20 +67,6 @@ export class CommentComponent implements OnInit {
     this.editFormDisplayed = !this.editFormDisplayed;
   }
 
-  deleteComment() {
-    this.isLoading = true;
-    this.destinationService.deleteComment(this.comment._id).subscribe({
-      next: () => {
-        this.removeCurrentComment.emit(this.comment._id);
-      },
-      error: (err) => {
-        this.apiError = 'You are NOT allowed to do that!';
-        this.isLoading = false;
-        this.deleteMsgDisplayed = false;
-      },
-    });
-  }
-
   editComment(form: NgForm) {
     if (form.invalid || !this.isOwner) return;
 
@@ -95,6 +87,20 @@ export class CommentComponent implements OnInit {
           this.editFormDisplayed = false;
         },
       });
+  }
+
+  deleteComment() {
+    this.isLoading = true;
+    this.destinationService.deleteComment(this.comment._id).subscribe({
+      next: () => {
+        this.removeCurrentComment.emit(this.comment._id);
+      },
+      error: (err) => {
+        this.apiError = 'You are NOT allowed to do that!';
+        this.isLoading = false;
+        this.deleteMsgDisplayed = false;
+      },
+    });
   }
 
   //LIKES
