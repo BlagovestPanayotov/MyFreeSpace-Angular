@@ -14,20 +14,14 @@ export class AppComponent {
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
-    // Initialize the authentication state when the app starts
     this.userService.getUser().subscribe({
       next: (user) => {
-        // Authentication is successful; user is logged in
-        this.isAuthInitializing = false; // Set the flag to indicate initialization is complete
+        this.isAuthInitializing = false;
       },
       error: () => {
-        // Authentication failed or user is not logged in
-        this.isAuthInitializing = false; // Set the flag to indicate initialization is complete
+        this.isAuthInitializing = false;
       },
-      complete: () => {
-        // This block is executed when the observable completes
-        // You can use it for any additional initialization
-      },
+      complete: () => {},
     });
   }
 }

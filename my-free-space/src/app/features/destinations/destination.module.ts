@@ -6,6 +6,7 @@ import { SearchDestinationComponent } from './search-destination/search-destinat
 import { CommentComponent } from './comment/comment.component';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
     SearchDestinationComponent,
     CommentComponent,
   ],
-  imports: [CommonModule, FormsModule, SharedModule],
+  imports: [CommonModule, FormsModule, SharedModule, NgSelectModule],
   exports: [SearchDestinationComponent],
 })
 export class DestinationModule {}

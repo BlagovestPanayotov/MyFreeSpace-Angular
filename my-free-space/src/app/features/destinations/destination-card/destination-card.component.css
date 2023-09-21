@@ -4,11 +4,12 @@
   align-items: center;
   justify-content: space-around;
   border-radius: 1rem;
-  width: 22rem;
-  height: 22rem;
+  width: 20rem;
+  height: 20rem;
   background-color: rgba(255, 255, 255, 0.4);
   text-align: center;
-  /* position: relative; */
+  position: relative;
+  
 }
 
 .destination-card h3 {
@@ -16,6 +17,7 @@
   padding-top: 0.5rem;
   height: 3rem;
   overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .destination-card .img-container {
@@ -24,25 +26,24 @@
   border-radius: 0.5rem;
   height: 13rem;
   overflow: hidden;
-  object-fit: fill;
   margin-bottom: 0.5rem;
   position: relative;
-
-  /* background-color: rgba(0, 0, 0, 0.7); */
-  /* z-index: -1; */
-  /* position: relative; */
+  background-color: rgba(0, 0, 0, 0.3);
 }
+
 
 .destination-card .img-container img {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  /* z-index: 0; */
 }
 
 .destination-card p {
   font-size: 1rem;
+  padding: 0 2rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .destination-card a {
@@ -71,11 +72,9 @@
   justify-content: space-between;
 }
 
-.destination-card .button-container i{
+.destination-card .button-container i {
   margin-left: 1rem;
 }
-
-
 
 .loader-container {
   margin: 40%;

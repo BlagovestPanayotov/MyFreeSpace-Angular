@@ -1,8 +1,27 @@
 /* CONTENT */
 .content {
   display: grid;
-  grid-template-columns: 73% 23%;
+  grid-template-columns: 3fr 1fr;
+  gap: 1rem;
   justify-content: space-between;
   margin-top: 2rem;
   color: #000000;
+}
+
+@media only screen and (max-width: 1279px) {
+  .content {
+    grid-template-columns: 1.5fr 1fr;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .content {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+@media only screen and (min-width: 1880px) {
+  .content {
+    grid-template-columns: 3fr 1fr;
+  }
 }
