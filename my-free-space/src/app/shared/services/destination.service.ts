@@ -31,7 +31,7 @@ export class DestinationService {
   }
 
   createDestination(formData: FormData) {
-    const headers = new HttpHeaders(); // Create a new HttpHeaders object
+    const headers = new HttpHeaders();
     headers.set('Content-Type', 'multipart/form-data');
 
     return this.http.post<IDestination>(destinationEndpoints.create, formData, {

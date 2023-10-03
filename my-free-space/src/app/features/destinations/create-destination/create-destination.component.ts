@@ -51,10 +51,13 @@ export class CreateDestinationComponent implements OnInit {
       !this.selectedFile ||
       this.selectedFile.size > this.maxSizeImageInBytes // TO DO -> error handling for image size
     ) {
+      this.apiError =
+          'The size of the image too big!';
+        window.scroll(0, 0);
       return;
     }
 
-    const { name, country, description, fileInput } = this.form.value;
+    const { name, country, description } = this.form.value;
 
     const formData = new FormData();
     formData.append('name', name);

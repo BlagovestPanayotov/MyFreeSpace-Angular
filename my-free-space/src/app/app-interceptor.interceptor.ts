@@ -20,22 +20,29 @@ export class AppInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
     this.userToken = localStorage.getItem(USER_KEY);
-    
+
     if (this.userToken) {
       request = request.clone({
         setHeaders: {
-          'Authorization': this.userToken,
+          Authorization: this.userToken,
         },
       });
+
+      if (request.url !== 'http://localhost:3030/dest/destinations') {
+        request = request.clone({
+          setHeaders: {
+            'Content-Type': 'application/json',
+          },
+        });
+      }
     }
 
-    
     return next.handle(request);
   }
 }
 
 export const AppInterceptorProvider: Provider = {
-  multi: true,
-  useClass: AppInterceptor,
   provide: HTTP_INTERCEPTORS,
+  useClass: AppInterceptor,
+  multi: true,
 };
