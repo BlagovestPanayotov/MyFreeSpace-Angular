@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { IDestination } from '../types/destination';
 import { destinationEndpoints } from './endpoits';
@@ -30,17 +30,12 @@ export class DestinationService {
     return this.http.get<IDestinationDetails>(destinationEndpoints.getById(id));
   }
 
-  createDestination(
-    name: string,
-    country: string,
-    description: string,
-    img: string
-  ) {
-    return this.http.post<IDestination>(destinationEndpoints.create, {
-      name,
-      country,
-      description,
-      img,
+  createDestination(formData: FormData) {
+    const headers = new HttpHeaders(); // Create a new HttpHeaders object
+    headers.set('Content-Type', 'multipart/form-data');
+
+    return this.http.post<IDestination>(destinationEndpoints.create, formData, {
+      headers: headers,
     });
   }
 

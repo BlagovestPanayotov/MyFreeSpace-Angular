@@ -25,10 +25,11 @@ export class AppInterceptor implements HttpInterceptor {
       request = request.clone({
         setHeaders: {
           'Authorization': this.userToken,
-          'Content-Type': 'application/json',
         },
       });
     }
+
+    
     return next.handle(request);
   }
 }

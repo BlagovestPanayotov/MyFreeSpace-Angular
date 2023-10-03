@@ -7,6 +7,7 @@ import { CommentComponent } from './comment/comment.component';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,13 @@ import { NgSelectModule } from '@ng-select/ng-select';
     SearchDestinationComponent,
     CommentComponent,
   ],
-  imports: [CommonModule, FormsModule, SharedModule, NgSelectModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    SharedModule,
+    NgSelectModule,
+    ReactiveFormsModule,
+  ],
   exports: [SearchDestinationComponent],
 })
 export class DestinationModule {}
