@@ -17,6 +17,8 @@ export class CreateDestinationComponent implements OnInit {
   apiError: string = '';
   countries: string[] = COUNTRIES_LIST;
 
+  creating: boolean = false;
+
   maxSizeImageInBytes: number = 10 * 1024 * 1024;
 
   constructor(
@@ -43,17 +45,16 @@ export class CreateDestinationComponent implements OnInit {
   }
 
   createDestination() {
-    // if (this.form.invalid) {
-    //   return;
-    // }
+    if (this.form.invalid) {
+      return;
+    }
 
     if (
       !this.selectedFile ||
       this.selectedFile.size > this.maxSizeImageInBytes // TO DO -> error handling for image size
     ) {
-      this.apiError =
-          'The size of the image too big!';
-        window.scroll(0, 0);
+      this.apiError = 'The size of the image too big!';
+      window.scroll(0, 0);
       return;
     }
 
@@ -64,17 +65,19 @@ export class CreateDestinationComponent implements OnInit {
     formData.append('country', country);
     formData.append('description', description);
     formData.append('fileInput', this.selectedFile, this.selectedFile.name);
-
+    this.creating = true;
     this.destinationService.createDestination(formData).subscribe({
       next: () => {
-        // this.router.navigate(['/dest/user-list']);
-        // this.searchService.setAllListPage(1);
-        // this.searchService.setUserListPage(1);
+        this.creating = false;
+        this.router.navigate(['/dest/user-list']);
+        this.searchService.setAllListPage(1);
+        this.searchService.setUserListPage(1);
       },
       error: (err) => {
         this.apiError =
           'There is a problem and we are working on it. Sorry for the inconvenience.';
         window.scroll(0, 0);
+        this.creating = false;
       },
     });
   }
