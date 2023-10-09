@@ -42,16 +42,16 @@
 
 .profile-container #gender {
   display: grid;
-  grid-template-columns: 1fr 5fr;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
 }
 
 .profile-container #gender input[type="radio"] {
   border: 0px;
   width: 100%;
   height: 1.5rem;
-  margin: auto;
+  align-self: center;
 }
-
 
 .profile-container .edit-form button {
   margin: auto;
@@ -62,7 +62,6 @@
   cursor: pointer;
 }
 
-
 .profile-container .edit-form button.btn-cancel {
   background-color: rgb(139, 0, 0);
   border: 2px solid rgba(255, 255, 255, 0.4);
@@ -71,6 +70,46 @@
 .profile-container .edit-form button.submit {
   background-color: rgb(0, 0, 139);
   border: 2px solid rgba(255, 255, 255, 0.4);
+}
+
+form .flex-input {
+  display: flex;
+  align-items: center;
+}
+
+form .flex-input .info {
+  position: relative;
+}
+
+form .flex-input .radio-info {
+  margin-left: 2rem;
+}
+
+form .flex-input .info .popuptext {
+  position: absolute;
+  top: 2rem;
+  left: 125%;
+  width: 250px;
+  border: 1px #000 solid;
+  border-radius: 1rem;
+  background: #f8f8f8;
+  padding: 10px;
+  z-index: 1;
+  display: none;
+  opacity: 0;
+  transition: 750ms all;
+}
+
+form .flex-input .info:hover .popuptext {
+  display: inline;
+  outline: none;
+  text-decoration: none;
+  color: #000;
+  opacity: 1;
+}
+
+form .flex-input i {
+  margin-left: 0.5rem;
 }
 
 /* Hoover Header components */
@@ -112,8 +151,38 @@ button.btn-edit {
   border-radius: 2rem;
   padding: 0.5rem;
   font-size: 1.5rem;
-  border:1px solid rgba(0, 255, 255, 0.5);
+  border: 1px solid rgba(0, 255, 255, 0.5);
   background-color: rgba(0, 255, 255, 0.189);
   cursor: pointer;
   color: #f5f5f5;
+}
+
+p.correct {
+  color: darkgreen;
+}
+
+p.error {
+  color: darkred;
+}
+
+p.serverErrors {
+  text-align: center;
+}
+
+p.error.serverErrors {
+  text-align: center;
+  background-color: #f5f5f5;
+  font-size: 2rem;
+  font-weight: bold;
+  padding: 1rem;
+  border-radius: 2rem;
+  width: 50%;
+  margin: 0 auto;
+}
+
+#email {
+  background-color: #c0c580;
+  color: #6d6d6d;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
 }

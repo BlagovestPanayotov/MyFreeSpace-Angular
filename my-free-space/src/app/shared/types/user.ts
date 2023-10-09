@@ -5,5 +5,7 @@ export interface IUser {
   hashedPassword: string;
   country: string;
   gender: string;
+  accountName: string;
   accessToken: string;
+  accountNameChanged: boolean;
 }
