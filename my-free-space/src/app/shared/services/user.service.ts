@@ -4,6 +4,7 @@ import { BehaviorSubject, Subscription, tap } from 'rxjs';
 
 import { IUser } from '../types/user';
 import { userEndpoints } from './endpoits';
+import { USER_KEY } from '../costants';
 
 @Injectable({
   providedIn: 'root',
@@ -85,6 +86,7 @@ export class UserService implements OnDestroy {
   }
 
   clearUser() {
+    localStorage.removeItem(USER_KEY);
     this.user$$.next(undefined);
   }
 

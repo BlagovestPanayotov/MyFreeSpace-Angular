@@ -50,8 +50,6 @@ export class ProfileComponent {
       .updateUser(email, username, country, gender, accountname)
       .subscribe({
         next: (result) => {
-          console.log(result);
-          
           this.user = result;
           this.toggleEditMode();
           this.loading = false;

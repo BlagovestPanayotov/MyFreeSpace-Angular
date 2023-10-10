@@ -52,6 +52,7 @@ export class RegisterComponent {
             window.scroll(0, 0);
             return;
           }
+          this.userService.clearUser();
           throw err;
         },
       });
