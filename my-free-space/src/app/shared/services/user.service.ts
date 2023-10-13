@@ -5,6 +5,7 @@ import { BehaviorSubject, Subscription, tap } from 'rxjs';
 import { IUser } from '../types/user';
 import { userEndpoints } from './endpoits';
 import { USER_KEY } from '../costants';
+import { IUserVerify } from '../types/userVerify';
 
 @Injectable({
   providedIn: 'root',
@@ -13,28 +14,51 @@ export class UserService implements OnDestroy {
   private user$$ = new BehaviorSubject<IUser | undefined>(undefined);
   public user$ = this.user$$.asObservable();
 
-  user: IUser | undefined;
+  private userVerify$$ = new BehaviorSubject<IUserVerify | undefined>(
+    undefined
+  );
+  public userVerify$ = this.userVerify$$.asObservable();
 
-  subscription: Subscription;
+  user: IUser | undefined;
+  userVerify: IUserVerify | undefined;
+
+  subscriptionUser: Subscription;
+  subscriptionUserVerify: Subscription;
 
   constructor(private http: HttpClient) {
-    this.subscription = this.user$.subscribe((user) => {
+    this.subscriptionUser = this.user$.subscribe((user) => {
       this.user = user;
+    });
+
+    this.subscriptionUserVerify = this.userVerify$.subscribe((user) => {
+      this.userVerify = user;
     });
   }
 
   get isLogged(): boolean {
-    return !!this.user;
+    return !!this.userVerify;
   }
 
   get getGender(): string {
-    return this.user?.gender || '';
+    return this.userVerify?.gender || '';
   }
 
   login(email: string, password: string) {
-    return this.http
-      .post<IUser>(userEndpoints.login, { email, password })
-      .pipe(tap((user) => this.user$$.next(user)));
+    return this.http.post<IUser>(userEndpoints.login, { email, password }).pipe(
+      tap((user) => {
+        const { _id, accountName, gender, accessToken, verified, verify } =
+          user;
+        this.userVerify$$.next({
+          _id,
+          accountName,
+          gender,
+          accessToken,
+          verified,
+          verify,
+        });
+        this.user$$.next(user);
+      })
+    );
   }
 
   register(
@@ -52,7 +76,21 @@ export class UserService implements OnDestroy {
         country,
         gender,
       })
-      .pipe(tap((user) => this.user$$.next(user)));
+      .pipe(
+        tap((user) => {
+          const { _id, accountName, gender, accessToken, verified, verify } =
+            user;
+          this.userVerify$$.next({
+            _id,
+            accountName,
+            gender,
+            accessToken,
+            verified,
+            verify,
+          });
+          this.user$$.next(user);
+        })
+      );
   }
 
   updateUser(
@@ -70,7 +108,21 @@ export class UserService implements OnDestroy {
         gender,
         accountname,
       })
-      .pipe(tap((user) => this.user$$.next(user)));
+      .pipe(
+        tap((user) => {
+          const { _id, accountName, gender, accessToken, verified, verify } =
+            user;
+          this.userVerify$$.next({
+            _id,
+            accountName,
+            gender,
+            accessToken,
+            verified,
+            verify,
+          });
+          this.user$$.next(user);
+        })
+      );
   }
 
   logout() {
@@ -85,12 +137,20 @@ export class UserService implements OnDestroy {
       .pipe(tap((user) => this.user$$.next(user)));
   }
 
+  getUserVerify() {
+    return this.http
+      .get<IUserVerify | undefined>(userEndpoints.getUserVerify)
+      .pipe(tap((user) => this.userVerify$$.next(user)));
+  }
+
   clearUser() {
     localStorage.removeItem(USER_KEY);
     this.user$$.next(undefined);
+    this.userVerify$$.next(undefined);
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.subscriptionUser.unsubscribe();
+    this.subscriptionUserVerify.unsubscribe();
   }
 }

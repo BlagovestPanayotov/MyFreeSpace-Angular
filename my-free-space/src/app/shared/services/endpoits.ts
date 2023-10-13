@@ -5,6 +5,7 @@ export const userEndpoints = {
   login: URL_ADDRESS + '/users/login',
   logout: URL_ADDRESS + '/users/logout',
   getUser: URL_ADDRESS + '/users/user',
+  getUserVerify: URL_ADDRESS + '/users/user/verify',
 };
 
 const querries = {

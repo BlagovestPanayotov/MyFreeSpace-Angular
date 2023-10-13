@@ -42,14 +42,10 @@ export class UserListComponent implements OnInit, OnDestroy {
         switchMap(([pN, data]) => {
           this.page = pN;
           this.loading = true;
-
-          return this.userService.getUser().pipe(
-            switchMap((user) => {
-              return combineLatest([
-                this.getListDestinations(data.name, data.country),
-              ]);
-            })
-          );
+          
+          return combineLatest([
+            this.getListDestinations(data.name, data.country),
+          ]);
         })
       )
       .subscribe(([destinations]) => {

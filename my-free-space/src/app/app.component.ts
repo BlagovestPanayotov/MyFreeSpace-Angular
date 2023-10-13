@@ -14,7 +14,7 @@ export class AppComponent {
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
-    this.userService.getUser().subscribe({
+    this.userService.getUserVerify().subscribe({
       next: (user) => {
         this.isAuthInitializing = false;
       },

@@ -1,13 +1,8 @@
-export interface IUser {
+export interface IUserVerify {
   _id: string;
-  email: string;
-  username: string;
-  hashedPassword: string;
-  country: string;
-  gender: string;
   accountName: string;
+  gender: string;
   accessToken: string;
-  accountNameChanged: boolean;
   verified: boolean;
   verify:
     | {
