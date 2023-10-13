@@ -1,6 +1,5 @@
 import { ErrorHandler, Injectable, Provider } from '@angular/core';
 import { Router } from '@angular/router';
-import { USER_KEY } from '../../shared/costants';
 import { UserService } from '../../shared/services/user.service';
 import { SearchService } from '../../shared/services/search.service';
 
@@ -15,7 +14,7 @@ export class GlobalErrorHandler implements ErrorHandler {
   handleError(error: any): void {
     console.error(error);
     if (error.status === 403 || error.status === 401) {
-      localStorage.removeItem(USER_KEY);
+      this.userService.clearUser();
       this.searchService.clearSearch();
       this.userService.clearUser();
       this.router.navigate(['/home']);
