@@ -4,6 +4,9 @@ export interface IDestinationDetails {
   country: string;
   description: string;
   _ownerId: string;
-  img: string;
+  img: {
+    imgUrl: string;
+    thumbUrl: string;
+  };
   _createdOn: string;
 }

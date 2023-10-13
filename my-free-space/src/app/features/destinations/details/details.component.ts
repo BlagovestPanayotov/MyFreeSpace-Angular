@@ -7,7 +7,6 @@ import { DestinationService } from 'src/app/shared/services/destination.service'
 import { UserService } from 'src/app/shared/services/user.service';
 import { IComment } from 'src/app/shared/types/comment';
 import { IDestinationDetails } from 'src/app/shared/types/destinationDetails';
-import { ILike } from 'src/app/shared/types/like';
 import { IUser } from 'src/app/shared/types/user';
 
 @Component({
@@ -24,7 +23,10 @@ export class DetailsComponent implements OnInit {
     country: '',
     description: '',
     _ownerId: '',
-    img: '',
+    img: {
+      imgUrl: '',
+      thumbUrl: '',
+    },
     _createdOn: '',
   };
 
