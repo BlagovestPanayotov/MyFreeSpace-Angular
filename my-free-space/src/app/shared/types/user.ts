@@ -9,10 +9,4 @@ export interface IUser {
   accessToken: string;
   accountNameChanged: boolean;
   verified: boolean;
-  verify:
-    | {
-        url: string;
-        pass: string;
-      }
-    | undefined;
 }

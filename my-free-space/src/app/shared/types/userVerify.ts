@@ -4,10 +4,4 @@ export interface IUserVerify {
   gender: string;
   accessToken: string;
   verified: boolean;
-  verify:
-    | {
-        url: string;
-        pass: string;
-      }
-    | undefined;
 }
