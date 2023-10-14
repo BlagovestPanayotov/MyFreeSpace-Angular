@@ -46,15 +46,13 @@ export class UserService implements OnDestroy {
   login(email: string, password: string) {
     return this.http.post<IUser>(userEndpoints.login, { email, password }).pipe(
       tap((user) => {
-        const { _id, accountName, gender, accessToken, verified, verify } =
-          user;
+        const { _id, accountName, gender, accessToken, verified } = user;
         this.userVerify$$.next({
           _id,
           accountName,
           gender,
           accessToken,
           verified,
-          verify,
         });
         this.user$$.next(user);
       })
@@ -78,15 +76,13 @@ export class UserService implements OnDestroy {
       })
       .pipe(
         tap((user) => {
-          const { _id, accountName, gender, accessToken, verified, verify } =
-            user;
+          const { _id, accountName, gender, accessToken, verified } = user;
           this.userVerify$$.next({
             _id,
             accountName,
             gender,
             accessToken,
             verified,
-            verify,
           });
           this.user$$.next(user);
         })
@@ -110,15 +106,13 @@ export class UserService implements OnDestroy {
       })
       .pipe(
         tap((user) => {
-          const { _id, accountName, gender, accessToken, verified, verify } =
-            user;
+          const { _id, accountName, gender, accessToken, verified } = user;
           this.userVerify$$.next({
             _id,
             accountName,
             gender,
             accessToken,
             verified,
-            verify,
           });
           this.user$$.next(user);
         })
@@ -129,6 +123,10 @@ export class UserService implements OnDestroy {
     return this.http
       .get(userEndpoints.logout)
       .pipe(tap(() => this.clearUser()));
+  }
+
+  verifyEmail(verificationToken: string) {
+    return this.http.get(userEndpoints.verifyEmail(verificationToken));
   }
 
   getUser() {
