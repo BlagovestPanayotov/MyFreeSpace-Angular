@@ -5,37 +5,34 @@ import { ContentComponent } from '../content/content.component';
 import { CreateDestinationComponent } from './create-destination/create-destination.component';
 import { DetailsComponent } from './details/details.component';
 import { AuthGuard } from 'src/app/core/guards/auth.activate';
-
+import { NotVerifiedGuard } from 'src/app/core/guards/not-verified.activate';
 
 const routes: Routes = [
   {
-    path:'user-list',
-    canActivate:[AuthGuard],
-    component:ContentComponent
+    path: 'user-list',
+    canActivate: [AuthGuard, NotVerifiedGuard],
+    component: ContentComponent,
   },
   {
-    path:'posts-list',
-    component:ContentComponent
+    path: 'posts-list',
+    canActivate: [NotVerifiedGuard],
+    component: ContentComponent,
   },
   {
-    path:'create',
-    canActivate:[AuthGuard],
-    component:CreateDestinationComponent
+    path: 'create',
+    canActivate: [AuthGuard,NotVerifiedGuard],
+    component: CreateDestinationComponent,
   },
   {
-    path:'details/:destId',
-    component:DetailsComponent
-  }
-]
+    path: 'details/:destId',
+    canActivate: [NotVerifiedGuard],
+    component: DetailsComponent,
+  },
+];
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes)
-  ],
-  exports:[
-    RouterModule
-  ]
+  imports: [CommonModule, RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
-export class DestinationRoutingModule { }
+export class DestinationRoutingModule {}

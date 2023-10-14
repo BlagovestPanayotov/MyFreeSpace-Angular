@@ -6,35 +6,41 @@ import { LogoutComponent } from './logout/logout.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthGuard } from 'src/app/core/guards/auth.activate';
 import { UnauthGuard } from 'src/app/core/guards/unauth.activate';
-
-
+import { NotVerifiedComponent } from './not-verified/not-verified.component';
+import { NotVerifiedGuard } from 'src/app/core/guards/not-verified.activate';
+import { VerifiedComponent } from './verified/verified.component';
+import { VerifiedGuard } from 'src/app/core/guards/verified.activate';
 
 const routes: Routes = [
   {
     path: 'profile',
-    canActivate:[AuthGuard],
+    canActivate: [AuthGuard, NotVerifiedGuard],
     component: ProfileComponent,
   },
   {
     path: 'logout',
-    canActivate:[AuthGuard],
+    canActivate: [AuthGuard],
     component: LogoutComponent,
   },
   {
     path: 'register',
-    canActivate:[UnauthGuard],
+    canActivate: [UnauthGuard, NotVerifiedGuard],
     component: RegisterComponent,
   },
-]
+  {
+    path: 'verify',
+    component: NotVerifiedComponent,
+  },
+  {
+    path: 'verified/:token',
+    canActivate: [VerifiedGuard],
+    component: VerifiedComponent,
+  },
+];
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes)
-  ],
-  exports:[
-    RouterModule
-  ]
+  imports: [CommonModule, RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
-export class AuthRoutingModule { }
+export class AuthRoutingModule {}
