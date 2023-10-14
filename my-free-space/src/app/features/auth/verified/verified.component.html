@@ -1,0 +1,5 @@
+<app-spinner *ngIf="loading"></app-spinner>
+<main *ngIf="!loading">
+  <p class="error" *ngIf="apiError">{{apiError}}</p>
+  <p *ngIf="!apiError">Your email is verified. You can start using our app. Have fun.</p>
+</main>
