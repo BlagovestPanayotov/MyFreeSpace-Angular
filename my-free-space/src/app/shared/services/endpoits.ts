@@ -6,6 +6,8 @@ export const userEndpoints = {
   logout: URL_ADDRESS + '/users/logout',
   getUser: URL_ADDRESS + '/users/user',
   getUserVerify: URL_ADDRESS + '/users/user/verify',
+  verifyEmail: (verificationToken: string) =>
+    URL_ADDRESS + `/users/user/verify-email?token=${verificationToken}`,
 };
 
 const querries = {
