@@ -19,13 +19,15 @@ export class VerifiedComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    
     this.userService.verifyEmail(this.token).subscribe({
       next: () => {
         this.loading = false;
       },
       error: (err) => {
         this.loading = false;
-        this.apiError = err.error.errors[0];
+        this.apiError = err.message || 'An error occurred while verifying email.';
+        console.log(err);        
       },
     });
   }
