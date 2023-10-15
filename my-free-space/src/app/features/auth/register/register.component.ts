@@ -22,6 +22,18 @@ export class RegisterComponent {
 
   countries: string[] = COUNTRIES_LIST;
 
+  formData: {
+    email: string;
+    username: string;
+    country: string;
+    gender: string;
+  } = {
+    email: '',
+    username: '',
+    country: '',
+    gender: '',
+  };
+
   constructor(private userService: UserService, private router: Router) {}
 
   register(form: NgForm) {
@@ -35,6 +47,7 @@ export class RegisterComponent {
     this.loading = true;
 
     const { email, username, password, country, gender } = form.value;
+    this.formData = form.value;
 
     this.userService
       .register(email, username, password, country, gender)

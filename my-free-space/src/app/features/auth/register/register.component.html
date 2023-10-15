@@ -8,7 +8,8 @@
 
     <label for="Email">User email:</label>
     <div class="flex-input">
-      <input type="email" name="email" id="email" placeholder="Email" ngModel #emailInput="ngModel" required email>
+      <input type="email" name="email" id="email" placeholder="Email" [ngModel]="formData.email" #emailInput="ngModel"
+        required email>
 
       <div class="info">
         <i *ngIf="!emailInput.errors" class="fa-solid fa-circle-check fa-lg" style="color: #008000;"></i>
@@ -25,8 +26,8 @@
 
     <label for="username">Username:</label>
     <div class="flex-input">
-      <input type="username" name="username" id="username" placeholder="Username" ngModel #usernameInput="ngModel"
-        required minlength="5">
+      <input type="username" name="username" id="username" placeholder="Username" [ngModel]="formData.username"
+        #usernameInput="ngModel" required minlength="5">
 
       <div class="info">
         <i *ngIf="!usernameInput.errors" class="fa-solid fa-circle-check fa-lg" style="color: #008000;"></i>
@@ -41,7 +42,7 @@
       </div>
 
     </div>
-    
+
     <div class="password-label-container">
 
       <label for="password">Password:</label>
@@ -107,7 +108,7 @@
 
     <label for="country">Which country do you live in?</label>
     <div class="flex-input">
-      <select name="country" id="country" ngModel #countryInput="ngModel" required>
+      <select name="country" id="country" [ngModel]="formData.country" #countryInput="ngModel" required>
         <option value="" selected disabled>country...</option>
         <option *ngFor="let country of countries" [ngValue]="country">
           {{country}}
@@ -128,11 +129,11 @@
     <label for="gender">Gender:</label>
     <div class="flex-input">
       <div id="gender">
-        <input type="radio" id="male" name="gender" value="M" ngModel #genderInput="ngModel" required>
+        <input type="radio" id="male" name="gender" value="M" [ngModel]="formData.gender" #genderInput="ngModel" required>
         <label for="html">Male</label>
-        <input type="radio" id="female" name="gender" value="W" ngModel #genderInput="ngModel" required>
+        <input type="radio" id="female" name="gender" value="W" [ngModel]="formData.gender" #genderInput="ngModel" required>
         <label for="css">Female</label>
-        <input type="radio" id="unknown" name="gender" value="unknown" ngModel #genderInput="ngModel" required>
+        <input type="radio" id="unknown" name="gender" value="unknown" [ngModel]="formData.gender" #genderInput="ngModel" required>
         <label for="unknown">Prefer not to say</label>
       </div>
 
