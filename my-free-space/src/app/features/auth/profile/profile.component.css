@@ -180,7 +180,7 @@ p.error.serverErrors {
   margin: 0 auto;
 }
 
-#email {
+input:read-only {
   background-color: #c0c580;
   color: #6d6d6d;
   outline: 2px solid transparent;

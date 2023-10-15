@@ -33,7 +33,7 @@
       <label for="accountname">Account name:</label>
       <div class="flex-input">
         <input type="accountname" name="accountname" id="accountname" placeholder="AccountName"
-          #accountNameInput="ngModel" [ngModel]="user?.accountName" minlength="5" required>
+          #accountNameInput="ngModel" [ngModel]="user?.accountName" minlength="5" required [readonly]="user?.accountNameChanged">
         <div class="info">
           <i class="fa-solid fa-circle-info fa-xl" style="color: #008000;"></i>
           <div class="popuptext">
