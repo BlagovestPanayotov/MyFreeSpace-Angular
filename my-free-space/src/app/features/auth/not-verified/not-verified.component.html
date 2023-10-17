@@ -1,5 +1,8 @@
 <main>
+  <p class="error" *ngIf="apiError">{{apiError}}</p>
   <p>Your email is not verified. Check you email and follow the instructions for verification.</p>
-  <p class="small">If you don't hane an email from us, please check you spam messages or <a href="">request new
+  <app-mini-spinner *ngIf="loading"></app-mini-spinner>
+  <p *ngIf="!loading" class="small">If you don't hane an email from us, please check you spam messages or <a
+      (click)="sendVerificationEmail()" [ngClass]="emailSent ? 'sent': 'notSent' ">request new
       email!</a></p>
 </main>

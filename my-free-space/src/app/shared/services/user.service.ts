@@ -135,6 +135,10 @@ export class UserService implements OnDestroy {
       .pipe(tap((user) => this.user$$.next(user)));
   }
 
+  resendVerifyEmail(){
+    return this.http.get(userEndpoints.resendVerifyEmail);
+  }
+
   getUserVerify() {
     return this.http
       .get<IUserVerify | undefined>(userEndpoints.getUserVerify)

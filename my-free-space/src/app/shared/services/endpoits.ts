@@ -8,6 +8,7 @@ export const userEndpoints = {
   getUserVerify: URL_ADDRESS + '/users/user/verify',
   verifyEmail: (verificationToken: string) =>
     URL_ADDRESS + `/users/user/verify-email?token=${verificationToken}`,
+  resendVerifyEmail: URL_ADDRESS + '/users/user/verify-resend',
 };
 
 const querries = {
