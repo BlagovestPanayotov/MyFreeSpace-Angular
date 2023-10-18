@@ -9,4 +9,8 @@ export interface IUser {
   accessToken: string;
   accountNameChanged: boolean;
   verified: boolean;
+  image: {
+    imgUrl: string;
+    thumbUrl: string;
+  };
 }
