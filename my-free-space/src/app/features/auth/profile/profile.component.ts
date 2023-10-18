@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { COUNTRIES_LIST } from 'src/app/shared/costants';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { COUNTRIES_LIST, MAX_IMAGE_SIZE } from 'src/app/shared/costants';
 import { UserService } from 'src/app/shared/services/user.service';
 import { IUser } from 'src/app/shared/types/user';
 
@@ -9,15 +9,23 @@ import { IUser } from 'src/app/shared/types/user';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css'],
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnInit {
+  form!: FormGroup;
+
   user: IUser | undefined;
   loading: boolean = true;
   apiError: string = '';
 
+  selectedFile: File | null = null;
   editMode: boolean = false;
   countries: string[] = COUNTRIES_LIST;
 
-  constructor(private userService: UserService) {
+  constructor(
+    private userService: UserService,
+    private formBuilder: FormBuilder
+  ) {}
+
+  ngOnInit(): void {
     this.userService.getUser().subscribe({
       next: (u) => {
         this.user = u;
@@ -33,18 +41,47 @@ export class ProfileComponent {
 
   toggleEditMode() {
     this.editMode = !this.editMode;
+    this.form = this.formBuilder.group({
+      email: [this.user?.email, []],
+      username: [this.user?.username, []],
+      accountname: [this.user?.accountName, []],
+      country: [this.user?.country, [Validators.required]],
+      gender: [this.user?.gender, []],
+      fileInput: [null, []],
+      // name: ['', [Validators.required, Validators.minLength(5)]],
+      // description: ['', [Validators.required, Validators.minLength(20)]],
+    });
   }
 
-  editUser(form: NgForm) {
-    if (form.invalid) {
-      console.log(form.value);
+  onFileSelected(event: any) {
+    const fileList: FileList | null = event.target.files;
+    if (fileList && fileList.length > 0) {
+      this.selectedFile = fileList[0];
+    }
+  }
 
+  editUser() {
+    if (this.form.invalid) {
+      return;
+    }
+
+    if (!this.selectedFile || this.selectedFile.size > MAX_IMAGE_SIZE) {
+      this.apiError = 'The size of the image too big!';
+      window.scroll(0, 0);
       return;
     }
 
     this.loading = true;
 
-    const { email, username, country, gender, accountname } = form.value;
+    const { email, username, country, gender, accountname } = this.form.value;
+
+    const formData = new FormData();
+    formData.append('email', email);
+    formData.append('username', username);
+    formData.append('accountname', accountname);
+    formData.append('country', country);
+    formData.append('gender', gender);
+    formData.append('fileInput', this.selectedFile, this.selectedFile.name);
 
     this.userService
       .updateUser(email, username, country, gender, accountname)

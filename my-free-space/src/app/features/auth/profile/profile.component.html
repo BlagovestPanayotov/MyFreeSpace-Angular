@@ -6,19 +6,17 @@
   <div class="profile-container" *ngIf="editMode">
     <p *ngIf="apiError" class="error serverErrors">{{apiError}}</p>
     <h2 class="info-title">Profile Edit</h2>
-    <form class="edit-form" #formEdit="ngForm" (submit)="editUser(formEdit)">
+    <form [formGroup]="form" (submit)="editUser()" class="edit-form">
 
       <label for="Email">User email:</label>
       <div class="flex-input">
-        <input type="email" name="email" id="email" placeholder="Email" #emailInput="ngModel" [ngModel]="user?.email"
-          readonly>
+        <input type="email" formControlName="email" id="email" placeholder="Email" readonly>
       </div>
 
       <label for="username">Username:</label>
       <div class="flex-input">
-        <input type="username" name="username" id="username" placeholder="Username" #usernameInput="ngModel"
-          [ngModel]="user?.username" minlength="5" required>
-        <div class="info">
+        <input type="username" formControlName="username" id="username" placeholder="Username">
+        <!-- <div class="info">
           <i *ngIf="usernameInput.errors" class="fa-solid fa-circle-exclamation fa-lg" style="color: #800000;"></i>
           <div class="popuptext" *ngIf="usernameInput.errors">
             <p [ngClass]="usernameInput.errors['required'] ? 'error' : 'correct'">The username is required!</p>
@@ -27,13 +25,13 @@
               username must be at least 5
               characters!</p>
           </div>
-        </div>
+        </div> -->
       </div>
 
       <label for="accountname">Account name:</label>
       <div class="flex-input">
-        <input type="accountname" name="accountname" id="accountname" placeholder="AccountName"
-          #accountNameInput="ngModel" [ngModel]="user?.accountName" minlength="5" required [readonly]="user?.accountNameChanged">
+        <input type="accountname" formControlName="accountname" id="accountname" placeholder="AccountName"
+          [readonly]="user?.accountNameChanged">
         <div class="info">
           <i class="fa-solid fa-circle-info fa-xl" style="color: #008000;"></i>
           <div class="popuptext">
@@ -43,7 +41,7 @@
             <p *ngIf="user?.accountNameChanged">You have changed the acount name alredy!</p>
           </div>
         </div>
-        <div class="info" *ngIf="accountNameInput.errors">
+        <!-- <div class="info" *ngIf="accountNameInput.errors">
           <i *ngIf="!accountNameInput.errors" class="fa-solid fa-circle-check fa-lg" style="color: #008000;"></i>
           <i *ngIf="accountNameInput.errors" class="fa-solid fa-circle-exclamation fa-lg" style="color: #800000;"></i>
           <div class="popuptext">
@@ -55,12 +53,12 @@
               The account name must be at least 5 characters!
             </p>
           </div>
-        </div>
+        </div> -->
       </div>
 
       <label for="country">Which country do you live in?</label>
       <div class="flex-input">
-        <select name="country" id="country" [ngModel]="user?.country" #countryInput="ngModel" required>
+        <select formControlName="country" id="country">
           <option [ngValue]="null" disabled>Country...</option>
           <option *ngFor="let country of countries" [ngValue]="country" (selected)="country==user?.country">
             {{country}}
@@ -72,15 +70,26 @@
       <div class="flex-input">
         <div id="gender">
           <div id="gender">
-            <input type="radio" id="male" name="gender" value="M" [ngModel]="user?.gender" #genderInput="ngModel"
-              required>
+            <input type="radio" id="male" formControlName="gender" value="M">
             <label for="html">Male</label>
-            <input type="radio" id="female" name="gender" value="W" [ngModel]="user?.gender" #genderInput="ngModel"
-              required>
+            <input type="radio" id="female" formControlName="gender" value="W">
             <label for="css">Female</label>
-            <input type="radio" id="unknown" name="gender" value="unknown" [ngModel]="user?.gender"
-              #genderInput="ngModel" required>
+            <input type="radio" id="unknown" formControlName="gender" value="unknown">
             <label for="unknown">Prefer not to say</label>
+          </div>
+        </div>
+      </div>
+
+      <label for="fileInput">Uploade Profile Image:</label>
+      <div class="flex-input">
+        <input type="file" formControlName="fileInput" accept=".jpg, .jpeg, .png" (change)="onFileSelected($event)">
+        <div class="info">
+          <i *ngIf="form.get('fileInput')?.invalid && (form.get('fileInput')?.dirty || form.get('fileInput')?.touched)"
+            class="fa-solid fa-circle-exclamation fa-lg" style="color: #800000;"></i>
+          <div class="popuptext" *ngIf="form.get('fileInput')?.hasError('required')">
+            <p class="error">You must upload image for your destination.</p>
+            <hr>
+            <p class="error">Image max size - 32MB.</p>
           </div>
         </div>
       </div>
@@ -93,6 +102,17 @@
 
   <div class="profile-container" *ngIf="!editMode">
     <h2 class="info-title">Profile Info</h2>
+
+    <div class="imageContainer">
+      <ng-container *ngIf="user?.image?.imgUrl">
+        <img src="{{user?.image?.imgUrl}}" alt="" class="profile">
+      </ng-container>
+      <ng-container *ngIf="!user?.image?.imgUrl">
+        <img *ngIf="user?.gender==='M'" src="/assets/profile-images/profile-male.png" alt="Prolife">
+        <img *ngIf="user?.gender==='W'" src="/assets/profile-images/profile-female.png" alt="Prolife">
+        <img *ngIf="user?.gender==='unknown'" src="/assets/profile-images/profile-unknown.png" alt="Prolife">
+      </ng-container>
+    </div>
 
     <div class="info-profile-container">
 
