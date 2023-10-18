@@ -8,7 +8,7 @@
       <input type="text" formControlName="name" id="name" placeholder="Destination name...">
       <div class="info">
         <i *ngIf="form.get('name')?.invalid && (form.get('name')?.dirty || form.get('name')?.touched)"
-           class="fa-solid fa-circle-exclamation fa-lg" style="color: #800000;"></i>
+          class="fa-solid fa-circle-exclamation fa-lg" style="color: #800000;"></i>
         <div class="popuptext" *ngIf="form.get('name')?.hasError('required')">
           <p class="error">The name is required!</p>
         </div>
@@ -26,7 +26,7 @@
       </select>
       <div class="info">
         <i *ngIf="form.get('country')?.invalid && (form.get('country')?.dirty || form.get('country')?.touched)"
-           class="fa-solid fa-circle-exclamation fa-lg" style="color: #800000;"></i>
+          class="fa-solid fa-circle-exclamation fa-lg" style="color: #800000;"></i>
         <div class="popuptext" *ngIf="form.get('country')?.hasError('required')">
           <p class="error">The country is required!</p>
         </div>
@@ -35,10 +35,11 @@
 
     <label for="description">Description:</label>
     <div class="flex-input">
-      <textarea formControlName="description" id="description" cols="30" rows="10" placeholder="Description..."></textarea>
+      <textarea formControlName="description" id="description" cols="30" rows="10"
+        placeholder="Description..."></textarea>
       <div class="info">
         <i *ngIf="form.get('description')?.invalid && (form.get('description')?.dirty || form.get('description')?.touched)"
-           class="fa-solid fa-circle-exclamation fa-lg" style="color: #800000;"></i>
+          class="fa-solid fa-circle-exclamation fa-lg" style="color: #800000;"></i>
         <div class="popuptext" *ngIf="form.get('description')?.hasError('required')">
           <p class="error">The description is required!</p>
         </div>
@@ -48,15 +49,21 @@
       </div>
     </div>
 
-    <div>
+    <label for="fileInput">Uploade Image:</label>
+    <div class="flex-input">
       <input type="file" formControlName="fileInput" accept=".jpg, .jpeg, .png" (change)="onFileSelected($event)">
       <div class="info">
-        <p *ngIf="form.get('fileInput')?.invalid && (form.get('fileInput')?.dirty || form.get('fileInput')?.touched)"
-           style="color: red">This field is required!</p>
+        <i *ngIf="form.get('fileInput')?.invalid && (form.get('fileInput')?.dirty || form.get('fileInput')?.touched)"
+          class="fa-solid fa-circle-exclamation fa-lg" style="color: #800000;"></i>
+        <div class="popuptext" *ngIf="form.get('fileInput')?.hasError('required')">
+          <p class="error">You must upload image for your destination.</p>
+          <hr>
+          <p class="error">Image max size - 32MB.</p>
+        </div>
       </div>
     </div>
 
-    <app-mini-spinner *ngIf="creating"></app-mini-spinner>
-    <button type="submit" *ngIf="!creating">Create</button>
+    <app-mini-spinner *ngIf="loading"></app-mini-spinner>
+    <button type="submit" *ngIf="!loading">Create</button>
   </form>
 </div>

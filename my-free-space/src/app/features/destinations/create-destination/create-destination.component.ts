@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { COUNTRIES_LIST } from 'src/app/shared/costants';
+import { COUNTRIES_LIST, MAX_IMAGE_SIZE } from 'src/app/shared/costants';
 import { DestinationService } from 'src/app/shared/services/destination.service';
 import { SearchService } from 'src/app/shared/services/search.service';
 
@@ -17,9 +17,7 @@ export class CreateDestinationComponent implements OnInit {
   apiError: string = '';
   countries: string[] = COUNTRIES_LIST;
 
-  creating: boolean = false;
-
-  maxSizeImageInBytes: number = 10 * 1024 * 1024;
+  loading: boolean = false;
 
   constructor(
     private destinationService: DestinationService,
@@ -51,7 +49,7 @@ export class CreateDestinationComponent implements OnInit {
 
     if (
       !this.selectedFile ||
-      this.selectedFile.size > this.maxSizeImageInBytes // TO DO -> error handling for image size
+      this.selectedFile.size > MAX_IMAGE_SIZE
     ) {
       this.apiError = 'The size of the image too big!';
       window.scroll(0, 0);
@@ -65,10 +63,10 @@ export class CreateDestinationComponent implements OnInit {
     formData.append('country', country);
     formData.append('description', description);
     formData.append('fileInput', this.selectedFile, this.selectedFile.name);
-    this.creating = true;
+    this.loading = true;
     this.destinationService.createDestination(formData).subscribe({
       next: () => {
-        this.creating = false;
+        this.loading = false;
         this.router.navigate(['/dest/user-list']);
         this.searchService.setAllListPage(1);
         this.searchService.setUserListPage(1);
@@ -77,7 +75,7 @@ export class CreateDestinationComponent implements OnInit {
         this.apiError =
           'There is a problem and we are working on it. Sorry for the inconvenience.';
         window.scroll(0, 0);
-        this.creating = false;
+        this.loading = false;
       },
     });
   }
