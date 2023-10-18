@@ -1,5 +1,6 @@
 export const URL_ADDRESS = 'http://localhost:3030';
 export const USER_KEY = '[user]';
+export const MAX_IMAGE_SIZE = 10 * 1024 * 1024;
 export const COUNTRIES_LIST: string[] = [
   'Afghanistan',
   'Aland Islands',
