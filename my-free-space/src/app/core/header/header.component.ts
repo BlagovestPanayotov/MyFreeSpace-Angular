@@ -9,6 +9,10 @@ import { UserService } from 'src/app/shared/services/user.service';
 export class HeaderComponent {
   constructor(private userService: UserService) {}
 
+  get userThumb(): string {
+    return this.userService.getThumb;
+  }
+
   get userGender(): string {
     return this.userService.getGender;
   }

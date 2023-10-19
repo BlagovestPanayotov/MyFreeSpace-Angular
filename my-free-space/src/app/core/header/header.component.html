@@ -3,9 +3,14 @@
         <ul>
             <li class="profile-nav" *ngIf="isLogged">
                 <a routerLink="/auth/profile">
-                    <img *ngIf="userGender==='M'" src="/assets/profile-images/profile-male.png" alt="Prolife">
-                    <img *ngIf="userGender==='W'" src="/assets/profile-images/profile-female.png" alt="Prolife">
-                    <img *ngIf="userGender==='unknown'" src="/assets/profile-images/profile-unknown.png" alt="Prolife">
+                    <ng-container *ngIf="userThumb">
+                        <img src="{{userThumb}}" alt="Profile Image">
+                    </ng-container>
+                    <ng-container *ngIf="!userThumb">
+                        <img *ngIf="userGender==='M'" src="/assets/profile-images/profile-male.png" alt="Prolife">
+                        <img *ngIf="userGender==='W'" src="/assets/profile-images/profile-female.png" alt="Prolife">
+                        <img *ngIf="userGender==='unknown'" src="/assets/profile-images/profile-unknown.png" alt="Prolife">
+                    </ng-container>
                 </a>
             </li>
             <li><a routerLink="/home">Home</a></li>
