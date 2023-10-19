@@ -7,11 +7,12 @@ import {
   HTTP_INTERCEPTORS,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { USER_KEY } from './shared/costants';
+import { MULTIPART_FORMS_URL, USER_KEY } from './shared/costants';
 
 @Injectable()
 export class AppInterceptor implements HttpInterceptor {
   userToken: string | null = null;
+
 
   constructor() {}
 
@@ -28,7 +29,7 @@ export class AppInterceptor implements HttpInterceptor {
         },
       });
 
-      if (request.url !== 'http://localhost:3030/dest/destinations') {
+      if (!MULTIPART_FORMS_URL.includes(request.url)) {
         request = request.clone({
           setHeaders: {
             'Content-Type': 'application/json',
