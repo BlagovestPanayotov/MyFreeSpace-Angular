@@ -56,6 +56,8 @@ export class CreateDestinationComponent implements OnInit {
       return;
     }
 
+    this.loading = true;
+
     const { name, country, description } = this.form.value;
 
     const formData = new FormData();
@@ -63,7 +65,7 @@ export class CreateDestinationComponent implements OnInit {
     formData.append('country', country);
     formData.append('description', description);
     formData.append('fileInput', this.selectedFile, this.selectedFile.name);
-    this.loading = true;
+    
     this.destinationService.createDestination(formData).subscribe({
       next: () => {
         this.loading = false;

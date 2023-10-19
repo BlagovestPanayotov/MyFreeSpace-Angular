@@ -1,5 +1,5 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Subscription, tap } from 'rxjs';
 
 import { IUser } from '../types/user';
@@ -39,6 +39,10 @@ export class UserService implements OnDestroy {
     return !!this.userVerify;
   }
 
+  get getThumb(): string {
+    return this.userVerify?.thumbUrl || '';
+  }
+
   get getGender(): string {
     return this.userVerify?.gender || '';
   }
@@ -46,13 +50,19 @@ export class UserService implements OnDestroy {
   login(email: string, password: string) {
     return this.http.post<IUser>(userEndpoints.login, { email, password }).pipe(
       tap((user) => {
-        const { _id, accountName, gender, accessToken, verified } = user;
+        const {
+          _id,
+          accountName,
+          gender,
+          verified,
+          image: { thumbUrl },
+        } = user;
         this.userVerify$$.next({
           _id,
           accountName,
           gender,
-          accessToken,
           verified,
+          thumbUrl,
         });
         this.user$$.next(user);
       })
@@ -76,43 +86,46 @@ export class UserService implements OnDestroy {
       })
       .pipe(
         tap((user) => {
-          const { _id, accountName, gender, accessToken, verified } = user;
+          const {
+            _id,
+            accountName,
+            gender,
+            verified,
+            image: { thumbUrl },
+          } = user;
           this.userVerify$$.next({
             _id,
             accountName,
             gender,
-            accessToken,
             verified,
+            thumbUrl,
           });
           this.user$$.next(user);
         })
       );
   }
 
-  updateUser(
-    email: string,
-    username: string,
-    country: string,
-    gender: string,
-    accountname: string
-  ) {
+  updateUser(formData: FormData) {
+    const headers = new HttpHeaders();
+    headers.set('Content-Type', 'multipart/form-data');
+
     return this.http
-      .put<IUser>(userEndpoints.getUser, {
-        email,
-        username,
-        country,
-        gender,
-        accountname,
-      })
+      .put<IUser>(userEndpoints.getUser, formData, { headers: headers })
       .pipe(
         tap((user) => {
-          const { _id, accountName, gender, accessToken, verified } = user;
+          const {
+            _id,
+            accountName,
+            gender,
+            verified,
+            image: { thumbUrl },
+          } = user;
           this.userVerify$$.next({
             _id,
             accountName,
             gender,
-            accessToken,
             verified,
+            thumbUrl,
           });
           this.user$$.next(user);
         })
@@ -135,7 +148,7 @@ export class UserService implements OnDestroy {
       .pipe(tap((user) => this.user$$.next(user)));
   }
 
-  resendVerifyEmail(){
+  resendVerifyEmail() {
     return this.http.get(userEndpoints.resendVerifyEmail);
   }
 

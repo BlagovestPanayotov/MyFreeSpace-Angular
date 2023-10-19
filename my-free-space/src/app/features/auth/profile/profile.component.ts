@@ -30,6 +30,19 @@ export class ProfileComponent implements OnInit {
       next: (u) => {
         this.user = u;
         this.loading = false;
+        this.form = this.formBuilder.group({
+          email: [this.user?.email, []],
+          username: [
+            this.user?.username,
+            [Validators.required, Validators.minLength(5)],
+          ],
+          accountname: [this.user?.accountName, []],
+          country: [this.user?.country, [Validators.required]],
+          gender: [this.user?.gender, []],
+          fileInput: [null, []],
+          // name: ['', [Validators.required, Validators.minLength(5)]],
+          // description: ['', [Validators.required, Validators.minLength(20)]],
+        });
       },
       error: (err) => {
         this.user = undefined;
@@ -41,16 +54,6 @@ export class ProfileComponent implements OnInit {
 
   toggleEditMode() {
     this.editMode = !this.editMode;
-    this.form = this.formBuilder.group({
-      email: [this.user?.email, []],
-      username: [this.user?.username, []],
-      accountname: [this.user?.accountName, []],
-      country: [this.user?.country, [Validators.required]],
-      gender: [this.user?.gender, []],
-      fileInput: [null, []],
-      // name: ['', [Validators.required, Validators.minLength(5)]],
-      // description: ['', [Validators.required, Validators.minLength(20)]],
-    });
   }
 
   onFileSelected(event: any) {
@@ -65,7 +68,7 @@ export class ProfileComponent implements OnInit {
       return;
     }
 
-    if (!this.selectedFile || this.selectedFile.size > MAX_IMAGE_SIZE) {
+    if (this.selectedFile && this.selectedFile.size > MAX_IMAGE_SIZE) {
       this.apiError = 'The size of the image too big!';
       window.scroll(0, 0);
       return;
@@ -81,25 +84,25 @@ export class ProfileComponent implements OnInit {
     formData.append('accountname', accountname);
     formData.append('country', country);
     formData.append('gender', gender);
-    formData.append('fileInput', this.selectedFile, this.selectedFile.name);
+    if (this.selectedFile) {
+      formData.append('fileInput', this.selectedFile, this.selectedFile.name);
+    }
 
-    this.userService
-      .updateUser(email, username, country, gender, accountname)
-      .subscribe({
-        next: (result) => {
-          this.user = result;
-          this.toggleEditMode();
+    this.userService.updateUser(formData).subscribe({
+      next: (result) => {
+        this.user = result;
+        this.toggleEditMode();
+        this.loading = false;
+      },
+      error: (err) => {
+        if (err.status === 403 || err.status === 401) {
+          window.scroll(0, 0);
+          this.apiError = err.error.errors[0];
           this.loading = false;
-        },
-        error: (err) => {
-          if (err.status === 403 || err.status === 401) {
-            window.scroll(0, 0);
-            this.apiError = err.error.errors[0];
-            this.loading = false;
-            return;
-          }
-          throw err;
-        },
-      });
+          return;
+        }
+        throw err;
+      },
+    });
   }
 }
