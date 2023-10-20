@@ -16,16 +16,6 @@
       <label for="username">Username:</label>
       <div class="flex-input">
         <input type="username" formControlName="username" id="username" placeholder="Username">
-        <!-- <div class="info">
-          <i *ngIf="usernameInput.errors" class="fa-solid fa-circle-exclamation fa-lg" style="color: #800000;"></i>
-          <div class="popuptext" *ngIf="usernameInput.errors">
-            <p [ngClass]="usernameInput.errors['required'] ? 'error' : 'correct'">The username is required!</p>
-            <hr>
-            <p [ngClass]="(usernameInput.errors['minlength'] || usernameInput.value === '') ? 'error' : 'correct'">The
-              username must be at least 5
-              characters!</p>
-          </div>
-        </div> -->
       </div>
 
       <label for="accountname">Account name:</label>
@@ -36,24 +26,11 @@
           <i class="fa-solid fa-circle-info fa-xl" style="color: #008000;"></i>
           <div class="popuptext">
             <p *ngIf="!user?.accountNameChanged">You can change the account name only once. Make sure this is the
-              acount
+              account
               name you want!</p>
-            <p *ngIf="user?.accountNameChanged">You have changed the acount name alredy!</p>
+            <p *ngIf="user?.accountNameChanged">You have changed the account name already!</p>
           </div>
         </div>
-        <!-- <div class="info" *ngIf="accountNameInput.errors">
-          <i *ngIf="!accountNameInput.errors" class="fa-solid fa-circle-check fa-lg" style="color: #008000;"></i>
-          <i *ngIf="accountNameInput.errors" class="fa-solid fa-circle-exclamation fa-lg" style="color: #800000;"></i>
-          <div class="popuptext">
-            <p [ngClass]="accountNameInput?.errors?.['required'] ? 'error' : 'correct'">The username is required!
-            </p>
-            <hr>
-            <p
-              [ngClass]="(accountNameInput?.errors?.['minlength'] || accountNameInput.value === '') ? 'error' : 'correct'">
-              The account name must be at least 5 characters!
-            </p>
-          </div>
-        </div> -->
       </div>
 
       <label for="country">Which country do you live in?</label>
@@ -80,15 +57,18 @@
         </div>
       </div>
 
-      <label for="fileInput">Uploade Profile Image:</label>
+      <label for="fileInput">Upload Profile Image:</label>
       <div class="flex-input">
-        <input type="file" formControlName="fileInput" accept=".jpg, .jpeg, .png" (change)="onFileSelected($event)">
+        <div>
+          <input type="file" formControlName="fileInput" accept=".jpg, .jpeg, .png, .webp"
+            (change)="onFileSelected($event)" id="fileInput">
+          <label for="removeImage" class="removeImage">Remove Image</label>
+          <input type="checkbox" formControlName="removeImage" id="removeImage">
+        </div>
         <div class="info">
           <i *ngIf="form.get('fileInput')?.invalid && (form.get('fileInput')?.dirty || form.get('fileInput')?.touched)"
             class="fa-solid fa-circle-exclamation fa-lg" style="color: #800000;"></i>
-          <div class="popuptext" *ngIf="form.get('fileInput')?.hasError('required')">
-            <p class="error">You must upload image for your destination.</p>
-            <hr>
+          <div class="popuptext">
             <p class="error">Image max size - 32MB.</p>
           </div>
         </div>

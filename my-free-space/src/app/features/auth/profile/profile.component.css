@@ -24,7 +24,7 @@
   overflow: hidden;
 }
 
-.imageContainer img{
+.imageContainer img {
   min-width: 100%;
   min-height: 100%;
   max-width: none;
@@ -101,6 +101,11 @@ form .flex-input .radio-info {
   margin-left: 2rem;
 }
 
+form .flex-input label.removeImage {
+  font-size: 1rem;
+  margin-right: 2rem;
+}
+
 form .flex-input .info .popuptext {
   position: absolute;
   top: 2rem;
@@ -127,6 +132,12 @@ form .flex-input .info:hover .popuptext {
 form .flex-input i {
   margin-left: 0.5rem;
 }
+
+#fileInput {
+  display: block;
+}
+
+
 
 /* Hoover Header components */
 

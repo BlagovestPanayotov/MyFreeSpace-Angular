@@ -30,19 +30,6 @@ export class ProfileComponent implements OnInit {
       next: (u) => {
         this.user = u;
         this.loading = false;
-        this.form = this.formBuilder.group({
-          email: [this.user?.email, []],
-          username: [
-            this.user?.username,
-            [Validators.required, Validators.minLength(5)],
-          ],
-          accountname: [this.user?.accountName, []],
-          country: [this.user?.country, [Validators.required]],
-          gender: [this.user?.gender, []],
-          fileInput: [null, []],
-          // name: ['', [Validators.required, Validators.minLength(5)]],
-          // description: ['', [Validators.required, Validators.minLength(20)]],
-        });
       },
       error: (err) => {
         this.user = undefined;
@@ -54,6 +41,21 @@ export class ProfileComponent implements OnInit {
 
   toggleEditMode() {
     this.editMode = !this.editMode;
+    this.loading = false;
+    this.form = this.formBuilder.group({
+      email: [this.user?.email, [Validators.required]],
+      username: [
+        this.user?.username,
+        [Validators.required, Validators.minLength(5)],
+      ],
+      accountname: [this.user?.accountName, []],
+      country: [this.user?.country, [Validators.required]],
+      gender: [this.user?.gender, [Validators.required]],
+      fileInput: null,
+      removeImage: false,
+      // name: ['', [Validators.required, Validators.minLength(5)]],
+      // description: ['', [Validators.required, Validators.minLength(20)]],
+    });
   }
 
   onFileSelected(event: any) {
@@ -76,7 +78,9 @@ export class ProfileComponent implements OnInit {
 
     this.loading = true;
 
-    const { email, username, country, gender, accountname } = this.form.value;
+    const { email, username, country, gender, accountname, removeImage } =
+      this.form.value;
+    console.log(this.form.value);
 
     const formData = new FormData();
     formData.append('email', email);
@@ -84,8 +88,11 @@ export class ProfileComponent implements OnInit {
     formData.append('accountname', accountname);
     formData.append('country', country);
     formData.append('gender', gender);
-    if (this.selectedFile) {
-      formData.append('fileInput', this.selectedFile, this.selectedFile.name);
+    formData.append('removeImage', removeImage);
+    if (!removeImage) {
+      if (this.selectedFile) {
+        formData.append('fileInput', this.selectedFile, this.selectedFile.name);
+      }
     }
 
     this.userService.updateUser(formData).subscribe({
