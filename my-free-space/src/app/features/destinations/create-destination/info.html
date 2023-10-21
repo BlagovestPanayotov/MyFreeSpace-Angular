@@ -1,0 +1,106 @@
+@@ -1,73 +1,61 @@
+<div id="create-form-container">
+  <h2>Create</h2>
+  <p class="error api-error" *ngIf="apiError">{{apiError}}</p>
+  <form #form="ngForm" (submit)="createDestination(form)" id="create-form">
+  <p class="error api-error" *ngIf="apiError">{{ apiError }}</p>
+  <form [formGroup]="form" (submit)="createDestination()" id="create-form">
+
+    <label for="name">Destination Name:</label>
+    <div class="flex-input">
+      <input type="text" name="name" id="name" placeholder="Destination name..." ngModel #nameInput="ngModel" required
+        minlength="5">
+      <input type="text" formControlName="name" id="name" placeholder="Destination name...">
+      <div class="info">
+        <i *ngIf="!nameInput.errors" class="fa-solid fa-circle-check fa-lg" style="color: #008000;"></i>
+        <i *ngIf="nameInput.errors" class="fa-solid fa-circle-exclamation fa-lg" style="color: #800000;"></i>
+        <div class="popuptext" *ngIf="nameInput.errors">
+          <p [ngClass]="nameInput.errors['required'] ? 'error' : 'correct'">The name is required!</p>
+          <hr>
+          <p [ngClass]="(nameInput.errors['minlength']) ? 'error' : 'correct'">The name must be at least 5
+            characters!</p>
+        <i *ngIf="form.get('name')?.invalid && (form.get('name')?.dirty || form.get('name')?.touched)"
+           class="fa-solid fa-circle-exclamation fa-lg" style="color: #800000;"></i>
+        <div class="popuptext" *ngIf="form.get('name')?.hasError('required')">
+          <p class="error">The name is required!</p>
+        </div>
+        <div class="popuptext" *ngIf="form.get('name')?.hasError('minlength')">
+          <p class="error">The name must be at least 5 characters!</p>
+        </div>
+      </div>
+    </div>
+
+    <label for="country">Select Country:</label>
+    <div class="flex-input">
+      <select name="country" id="country" ngModel #countryInput="ngModel" required>
+        <option value="" selected disabled>country...</option>
+        <option *ngFor="let country of countries" [ngValue]="country">
+          {{country}}
+        </option>
+      <select formControlName="country" id="country" required>
+        <option value="" selected disabled>Country...</option>
+        <option *ngFor="let country of countries" [value]="country">{{ country }}</option>
+      </select>
+      <div class="info">
+        <i *ngIf="!countryInput.errors" class="fa-solid fa-circle-check fa-lg" style="color: #008000;"></i>
+        <i *ngIf="countryInput.errors" class="fa-solid fa-circle-exclamation fa-lg" style="color: #800000;"></i>
+        <div class="popuptext" *ngIf="countryInput.errors">
+          <p [ngClass]="countryInput.errors['required'] ? 'error' : 'correct'">The country is required!</p>
+        <i *ngIf="form.get('country')?.invalid && (form.get('country')?.dirty || form.get('country')?.touched)"
+           class="fa-solid fa-circle-exclamation fa-lg" style="color: #800000;"></i>
+        <div class="popuptext" *ngIf="form.get('country')?.hasError('required')">
+          <p class="error">The country is required!</p>
+        </div>
+      </div>
+    </div>
+
+    <label for="description">Description:</label>
+    <div class="flex-input">
+      <textarea name="description" id="description" cols="30" rows="10" placeholder="Description..." ngModel
+        #descriptionInput="ngModel" required minlength="20"></textarea>
+      <textarea formControlName="description" id="description" cols="30" rows="10" placeholder="Description..."></textarea>
+      <div class="info">
+        <i *ngIf="!descriptionInput.errors" class="fa-solid fa-circle-check fa-lg" style="color: #008000;"></i>
+        <i *ngIf="descriptionInput.errors" class="fa-solid fa-circle-exclamation fa-lg" style="color: #800000;"></i>
+        <div class="popuptext" *ngIf="descriptionInput.errors">
+          <p [ngClass]="descriptionInput.errors['required'] ? 'error' : 'correct'">The description is required!</p>
+          <hr>
+          <p [ngClass]="(descriptionInput.errors['minlength']) ? 'error' : 'correct'">The description must be at least
+            20
+            characters!</p>
+        <i *ngIf="form.get('description')?.invalid && (form.get('description')?.dirty || form.get('description')?.touched)"
+           class="fa-solid fa-circle-exclamation fa-lg" style="color: #800000;"></i>
+        <div class="popuptext" *ngIf="form.get('description')?.hasError('required')">
+          <p class="error">The description is required!</p>
+        </div>
+        <div class="popuptext" *ngIf="form.get('description')?.hasError('minlength')">
+          <p class="error">The description must be at least 20 characters!</p>
+        </div>
+      </div>
+    </div>
+
+    <label for="img">Image URL:</label>
+    <div class="flex-input">
+      <input type="text" name="img" ig="img" placeholder="Image URL..." ngModel #imageUrlInput="ngModel" required>
+    <div>
+      <input type="file" formControlName="fileInput" accept=".jpg, .jpeg, .png" (change)="onFileSelected($event)">
+      <div class="info">
+        <i *ngIf="!imageUrlInput.errors" class="fa-solid fa-circle-check fa-lg" style="color: #008000;"></i>
+        <i *ngIf="imageUrlInput.errors" class="fa-solid fa-circle-exclamation fa-lg" style="color: #800000;"></i>
+        <div class="popuptext" *ngIf="imageUrlInput.errors">
+          <p [ngClass]="imageUrlInput.errors['required'] ? 'error' : 'correct'">The imageURL is required!</p>
+          <!-- <hr>
+          <p [ngClass]="(imageUrlInput.errors['minlength']) ? 'error' : 'correct'">The username must be at least 5
+            characters!</p> -->
+        </div>
+        <p *ngIf="form.get('fileInput')?.invalid && (form.get('fileInput')?.dirty || form.get('fileInput')?.touched)"
+           style="color: red">This field is required!</p>
+      </div>
+    </div>
+    <div></div>
+    <button>Create</button>
+
+    <button type="submit">Create</button>
+  </form>
+</div>
+</div>
