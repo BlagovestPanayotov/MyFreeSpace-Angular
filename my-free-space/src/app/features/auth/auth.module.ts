@@ -5,22 +5,24 @@ import { RouterModule } from '@angular/router';
 
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
-import { ProfileComponent } from './profile/profile.component';
+import { OwnerProfileComponent } from './owner-profile/owner-profile.component';
 import { LogoutComponent } from './logout/logout.component';
 import { PasswordValidatorDirective } from './register/passwordValidators/password-validator.directive';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { NotVerifiedComponent } from './not-verified/not-verified.component';
 import { VerifiedComponent } from './verified/verified.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
     RegisterComponent,
     LoginComponent,
-    ProfileComponent,
+    OwnerProfileComponent,
     LogoutComponent,
     PasswordValidatorDirective,
     NotVerifiedComponent,
     VerifiedComponent,
+    UserProfileComponent,
   ],
   imports: [
     CommonModule,
@@ -32,7 +34,7 @@ import { VerifiedComponent } from './verified/verified.component';
   exports: [
     RegisterComponent,
     LoginComponent,
-    ProfileComponent,
+    OwnerProfileComponent,
     LogoutComponent,
   ],
 })
