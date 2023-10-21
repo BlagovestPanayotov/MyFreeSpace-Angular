@@ -1,11 +1,15 @@
 import { URL_ADDRESS } from '../costants';
 
+const userQuerries = {
+  userQuerry: (userId: string) => encodeURIComponent(`${userId}`),
+};
+
 export const userEndpoints = {
   register: URL_ADDRESS + '/users/register',
   login: URL_ADDRESS + '/users/login',
   logout: URL_ADDRESS + '/users/logout',
   getUser: URL_ADDRESS + '/users/user',
-  getUserById: (userId: string) => `/users/user/view/${userId}`,
+  getUserById: (userId: string) => URL_ADDRESS + `/users/user/view/${userId}`,
   getUserVerify: URL_ADDRESS + '/users/user/verify',
   verifyEmail: (verificationToken: string) =>
     URL_ADDRESS + `/users/user/verify-email?token=${verificationToken}`,
