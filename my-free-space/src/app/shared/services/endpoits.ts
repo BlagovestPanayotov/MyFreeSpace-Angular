@@ -5,6 +5,7 @@ export const userEndpoints = {
   login: URL_ADDRESS + '/users/login',
   logout: URL_ADDRESS + '/users/logout',
   getUser: URL_ADDRESS + '/users/user',
+  getUserById: (userId: string) => `/users/user/view/${userId}`,
   getUserVerify: URL_ADDRESS + '/users/user/verify',
   verifyEmail: (verificationToken: string) =>
     URL_ADDRESS + `/users/user/verify-email?token=${verificationToken}`,

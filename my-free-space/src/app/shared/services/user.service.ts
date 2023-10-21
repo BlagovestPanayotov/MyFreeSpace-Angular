@@ -6,6 +6,7 @@ import { IUser } from '../types/user';
 import { userEndpoints } from './endpoits';
 import { USER_KEY } from '../costants';
 import { IUserVerify } from '../types/userVerify';
+import { IUserNotOwner } from '../types/userNotOwner';
 
 @Injectable({
   providedIn: 'root',
@@ -146,6 +147,10 @@ export class UserService implements OnDestroy {
     return this.http
       .get<IUser | undefined>(userEndpoints.getUser)
       .pipe(tap((user) => this.user$$.next(user)));
+  }
+
+  getUserById(userId: string) {
+    return this.http.get<IUserNotOwner>(userEndpoints.getUserById(userId));
   }
 
   resendVerifyEmail() {
