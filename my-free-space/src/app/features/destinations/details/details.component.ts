@@ -73,10 +73,13 @@ export class DetailsComponent implements OnInit {
   getDestination(): void {
     this.loading = true;
 
-    this.destinationService.getDestinationById(this.id).subscribe((dest) => {
-      this.destination = dest;
-      this.getLikes();
-      this.getComments();
+    this.destinationService.getDestinationById(this.id).subscribe({
+      next: (dest) => {
+        this.destination = dest;
+        this.getLikes();
+        this.getComments();
+      },
+      error: () => {this.router.navigate(['/not-found'])},
     });
   }
 
