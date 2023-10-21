@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/shared/services/user.service';
 import { IUserNotOwner } from 'src/app/shared/types/userNotOwner';
@@ -9,7 +9,8 @@ import { IUserNotOwner } from 'src/app/shared/types/userNotOwner';
   styleUrls: ['./user-profile.component.css'],
 })
 export class UserProfileComponent implements OnInit {
-  id = this.activatedRoute.snapshot.params['userId'];
+
+   id = this.activatedRoute.snapshot.params['userId'];
 
   user: IUserNotOwner = {
     _id: '',
@@ -44,7 +45,7 @@ export class UserProfileComponent implements OnInit {
       },
       error: (err) => {
         console.log(err);
-        
+
         // this.router.navigate(['/not-found']);
       },
     });
