@@ -8,4 +8,8 @@ export interface IDestination {
   _createdOn: string;
   likeCount: number;
   commentCount: number;
+  ownerInfo: {
+    thumbUrl: string;
+    gender: string;
+  };
 }
