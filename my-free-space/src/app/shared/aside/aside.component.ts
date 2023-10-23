@@ -21,7 +21,8 @@ export class AsideComponent implements OnInit {
     ownerInfo: {
       thumbUrl: '',
       gender: '',
-    }
+      accountName: '',
+    },
   };
   cardBottom: IDestination = {
     _id: '',
@@ -36,7 +37,8 @@ export class AsideComponent implements OnInit {
     ownerInfo: {
       thumbUrl: '',
       gender: '',
-    }
+      accountName: '',
+    },
   };
 
   isLoadingTop: boolean = true;
