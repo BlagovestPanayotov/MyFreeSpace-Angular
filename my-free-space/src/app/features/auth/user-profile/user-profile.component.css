@@ -77,11 +77,11 @@ div.btn-container a {
 .flex-info .popuptext {
   position: absolute;
   top: 3rem;
+  left: 50%;
   border: 1px #000 solid;
   border-radius: 1rem;
   background: #f8f8f8;
   padding: 4px;
-  z-index: 9;
   opacity: 0;
   transition: 750ms all;
 }
