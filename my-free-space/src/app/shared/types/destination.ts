@@ -11,5 +11,6 @@ export interface IDestination {
   ownerInfo: {
     thumbUrl: string;
     gender: string;
+    accountName: string;
   };
 }
