@@ -18,6 +18,10 @@ export class AsideComponent implements OnInit {
     _createdOn: '',
     likeCount: 0,
     commentCount: 0,
+    ownerInfo: {
+      thumbUrl: '',
+      gender: '',
+    }
   };
   cardBottom: IDestination = {
     _id: '',
@@ -29,6 +33,10 @@ export class AsideComponent implements OnInit {
     _createdOn: '',
     likeCount: 0,
     commentCount: 0,
+    ownerInfo: {
+      thumbUrl: '',
+      gender: '',
+    }
   };
 
   isLoadingTop: boolean = true;

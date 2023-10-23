@@ -17,7 +17,10 @@ export class DestinationCardComponent {
     _createdOn: '',
     likeCount: 0,
     commentCount: 0,
+    ownerInfo: {
+      thumbUrl: '',
+      gender: '',
+    },
   };
-
   @Input() isLoading: boolean | undefined;
 }
