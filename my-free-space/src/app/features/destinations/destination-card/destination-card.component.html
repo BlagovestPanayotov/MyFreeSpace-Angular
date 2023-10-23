@@ -4,7 +4,22 @@
     <div class="img-container">
       <img src={{dest.img}} alt={{dest.name}}>
     </div>
-    <p>{{dest.description}}</p>
+    <div class="dest-info-container">
+      <div class="profile-image-container">
+        <a routerLink="/auth/profile/{{dest._ownerId}}">
+          <ng-container *ngIf="dest.ownerInfo?.thumbUrl">
+            <img src="{{dest.ownerInfo.thumbUrl}}" alt="Profile Image">
+          </ng-container>
+          <ng-container *ngIf="!dest.ownerInfo?.thumbUrl">
+            <img *ngIf="dest.ownerInfo?.gender==='M'" src="/assets/profile-images/profile-male.png" alt="Prolife">
+            <img *ngIf="dest.ownerInfo?.gender==='W'" src="/assets/profile-images/profile-female.png" alt="Prolife">
+            <img *ngIf="dest.ownerInfo?.gender==='unknown'" src="/assets/profile-images/profile-unknown.png"
+              alt="Prolife">
+          </ng-container>
+        </a>
+      </div>
+      <p>{{dest.description}}</p>
+    </div>
     <div class="button-container">
       <a routerLink="/dest/details/{{dest._id}}" class="destination-details">Details</a>
       <div class="info-holder">

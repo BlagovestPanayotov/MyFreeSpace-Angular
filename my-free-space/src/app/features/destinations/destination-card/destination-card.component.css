@@ -9,7 +9,6 @@
   background-color: rgba(255, 255, 255, 0.4);
   text-align: center;
   position: relative;
-  
 }
 
 .destination-card h3 {
@@ -31,7 +30,6 @@
   background-color: rgba(0, 0, 0, 0.3);
 }
 
-
 .destination-card .img-container img {
   position: absolute;
   top: 50%;
@@ -44,6 +42,7 @@
   padding: 0 2rem;
   overflow: hidden;
   text-overflow: ellipsis;
+  width: 75%;
 }
 
 .destination-card a {
@@ -76,9 +75,44 @@
   margin-left: 1rem;
 }
 
+.dest-info-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 2rem;
+}
+
 .loader-container {
   margin: 40%;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.profile-image-container {
+  margin-left: 0;
+  margin-right: auto;
+  overflow: hidden;
+  width: 3rem;
+  height: 3rem;
+}
+
+.profile-image-container a {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.image-containe a img {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 14px;
+  text-align: center;
 }
