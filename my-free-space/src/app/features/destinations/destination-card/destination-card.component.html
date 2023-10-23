@@ -17,8 +17,11 @@
               alt="Prolife">
           </ng-container>
         </a>
+        <div class="popuptext">
+          <p>{{dest.ownerInfo.accountName}}</p>
+        </div>
       </div>
-      <p>{{dest.description}}</p>
+      <p class="description">{{dest.description}}</p>
     </div>
     <div class="button-container">
       <a routerLink="/dest/details/{{dest._id}}" class="destination-details">Details</a>

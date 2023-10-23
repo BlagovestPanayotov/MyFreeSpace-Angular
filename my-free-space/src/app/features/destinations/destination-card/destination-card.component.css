@@ -36,7 +36,7 @@
   object-fit: cover;
 }
 
-.destination-card p {
+.destination-card .description {
   font-size: 1rem;
   padding: 0 2rem;
   overflow: hidden;
@@ -94,7 +94,7 @@
   height: 2.5rem;
   margin-left: 0;
   margin-right: auto;
-  overflow: hidden;
+  position: relative;
 }
 
 .profile-image-container a {
@@ -115,4 +115,30 @@
   transform: translate(-50%, -50%);
   font-size: 14px;
   text-align: center;
+}
+
+.profile-image-container .popuptext {
+  position: absolute;
+  display: none;
+  top: 3rem;
+  left: 50%;
+  border: 1px #000 solid;
+  border-radius: 1rem;
+  background: #f8f8f8;
+  opacity: 0;
+  transition: 750ms all;
+}
+
+.profile-image-container .popuptext > p {
+  padding: 0.25rem;
+  font-size: 0.75rem;
+  color: #467000;
+}
+
+.profile-image-container:hover .popuptext {
+  display: inline;
+  outline: none;
+  text-decoration: none;
+  color: #000;
+  opacity: 1;
 }

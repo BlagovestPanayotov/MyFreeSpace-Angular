@@ -20,6 +20,7 @@ export class DestinationCardComponent {
     ownerInfo: {
       thumbUrl: '',
       gender: '',
+      accountName:'',
     },
   };
   @Input() isLoading: boolean | undefined;
