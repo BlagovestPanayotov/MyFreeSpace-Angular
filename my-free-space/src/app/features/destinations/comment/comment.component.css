@@ -87,3 +87,37 @@ p.correct {
 p.error {
   color: darkred;
 }
+
+.profile-image-container {
+  height: 2.5rem;
+  margin-left: 0;
+  margin-right: auto;
+  position: relative;
+}
+
+.profile-image-container a {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 100%;
+  overflow: hidden;
+  position: relative;
+  display: inline-block;
+}
+
+.profile-image-container a img {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 14px;
+  text-align: center;
+}
+
+.profile-image-container span {
+  padding-left: 0.25rem;
+  font-size: 0.65rem;
+  font-style: italic;
+}

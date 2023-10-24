@@ -15,7 +15,12 @@ export class CommentComponent implements OnInit {
   @Output() removeCurrentComment = new EventEmitter<any>();
 
   @Input() comment: IComment = {
-    _ownerId: '',
+    _ownerId: {
+      _id: '',
+      gender: '',
+      accountName: '',
+      image: { thumbUrl: '' },
+    },
     content: '',
     _destinationId: '',
     _createdOn: '',
@@ -41,7 +46,7 @@ export class CommentComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.isOwner = this.comment._ownerId == this.user?._id;
+    this.isOwner = this.comment._ownerId._id == this.user?._id;
 
     this.destinationService
       .getCommentLikes(this.comment._id)
@@ -113,7 +118,7 @@ export class CommentComponent implements OnInit {
       },
       error: (err) => {
         console.log(err);
-        
+
         this.apiError = err.error.error[0];
         this.isLoading = false;
       },

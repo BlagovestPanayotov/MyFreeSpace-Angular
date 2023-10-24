@@ -1,5 +1,10 @@
 export interface IComment {
-  _ownerId: string;
+  _ownerId: {
+    _id: string;
+    gender: string;
+    accountName: string;
+    image: { thumbUrl: string };
+  };
   content: string;
   _destinationId: string;
   _createdOn: string;
