@@ -6,6 +6,7 @@ import { ContentComponent } from './features/content/content.component';
 import { PageNotFoundComponent } from './features/page-not-found/page-not-found.component';
 import { ErrorComponent } from './core/error/error.component';
 import { NotVerifiedGuard } from './core/guards/not-verified.activate';
+import { HomeComponent } from './features/home/home.component';
 
 const routerOptions: ExtraOptions = {
   scrollPositionRestoration: 'enabled',
@@ -17,13 +18,14 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    canActivate: [NotVerifiedGuard],
-    component: ContentComponent,
+    redirectTo: 'home',
   },
   {
     path: 'home',
-    canActivate: [NotVerifiedGuard],
     component: ContentComponent,
+    children: [
+      { path: '', canActivate: [NotVerifiedGuard], component: HomeComponent },
+    ],
   },
   {
     path: 'about',

@@ -1,10 +1,4 @@
 <div class="content">
-  <ng-container [ngSwitch]="path">
-
-    <app-user-list *ngSwitchCase="'/dest/user-list'"></app-user-list>
-    <app-destination-list *ngSwitchCase="'/dest/posts-list'"></app-destination-list>
-    <app-home *ngSwitchDefault></app-home>
-
-  </ng-container>
+  <router-outlet></router-outlet>
   <app-aside />
 </div>

@@ -6,21 +6,29 @@ import { CreateDestinationComponent } from './create-destination/create-destinat
 import { DetailsComponent } from './details/details.component';
 import { AuthGuard } from 'src/app/core/guards/auth.activate';
 import { NotVerifiedGuard } from 'src/app/core/guards/not-verified.activate';
+import { DestinationListComponent } from './destination-list/destination-list.component';
+import { UserListComponent } from './user-destination-list/user-list.component';
 
 const routes: Routes = [
   {
-    path: 'user-list',
-    canActivate: [AuthGuard, NotVerifiedGuard],
+    path: 'list',
     component: ContentComponent,
-  },
-  {
-    path: 'posts-list',
-    canActivate: [NotVerifiedGuard],
-    component: ContentComponent,
+    children: [
+      {
+        path: 'user',
+        canActivate: [AuthGuard, NotVerifiedGuard],
+        component: UserListComponent,
+      },
+      {
+        path: 'all',
+        canActivate: [NotVerifiedGuard],
+        component: DestinationListComponent,
+      },
+    ],
   },
   {
     path: 'create',
-    canActivate: [AuthGuard,NotVerifiedGuard],
+    canActivate: [AuthGuard, NotVerifiedGuard],
     component: CreateDestinationComponent,
   },
   {

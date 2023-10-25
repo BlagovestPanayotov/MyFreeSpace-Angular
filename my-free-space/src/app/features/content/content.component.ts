@@ -1,17 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-content',
   templateUrl: './content.component.html',
   styleUrls: ['./content.component.css'],
 })
-export class ContentComponent implements OnInit {
-  path = '';
-  constructor(private router: Router) {
-  }
-  ngOnInit(): void {
-    this.path = this.router.url;
-  }
-  
-}
+export class ContentComponent{}
