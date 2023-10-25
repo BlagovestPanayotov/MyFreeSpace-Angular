@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { DestinationService } from 'src/app/shared/services/destination.service';
-import { SearchService } from 'src/app/shared/services/search.service';
 import { IDestination } from 'src/app/shared/types/destination';
 
 @Component({

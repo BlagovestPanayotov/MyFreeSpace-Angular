@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { COUNTRIES_LIST, MAX_IMAGE_SIZE } from 'src/app/shared/costants';
 import { DestinationService } from 'src/app/shared/services/destination.service';
-import { SearchService } from 'src/app/shared/services/search.service';
 
 @Component({
   selector: 'app-create-destination',
@@ -21,7 +20,6 @@ export class CreateDestinationComponent implements OnInit {
 
   constructor(
     private destinationService: DestinationService,
-    private searchService: SearchService,
     private router: Router,
     private formBuilder: FormBuilder
   ) {}
@@ -70,8 +68,6 @@ export class CreateDestinationComponent implements OnInit {
       next: () => {
         this.loading = false;
         this.router.navigate(['/dest/user-list']);
-        this.searchService.setAllListPage(1);
-        this.searchService.setUserListPage(1);
       },
       error: (err) => {
         this.apiError =

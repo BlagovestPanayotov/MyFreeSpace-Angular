@@ -85,10 +85,10 @@ export const destinationEndpoints = {
   //     }${querries.countryQuerry(country)}&sortBy=${querries.sortQuerry}&count`
   //   );
   // },
-  getUserDestinations: (name: string, country: string, offset: number) => {
+  getUserDestinations: ( offset: number) => {
     return (
       URL_ADDRESS +
-      `/dest/my-destination?name=${name}&country=${country}&${querries.paginQuerry(
+      `/dest/my-destination?${querries.paginQuerry(
         offset,
         9
       )}`

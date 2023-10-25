@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { COUNTRIES_LIST } from 'src/app/shared/costants';
-import { SearchService } from 'src/app/shared/services/search.service';
 
 @Component({
   selector: 'app-search-destination',
@@ -12,7 +11,7 @@ import { SearchService } from 'src/app/shared/services/search.service';
 export class SearchDestinationComponent {
   countries: string[] = COUNTRIES_LIST;
 
-  constructor(private serachService: SearchService, private router: Router) {}
+  constructor(private router: Router) {}
 
   getParams(form: NgForm): void {
     const { name, country } = form.value;
@@ -24,7 +23,7 @@ export class SearchDestinationComponent {
 
   clearSearch(form: NgForm): void {
     form.resetForm({ name: '', country: '' });
-    
+
     this.router.navigate(['/dest/list/all']);
   }
 }
