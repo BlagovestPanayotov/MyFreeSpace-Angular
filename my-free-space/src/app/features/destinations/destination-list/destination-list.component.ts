@@ -19,7 +19,6 @@ export class DestinationListComponent implements OnInit {
 
   constructor(
     private destinationService: DestinationService,
-    // private searchService: SearchService,
     private route: ActivatedRoute
   ) {}
 
@@ -27,10 +26,6 @@ export class DestinationListComponent implements OnInit {
     this.route.queryParams.subscribe((p) => {
       const name = p['name'] || '';
       const country = p['country'] || '';
-
-      console.log(name);
-      console.log(country);
-      
 
       this.destinationService
         .getAllDestinations(name, country, 1)
