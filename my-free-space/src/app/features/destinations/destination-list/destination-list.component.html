@@ -1,11 +1,11 @@
 <app-spinner *ngIf="loading"></app-spinner>
 
 <main *ngIf="!loading">
-  <div class="pag-container" *ngIf="lastPage>1">
+  <!-- <div class="pag-container" *ngIf="lastPage>1">
     <a (click)="decreaseAllListPage()" *ngIf="page>1"><i class="fa-solid fa-angles-left"></i></a>
     <span>Page {{page}} from {{lastPage}}</span>
     <a (click)="increaseAllListPage()" *ngIf="page<lastPage"><i class="fa-solid fa-angles-right"></i></a>
-  </div>
+  </div> -->
   <div class="cards-container">
     <ng-container *ngFor="let dest of list">
       <app-destination-card [dest]="dest"></app-destination-card>

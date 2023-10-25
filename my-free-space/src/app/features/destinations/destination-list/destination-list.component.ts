@@ -1,5 +1,5 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription, combineLatest, switchMap } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { DestinationService } from 'src/app/shared/services/destination.service';
 import { SearchService } from 'src/app/shared/services/search.service';
@@ -10,65 +10,48 @@ import { IDestination } from 'src/app/shared/types/destination';
   templateUrl: './destination-list.component.html',
   styleUrls: ['./destination-list.component.css'],
 })
-export class DestinationListComponent implements OnInit, OnDestroy {
+export class DestinationListComponent implements OnInit {
   list: IDestination[] = [];
-  page: number = this.searchService.getAllListPage;
+  // page: number = this.searchService.getAllListPage;
   countDest: number = 0;
   lastPage: number = 0;
   loading: boolean = true;
-  private subscription: Subscription | undefined;
 
   constructor(
     private destinationService: DestinationService,
-    private searchService: SearchService
+    // private searchService: SearchService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.searchService.params$.subscribe(() => {
-      this.loading = true;
+    this.route.queryParams.subscribe((p) => {
+      const name = p['name'] || '';
+      const country = p['country'] || '';
+
+      console.log(name);
+      console.log(country);
+      
+
+      this.destinationService
+        .getAllDestinations(name, country, 1)
+        .subscribe((dest) => {
+          this.list = dest;
+          this.loading = false;
+        });
     });
-    this.subscribeToMultipleObservables();
-  }
-
-  subscribeToMultipleObservables(): void {
-    const searchObs = this.searchService.params$;
-    const allListPageObs = this.searchService.allListPage$;
-    this.loading = true;
-
-    this.subscription = combineLatest([allListPageObs, searchObs])
-      .pipe(
-        switchMap(([pN, data]) => {
-          this.page = pN;
-          this.loading = true;
-
-          return combineLatest([
-            this.getListDestinations(data.name, data.country),
-          ]);
-        })
-      )
-      .subscribe(([destinations]) => {
-        this.list = destinations;
-        console.log(destinations);
-        
-        this.loading = false;
-      });
   }
 
   private getListDestinations(name: string, country: string) {
-    return this.destinationService.getAllDestinations(name, country, this.page);
+    return this.destinationService.getAllDestinations(name, country, 1);
   }
 
   increaseAllListPage() {
-    this.loading = true;
-    this.searchService.setAllListPage(this.page + 1);
+    // this.loading = true;
+    // this.searchService.setAllListPage(this.page + 1);
   }
 
   decreaseAllListPage() {
-    this.loading = true;
-    this.searchService.setAllListPage(this.page - 1);
-  }
-
-  ngOnDestroy() {
-    this.subscription?.unsubscribe();
+    // this.loading = true;
+    // this.searchService.setAllListPage(this.page - 1);
   }
 }

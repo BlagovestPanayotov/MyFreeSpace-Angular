@@ -17,22 +17,26 @@ export class SearchDestinationComponent {
   getParams(form: NgForm): void {
     const { name, country } = form.value;
 
-    this.serachService.setParams(name, country);
-    this.serachService.setAllListPage(1);
-    this.serachService.setUserListPage(1);
+    // this.serachService.setParams(name, country);
+    // this.serachService.setAllListPage(1);
+    // this.serachService.setUserListPage(1);
 
-    if (this.router.url === '/dest/user-list') {
-      this.router.navigate(['/dest/user-list']);
-      return;
-    }
+    // if (this.router.url === '/dest/user-list') {
+    //   this.router.navigate([`/dest/user-list`]);
+    //   return;
+    // }
 
-    this.router.navigate(['/dest/posts-list']);
+    this.router.navigate(['/dest/posts-list'], {
+      queryParams: { name, country },
+    });
   }
 
   clearSearch(form: NgForm): void {
     form.resetForm({ name: '', country: '' });
-    this.serachService.clearSearch();
-    this.serachService.setAllListPage(1);
-    this.serachService.setUserListPage(1);
+    // this.serachService.clearSearch();
+    // this.serachService.setAllListPage(1);
+    // this.serachService.setUserListPage(1);
+
+    this.router.navigate(['/dest/posts-list']);
   }
 }
