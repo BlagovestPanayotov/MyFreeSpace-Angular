@@ -14,6 +14,7 @@ import { AuthModule } from './auth/auth.module';
 import { ContentComponent } from './content/content.component';
 import { SearchDestinationComponent } from './destinations/search-destination/search-destination.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { UserListComponent } from './destinations/user-list/user-list.component';
 
 
 
@@ -26,7 +27,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     DestinationCardComponent,
     AboutComponent,
     ContentComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    UserListComponent,
   ],
   imports: [
     CommonModule,

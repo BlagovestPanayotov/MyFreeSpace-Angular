@@ -1,0 +1,16 @@
+<app-spinner *ngIf="loading"></app-spinner>
+
+<main *ngIf="!loading">
+  <h2 class="content-header">{{userAccountName}}</h2>
+  <!-- <div class="pag-container"  *ngIf="lastPage>1">
+    <a (click)="decreaseUserListPage()" *ngIf="page>1"><i class="fa-solid fa-angles-left"></i></a>
+    <span>Page {{page}} from {{lastPage}}</span>
+    <a (click)="increaseUserListPage()" *ngIf="page<lastPage"><i class="fa-solid fa-angles-right"></i></a>
+  </div> -->
+  <div class="cards-container" *ngIf="list.length!==0">
+    <ng-container *ngFor="let dest of list">
+      <app-destination-card [dest]="dest"></app-destination-card>
+    </ng-container>
+  </div>
+  <p class="no-posts" *ngIf="list.length===0">The user doesn't have posts yet!</p>
+</main>
