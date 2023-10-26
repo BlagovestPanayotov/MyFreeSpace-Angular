@@ -8,6 +8,7 @@ import { AuthGuard } from 'src/app/core/guards/auth.activate';
 import { NotVerifiedGuard } from 'src/app/core/guards/not-verified.activate';
 import { DestinationListComponent } from './destination-list/destination-list.component';
 import { OwnerListComponent } from './owner-destination-list/owner-list.component';
+import { UserListComponent } from './user-list/user-list.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,11 @@ const routes: Routes = [
         path: 'all',
         canActivate: [NotVerifiedGuard],
         component: DestinationListComponent,
+      },
+      {
+        path: 'user/:userId',
+        canActivate: [AuthGuard, NotVerifiedGuard],
+        component: UserListComponent,
       },
     ],
   },

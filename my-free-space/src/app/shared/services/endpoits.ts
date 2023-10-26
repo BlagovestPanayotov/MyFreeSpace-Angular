@@ -17,16 +17,13 @@ export const userEndpoints = {
 };
 
 const querries = {
-  // andQuerry: encodeURIComponent(' and '),
   nameQuerry: (name: string) => encodeURIComponent(`${name}`),
   countryQuerry: (country: string) => encodeURIComponent(`${country}`),
 
-  // ownerQuerry: (userId: string) => encodeURIComponent(`_ownerId="${userId}"`),
   destinationQuerry: (destinationId: string) =>
     encodeURIComponent(`${destinationId}`),
   commentQuerry: (commentId: string) => encodeURIComponent(`${commentId}`),
 
-  // sortQuerry: encodeURIComponent(`_createdOn desc`),
   paginQuerry: (offset: number, pageSize: number) =>
     `offset=${(offset - 1) * pageSize}&pageSize=${pageSize}`, //offset === pageNumber-1
 };
@@ -43,22 +40,6 @@ export const destinationEndpoints = {
       )}`
     );
   },
-  // getDestinationsCount: (name: string, country: string) => {
-  //   if (country === '') {
-  //     return (
-  //       URL_ADDRESS +
-  //       `/dest/destinations?where=${querries.nameQuerry(name)}&sortBy=${
-  //         querries.sortQuerry
-  //       }&count`
-  //     );
-  //   }
-  //   return (
-  //     URL_ADDRESS +
-  //     `/dest/destinations?where=${querries.nameQuerry(name)}${
-  //       querries.andQuerry
-  //     }${querries.countryQuerry(country)}&sortBy=${querries.sortQuerry}&count`
-  //   );
-  // },
   create: URL_ADDRESS + '/dest/destinations',
   getById: (id: string) =>
     URL_ADDRESS + `/dest/${querries.destinationQuerry(id)}`,
@@ -66,32 +47,15 @@ export const destinationEndpoints = {
     URL_ADDRESS + `/dest/${querries.destinationQuerry(id)}`,
   delete: (id: string) =>
     URL_ADDRESS + `/dest/${querries.destinationQuerry(id)}`,
-
-  // getUserDestinationsCount: (userId: string, name: string, country: string) => {
-  //   if (country === '') {
-  //     return (
-  //       URL_ADDRESS +
-  //       `/data/destinations?where=${querries.ownerQuerry(userId)}${
-  //         querries.andQuerry
-  //       }${querries.nameQuerry(name)}&sortBy=${querries.sortQuerry}&count`
-  //     );
-  //   }
-  //   return (
-  //     URL_ADDRESS +
-  //     `/data/destinations?where=${querries.ownerQuerry(userId)}${
-  //       querries.andQuerry
-  //     }${querries.nameQuerry(name)}${
-  //       querries.andQuerry
-  //     }${querries.countryQuerry(country)}&sortBy=${querries.sortQuerry}&count`
-  //   );
-  // },
-  getUserDestinations: ( offset: number) => {
+  getOwnerDestinations: (offset: number) => {
+    return (
+      URL_ADDRESS + `/dest/my-destinations?${querries.paginQuerry(offset, 9)}`
+    );
+  },
+  getUserDestinations: (userId: string, offset: number) => {
     return (
       URL_ADDRESS +
-      `/dest/my-destination?${querries.paginQuerry(
-        offset,
-        9
-      )}`
+      `/dest/user-destinations/${userId}?${querries.paginQuerry(offset, 9)}`
     );
   },
 
@@ -123,5 +87,3 @@ export const destinationEndpoints = {
   giveCommentLike: URL_ADDRESS + '/accessory/comments/commentLikes',
   deleteCommentLike: URL_ADDRESS + '/accessory/comments/commentLikes/remove',
 };
-
-//GET COUNT http://localhost:3030/data/destinations?count

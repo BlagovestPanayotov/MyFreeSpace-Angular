@@ -20,7 +20,7 @@ export class OwnerListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.destinationService.getUserDestinations(0).subscribe((list) => {
+    this.destinationService.getOwnerDestinations(0).subscribe((list) => {
       this.list = list;
       this.loading = false;
     });

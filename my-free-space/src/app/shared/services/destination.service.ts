@@ -64,9 +64,15 @@ export class DestinationService {
   //   );
   // }
 
-  getUserDestinations(offset: number) {
+  getOwnerDestinations(offset: number) {
     return this.http.get<IDestination[]>(
-      destinationEndpoints.getUserDestinations(offset)
+      destinationEndpoints.getOwnerDestinations(offset)
+    );
+  }
+
+  getUserDestinations(userId:string,offset:number){
+    return this.http.get<[any,IDestination[]]>(
+      destinationEndpoints.getUserDestinations(userId,offset)
     );
   }
 

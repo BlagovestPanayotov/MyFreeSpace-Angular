@@ -9,7 +9,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { UserDestinationListComponent } from './user-destination-list/user-destination-list.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +16,6 @@ import { UserDestinationListComponent } from './user-destination-list/user-desti
     DetailsComponent,
     SearchDestinationComponent,
     CommentComponent,
-    UserDestinationListComponent,
   ],
   imports: [
     RouterModule,
