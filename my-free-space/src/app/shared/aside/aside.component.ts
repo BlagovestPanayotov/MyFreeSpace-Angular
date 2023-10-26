@@ -41,8 +41,7 @@ export class AsideComponent implements OnInit {
     },
   };
 
-  isLoadingTop: boolean = true;
-  isLoadingBottom: boolean = true;
+  isLoading: boolean = true;
 
   constructor(private destinationService: DestinationService) {}
 
@@ -50,10 +49,8 @@ export class AsideComponent implements OnInit {
     this.destinationService.getRandom().subscribe({
       next: (result) => {
         this.cardTop = result[0];
-        this.isLoadingTop = false;
-
         this.cardBottom = result[1];
-        this.isLoadingBottom = false;
+        this.isLoading = false;
       },
       error: (err) => {
         throw err;

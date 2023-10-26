@@ -9,8 +9,7 @@ import { IUserNotOwner } from 'src/app/shared/types/userNotOwner';
   styleUrls: ['./user-profile.component.css'],
 })
 export class UserProfileComponent implements OnInit {
-
-   id = this.activatedRoute.snapshot.params['userId'];
+  id = this.activatedRoute.snapshot.params['userId'];
 
   user: IUserNotOwner = {
     _id: '',
@@ -19,13 +18,13 @@ export class UserProfileComponent implements OnInit {
     accountName: '',
     verified: false,
     imgUrl: '',
+    destinationsCount: 0,
   };
-  loading: boolean = false;
+  loading: boolean = true;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private userService: UserService,
-    private router: Router
   ) {}
 
   ngOnInit(): void {

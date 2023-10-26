@@ -47,14 +47,11 @@ export class CommentComponent implements OnInit {
 
   ngOnInit() {
     this.isOwner = this.comment._ownerId._id == this.user?._id;
-
     this.destinationService
       .getCommentLikes(this.comment._id)
       .subscribe(([count, liked]) => {
         this.likes = Number(count);
-
         this.hasLiked = liked;
-
         this.isLoading = false;
       });
   }
@@ -118,7 +115,6 @@ export class CommentComponent implements OnInit {
       },
       error: (err) => {
         console.log(err);
-
         this.apiError = err.error.error[0];
         this.isLoading = false;
       },

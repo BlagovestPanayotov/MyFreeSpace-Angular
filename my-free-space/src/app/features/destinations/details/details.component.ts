@@ -220,7 +220,6 @@ export class DetailsComponent implements OnInit {
 
   getComments(): void {
     this.commentsLoading = true;
-
     const destId = this.destination._id;
     this.destinationService.getComments(destId).subscribe((c) => {
       this.comments = c;
