@@ -5,4 +5,5 @@ export interface IUserNotOwner {
   accountName: string;
   verified: boolean;
   imgUrl: string;
+  destinationsCount: number;
 }
