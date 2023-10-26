@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
 import { DestinationListComponent } from './destinations/destination-list/destination-list.component';
-import { UserListComponent } from './destinations/user-destination-list/user-list.component';
+import { OwnerListComponent } from './destinations/owner-destination-list/owner-list.component';
 import { AsideComponent } from '../shared/aside/aside.component';
 import { SharedModule } from '../shared/shared.module';
 import { DestinationCardComponent } from './destinations/destination-card/destination-card.component';
@@ -21,7 +21,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
   declarations: [
     HomeComponent,
     DestinationListComponent,
-    UserListComponent,
+    OwnerListComponent,
     AsideComponent,
     DestinationCardComponent,
     AboutComponent,
@@ -39,7 +39,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     AsideComponent,
     HomeComponent,
     DestinationListComponent,
-    UserListComponent,
+    OwnerListComponent,
     SearchDestinationComponent
   ]
 })

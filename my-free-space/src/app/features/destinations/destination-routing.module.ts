@@ -7,7 +7,7 @@ import { DetailsComponent } from './details/details.component';
 import { AuthGuard } from 'src/app/core/guards/auth.activate';
 import { NotVerifiedGuard } from 'src/app/core/guards/not-verified.activate';
 import { DestinationListComponent } from './destination-list/destination-list.component';
-import { UserListComponent } from './user-destination-list/user-list.component';
+import { OwnerListComponent } from './owner-destination-list/owner-list.component';
 
 const routes: Routes = [
   {
@@ -17,7 +17,7 @@ const routes: Routes = [
       {
         path: 'user',
         canActivate: [AuthGuard, NotVerifiedGuard],
-        component: UserListComponent,
+        component: OwnerListComponent,
       },
       {
         path: 'all',

@@ -5,10 +5,10 @@ import { IDestination } from 'src/app/shared/types/destination';
 
 @Component({
   selector: 'app-user-list',
-  templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.css'],
+  templateUrl: './owner-list.component.html',
+  styleUrls: ['./owner-list.component.css'],
 })
-export class UserListComponent implements OnInit {
+export class OwnerListComponent implements OnInit {
   list: IDestination[] = [];
   // page: number = this.searchService.getUserListPage;
   countDest: number = 0;
