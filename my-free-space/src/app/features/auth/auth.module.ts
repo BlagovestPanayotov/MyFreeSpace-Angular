@@ -12,6 +12,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { NotVerifiedComponent } from './not-verified/not-verified.component';
 import { VerifiedComponent } from './verified/verified.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { MessengerComponent } from './messenger/messenger.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     NotVerifiedComponent,
     VerifiedComponent,
     UserProfileComponent,
+    MessengerComponent,
   ],
   imports: [
     CommonModule,
