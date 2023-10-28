@@ -1,0 +1,13 @@
+<main>
+  <h2>Messenger</h2>
+  <div class="container">
+    <aside>
+      <ng-container *ngFor="let message of messages">
+        <app-message-card></app-message-card>
+      </ng-container>
+    </aside>
+    <div>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</main>

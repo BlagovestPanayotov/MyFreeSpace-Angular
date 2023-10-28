@@ -1,0 +1,22 @@
+main {
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 1rem 0;
+  border-radius: 1rem;
+  padding: 2rem;
+ 
+}
+main h2 {
+  text-align: center;
+}
+.container {
+  display: flex;
+}
+aside{
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+}
+main aside {
+  background-color: rgba(255, 255, 255, 0.4);
+  width: 20rem;
+  margin-left: 0;
+}
