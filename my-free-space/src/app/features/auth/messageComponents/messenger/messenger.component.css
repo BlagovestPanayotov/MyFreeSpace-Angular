@@ -1,0 +1,21 @@
+.img-container {
+  grid-area: "image";
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 100%;
+  overflow: hidden;
+  position: relative;
+  display: inline-block;
+}
+
+.img-container img {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 14px;
+  text-align: center;
+}
