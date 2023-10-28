@@ -12,7 +12,11 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { NotVerifiedComponent } from './not-verified/not-verified.component';
 import { VerifiedComponent } from './verified/verified.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
-import { MessengerComponent } from './messenger/messenger.component';
+import { MessengerComponent } from './messageComponents/messenger/messenger.component';
+import { MessageCardComponent } from './messageComponents/message-card/message-card.component';
+import { MessageComponent } from './messageComponents/message/message.component';
+import { MessagesComponent } from './messageComponents/messages/messages.component';
+import { NoMessagesComponent } from './messageComponents/no-messages/no-messages.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +29,10 @@ import { MessengerComponent } from './messenger/messenger.component';
     VerifiedComponent,
     UserProfileComponent,
     MessengerComponent,
+    MessageCardComponent,
+    MessageComponent,
+    MessagesComponent,
+    NoMessagesComponent,
   ],
   imports: [
     CommonModule,
