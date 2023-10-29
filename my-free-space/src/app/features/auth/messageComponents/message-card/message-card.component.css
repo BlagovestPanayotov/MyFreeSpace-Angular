@@ -1,9 +1,16 @@
+.container {
+  padding: 0.5rem;
+  border-radius: 1rem;
+}
+
 .container a {
   display: flex;
+  align-items: center;
   margin: 0.25rem;
   gap: 1rem;
   align-self: center;
   margin-bottom: 1rem;
+  text-decoration: none;
 }
 
 .img-container {
@@ -32,5 +39,8 @@
 .content {
   text-align: end;
   color: #000;
-  text-decoration: none;
+}
+
+.container:hover {
+  background-color: rgba(0, 0, 0, 0.2);
 }
