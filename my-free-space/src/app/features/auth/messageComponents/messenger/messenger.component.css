@@ -1,3 +1,12 @@
+.container {
+  width: 100%;
+  height: auto;
+  padding: 1.5rem;
+  background-color: rgba(255, 255, 255, 0.4);
+  color: black;
+  display: grid;
+}
+
 .img-container {
   grid-area: "image";
   width: 2.5rem;
@@ -18,4 +27,28 @@
   transform: translate(-50%, -50%);
   font-size: 14px;
   text-align: center;
+}
+
+.msg-content {
+  background-color: rgba(255, 255, 255, 0.4);
+  padding: 0.2rem;
+  border-radius: 1rem;
+}
+
+.guest-message,
+.host-message {
+  text-align: right;
+  align-items: center;
+  gap: 1rem;
+}
+
+.host-message {
+  grid-template-columns: 3rem auto;
+  justify-content: flex-start;
+}
+
+.guest-message {
+  grid-template-columns: auto 3rem;
+
+  justify-content: flex-end;
 }
