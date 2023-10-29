@@ -1,12 +1,12 @@
 <main>
-  <h2>Messenger</h2>
-  <div class="container">
+  <h2>Messages</h2>
+  <div class="cards-container">
     <aside>
       <ng-container *ngFor="let message of messages">
         <app-message-card></app-message-card>
       </ng-container>
     </aside>
-    <div>
+    <div class="messages-container">
       <router-outlet></router-outlet>
     </div>
   </div>
