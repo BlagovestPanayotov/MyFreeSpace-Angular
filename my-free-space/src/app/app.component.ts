@@ -20,6 +20,7 @@ export class AppComponent {
       },
       error: () => {
         this.isAuthInitializing = false;
+        this.userService.clearUser();
       },
       complete: () => {},
     });
