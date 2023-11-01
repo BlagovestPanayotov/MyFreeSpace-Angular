@@ -30,7 +30,7 @@ export class LoginComponent {
     this.userService.login(emailLogin, passwordLogin).subscribe({
       next: (user) => {
         localStorage.setItem(USER_KEY, user.accessToken);
-        this.router.navigate(['/dest/user-list']);
+        this.router.navigate(['/dest/list/user']);
         this.loading = false;
       },
       error: (err) => {

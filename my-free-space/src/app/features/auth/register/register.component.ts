@@ -54,7 +54,7 @@ export class RegisterComponent {
       .subscribe({
         next: (user) => {
           localStorage.setItem(USER_KEY, user.accessToken);
-          this.router.navigate(['/dest/posts-list']);
+          this.router.navigate(['/dest/list/user']);
         },
         error: (err) => {
           this.loading = false;
