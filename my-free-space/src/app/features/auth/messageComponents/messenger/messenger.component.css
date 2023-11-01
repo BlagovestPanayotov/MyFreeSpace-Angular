@@ -1,9 +1,27 @@
-.container {
+.component-cotainer {
+  height: 100%;
+}
+
+.messages-container {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 75vh;
+  margin-top: 1rem;
+}
+/* TO DO
+customise scrool bar
+*/
+
+.guest-message,
+.host-message {
   width: 100%;
   padding: 1.5rem;
   color: black;
   display: flex;
   align-items: flex-start;
+  text-align: right;
+  align-items: center;
+  gap: 1rem;
 }
 
 .img-container {
@@ -36,13 +54,6 @@
   border-radius: 1rem;
 }
 
-.guest-message,
-.host-message {
-  text-align: right;
-  align-items: center;
-  gap: 1rem;
-}
-
 .host-message {
   justify-content: flex-start;
   height: auto;
@@ -51,4 +62,16 @@
 .guest-message {
   justify-content: flex-end;
   height: auto;
+}
+.component-cotainer {
+  display: flex;
+  flex-direction: column;
+}
+.message-form-container {
+  margin-bottom: 0;
+  margin-top: auto;
+}
+.message-form-container form {
+  display: flex;
+  flex-direction: column;
 }
